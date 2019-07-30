@@ -22,8 +22,11 @@ export default class Grid extends React.Component {
 
   }
   playGrid() {
-    
 
+
+  }
+  setPreview = (e) => {
+    debugger;
   }
   render() {
     let defaultOptions = {
@@ -42,205 +45,205 @@ export default class Grid extends React.Component {
             : ''}
         </div>
         <div className="lottie-grid">
-          <div className="icon" id="icon-1" data-name>
+          <div className="icon" data-id="1" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-2" data-name>
+          <div className="icon" data-id="2" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-3" data-name>
+          <div className="icon" data-id="3" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-4" data-name>
+          <div className="icon" data-id="4" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-5" data-name>
+          <div className="icon" data-id="5" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-6" data-name>
+          <div className="icon" data-id="6" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-7" data-name>
+          <div className="icon" data-id="7" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-8" data-name>
+          <div className="icon" data-id="8" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-9" data-name>
+          <div className="icon" data-id="9" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-10" data-name>
+          <div className="icon" data-id="10" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-11" data-name>
+          <div className="icon" data-id="11" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-12" data-name>
+          <div className="icon" data-id="12" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-13" data-name>
+          <div className="icon" data-id="13" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-14" data-name>
+          <div className="icon" data-id="14" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-15" data-name>
+          <div className="icon" data-id="15" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-16" data-name>
+          <div className="icon" data-id="16" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-17" data-name>
+          <div className="icon" data-id="17" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-18" data-name>
+          <div className="icon" data-id="18" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-19" data-name>
+          <div className="icon" data-id="19" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-20" data-name>
+          <div className="icon" data-id="20" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-21" data-name>
+          <div className="icon" data-id="21" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-22" data-name>
+          <div className="icon" data-id="22" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-23" data-name>
+          <div className="icon" data-id="23" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-24" data-name>
+          <div className="icon" data-id="24" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-25" data-name>
+          <div className="icon" data-id="25" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-26" data-name>
+          <div className="icon" data-id="26" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-27" data-name>
+          <div className="icon" data-id="27" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-28" data-name>
+          <div className="icon" data-id="28" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-29" data-name>
+          <div className="icon" data-id="29" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-30" data-name>
+          <div className="icon" data-id="30" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-31" data-name>
+          <div className="icon" data-id="31" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-32" data-name>
+          <div className="icon" data-id="32" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-33" data-name>
+          <div className="icon" data-id="33" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-34" data-name>
+          <div className="icon" data-id="34" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-35" data-name>
+          <div className="icon" data-id="35" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-36" data-name>
+          <div className="icon" data-id="36" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-37" data-name>
+          <div className="icon" data-id="37" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-38" data-name>
+          <div className="icon" data-id="38" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-39" data-name>
+          <div className="icon" data-id="39" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-40" data-name>
+          <div className="icon" data-id="40" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-41" data-name>
+          <div className="icon" data-id="41" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-42" data-name>
+          <div className="icon" data-id="42" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-43" data-name>
+          <div className="icon" data-id="43" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-44" data-name>
+          <div className="icon" data-id="44" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-45" data-name>
+          <div className="icon" data-id="45" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-46" data-name>
+          <div className="icon" data-id="46" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-47" data-name>
+          <div className="icon" data-id="47" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-48" data-name>
+          <div className="icon" data-id="48" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-49" data-name>
+          <div className="icon" data-id="49" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-50" data-name>
+          <div className="icon" data-id="50" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-51" data-name>
+          <div className="icon" data-id="51" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-52" data-name>
+          <div className="icon" data-id="52" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-53" data-name>
+          <div className="icon" data-id="53" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-54" data-name>
+          <div className="icon" data-id="54" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-55" data-name>
+          <div className="icon" data-id="55" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-56" data-name>
+          <div className="icon" data-id="56" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-57" data-name>
+          <div className="icon" data-id="57" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-58" data-name>
+          <div className="icon" data-id="58" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-59" data-name>
+          <div className="icon" data-id="59" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-60" data-name>
+          <div className="icon" data-id="60" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-61" data-name>
+          <div className="icon" data-id="61" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-62" data-name>
+          <div className="icon" data-id="62" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-63" data-name>
+          <div className="icon" data-id="63" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-64" data-name>
+          <div className="icon" data-id="64" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-65" data-name>
+          <div className="icon" data-id="65" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-66" data-name>
+          <div className="icon" data-id="66" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-67" data-name>
+          <div className="icon" data-id="67" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-68" data-name>
+          <div className="icon" data-id="68" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-69" data-name>
+          <div className="icon" data-id="69" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-70" data-name>
+          <div className="icon" data-id="70" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-71" data-name>
+          <div className="icon" data-id="71" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-72" data-name>
+          <div className="icon" data-id="72" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-73" data-name>
+          <div className="icon" data-id="73" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-74" data-name>
+          <div className="icon" data-id="74" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-75" data-name>
+          <div className="icon" data-id="75" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-76" data-name>
+          <div className="icon" data-id="76" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-77" data-name>
+          <div className="icon" data-id="77" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-78" data-name>
+          <div className="icon" data-id="78" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-79" data-name>
+          <div className="icon" data-id="79" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-80" data-name>
+          <div className="icon" data-id="80" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-81" data-name>
+          <div className="icon" data-id="81" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-82" data-name>
+          <div className="icon" data-id="82" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-83" data-name>
+          <div className="icon" data-id="83" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-84" data-name>
+          <div className="icon" data-id="84" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-85" data-name>
+          <div className="icon" data-id="85" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-86" data-name>
+          <div className="icon" data-id="86" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-87" data-name>
+          <div className="icon" data-id="87" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-88" data-name>
+          <div className="icon" data-id="88" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-89" data-name>
+          <div className="icon" data-id="89" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-90" data-name>
+          <div className="icon" data-id="90" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-91" data-name>
+          <div className="icon" data-id="91" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-92" data-name>
+          <div className="icon" data-id="92" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-93" data-name>
+          <div className="icon" data-id="93" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-94" data-name>
+          <div className="icon" data-id="94" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-95" data-name>
+          <div className="icon" data-id="95" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-96" data-name>
+          <div className="icon" data-id="96" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-97" data-name>
+          <div className="icon" data-id="97" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-98" data-name>
+          <div className="icon" data-id="98" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-99" data-name>
+          <div className="icon" data-id="99" data-name='' onClick={this.props.setPreview}>
           </div>
-          <div className="icon" id="icon-100" data-name>
+          <div className="icon" data-id="100" data-name='' onClick={this.props.setPreview}>
           </div>
         </div>
       </div>

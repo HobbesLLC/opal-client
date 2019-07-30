@@ -8,7 +8,8 @@ import Form from './Form/Form'
 
 export default class App extends React.Component {
   state = {
-    profile: 'light'
+    profile: 'light',
+    previewFile: null
   }
   renderClass() {
     let profile = ''
@@ -34,6 +35,11 @@ export default class App extends React.Component {
       profile: color
     })
   }
+  setPreview = (e) => {
+    e.preventDefault()
+    debugger;
+    const id = e.target
+  }
   render() {
 
     return (
@@ -43,7 +49,9 @@ export default class App extends React.Component {
         >
         <Header />
         <div className='form-grid'>
-          <Grid />
+          <Grid
+            setPreview={this.setPreview}
+          />
           <Form />
 
         </div>

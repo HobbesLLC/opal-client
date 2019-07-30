@@ -25,7 +25,7 @@ const AnimationApiService = {
         : res.json()
       )
   },
-  saveAnimation(lottieColor, scaleStrokeDuration) {
+  saveAnimation(lottieColor, duration, stroke, scale) {
     return fetch(`${config.API_ENDPOINT}/animations`, {
       method: 'POST',
       headers: {
@@ -33,8 +33,10 @@ const AnimationApiService = {
         'authorization': `bearer ${config.API_KEY}`
       },
       body: JSON.stringify({
-        color: lottieColor,
-        scaleStrokeDuration: scaleStrokeDuration
+        lottieColor: lottieColor,
+        duration: duration,
+        stroke: stroke,
+        scale: scale
       })
     })
     .then(res => {
