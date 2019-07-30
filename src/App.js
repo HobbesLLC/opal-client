@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Header from './Header/Header'
+import Footer from './Footer/Footer'
+import Grid from './Grid/Grid'
+import Form from './Form/Form'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+
+export default class App extends React.Component {
+  state = {
+    profile: 'light'
+  }
+  renderClass() {
+    let profile = ''
+    switch (this.state.profile) {
+      case 'light':
+        profile = 'opal-body default'
+        break;
+      case 'grey':
+        profile = 'opal-body grey'
+        break;
+      case 'dark':
+        profile = 'opal-body dark'
+        break;
+      default:
+
+    }
+    return profile
+  }
+  setClass = (e) => {
+    e.preventDefault()
+    const color = e.target.id
+    this.setState({
+      profile: color
+    })
+  }
+  render() {
+
+    return (
+      <main
+        className={this.renderClass()}
+
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+        <Header />
+        <div className='form-grid'>
+          <Grid />
+          <Form />
 
-export default App;
+        </div>
+        <Footer
+          setClass={this.setClass}
+        />
+      </main>
+    );
+  }
+}

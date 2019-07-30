@@ -1,0 +1,37 @@
+
+html {  box-sizing: border-box;}
+*,*::before,*::after {  box-sizing: inherit;}
+
+/* Reset margins and paddings on most elements */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+p,
+pre,
+blockquote,
+figure,
+hr {  margin: 0;  padding: 0;}
+
+body {
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+}
+
+.light {
+  background: #ffffff;
+  color: #000000;
+}
+.grey {
+  color: #1a1a1a;
+  background: #f0f0f0;
+}
+.dark {
+  color: #ffffff;
+  background: #1a1a1a;
+}
