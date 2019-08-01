@@ -139,7 +139,10 @@ export default class Form extends React.Component {
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
-        
+        this.setState({
+          returnedFiles: res
+        })
+        // Now we need to figure something out. jszip or emailer
       })
   }
   handleChange = (e) => {
