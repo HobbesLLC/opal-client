@@ -1,6 +1,7 @@
 import React from 'react'
 import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
+import saveAs from 'jszip'
 
 export default class Form extends React.Component {
   state = {
@@ -164,7 +165,27 @@ export default class Form extends React.Component {
     })
     this.calculateColor()
   }
+  downloadFiles = () => {
 
+    let zip = require('jszip')()
+
+    this.state.returnedFiles.forEach(opalFile => {
+      zip.file(`${opalFile.name}.json`, `${opalFile.file}.json`)
+
+    })
+
+      zip.generateAsync({
+        type: 'blob'
+      })
+        .then(content => {
+          return content
+
+        })
+        .then(content => {
+          saveAs(content, 'Opal-Export.zip')
+        })
+
+  }
   render() {
     return (
       <div className='form-preview'>
@@ -220,6 +241,9 @@ export default class Form extends React.Component {
             <input type="range" name="duration" id="duration" required min="200" max="3000" defaultValue={this.state.duration}/>
           </div>
           <button type="submit" id="render">Render <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></button>
+          {(this.state.returnedFiles)
+           ? <button onClick={this.downloadFiles} className='download'>Download Now</button>
+           : ''}
         </form>
       </div>
     )
