@@ -30,20 +30,18 @@ export default class Header extends React.Component{
     return (
       <>
       <header className='opal-header'>
-        <h1
-          className='opal-logo'
-          aria-label="Opal Logo">
-          <img src={Logo} alt='Opal Logo'/>
-          Opal
-        </h1>
-        <h1
-          className='opal-logo'
-          aria-label="Opal Logo"
-          onClick={this.openMenu}
-          >
-          <img src={Hobbes} alt='Opal Logo'/>
-          Hobbes
-        </h1>
+
+          <img src={Logo}
+            alt='Opal Logo'
+            aria-label="Opal Logo"
+            className='opal-logo'/>
+
+
+          <img src={Hobbes}
+            className='hobbes-logo'
+            aria-label="hobbes Logo"
+            onClick={this.openMenu}
+            alt='Opal Logo'/>
       </header>
       {(this.state.expanded)
         ? expandedDiv

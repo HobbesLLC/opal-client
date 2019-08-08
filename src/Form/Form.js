@@ -1,7 +1,9 @@
 import React from 'react'
 import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
-import saveAs from 'jszip'
+import { saveAs } from 'file-saver'
+let JSZip = require('jszip')
+
 
 export default class Form extends React.Component {
   state = {
@@ -167,23 +169,24 @@ export default class Form extends React.Component {
   }
   downloadFiles = () => {
 
-    let zip = require('jszip')()
+    let zip = new JSZip()
 
-    this.state.returnedFiles.forEach(opalFile => {
-      zip.file(`${opalFile.name}.json`, `${opalFile.file}.json`)
+    let animationsZip = zip.folder('Animations')
+
+    let exportedJson = this.state.returnedFiles.map(opalFile => {
+      let json = JSON.stringify(opalFile.file)
+      zip.file(`${opalFile.name}.json`, `${json}`)
+      // animationsZip.file(`${opalFile.name}.json`, `${json}`)
 
     })
 
-      zip.generateAsync({
-        type: 'blob'
-      })
-        .then(content => {
-          return content
+    // all the array indexes are undefined
+    zip.generateAsync({type:'blob'}).then(function(content) {
+      saveAs(content, 'exportedjson.zip');
+    });
 
-        })
-        .then(content => {
-          saveAs(content, 'Opal-Export.zip')
-        })
+
+
 
   }
   render() {

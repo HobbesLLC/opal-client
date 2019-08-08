@@ -37,8 +37,8 @@ export default class App extends React.Component {
   }
   setPreview = (e) => {
     e.preventDefault()
+    const id = e.target.getAttribute('data-id')
     debugger;
-    const id = e.target
   }
   render() {
 

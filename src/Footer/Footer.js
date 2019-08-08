@@ -1,4 +1,5 @@
 import React from 'react'
+import About from '../Img/About.svg'
 
 export default class Footer extends React.Component {
   state = {
@@ -8,19 +9,25 @@ export default class Footer extends React.Component {
 
     return (
       <footer>
-        <h3>Color Mode</h3>
-        <p
-        onClick={this.props.setClass}
-        id='light'
-        > Light</p>
-        <p
-        onClick={this.props.setClass}
-        id='grey'
-        > Grey</p>
-        <p
-        onClick={this.props.setClass}
-        id='dark'
-        > Dark</p>
+        <div className='hobbes-about'>
+          <img src={About} alt='About Hobbes'/>
+        </div>
+
+        <div className='color-picker'>
+          <div
+          onClick={this.props.setClass}
+          id='light'
+          ></div>
+        <div
+          onClick={this.props.setClass}
+          id='grey'
+          ></div>
+        <div
+          onClick={this.props.setClass}
+          id='dark'
+          ></div>
+        </div>
+
       </footer>
     )
   }
