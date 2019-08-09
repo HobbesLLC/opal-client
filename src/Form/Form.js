@@ -145,7 +145,6 @@ export default class Form extends React.Component {
         this.setState({
           returnedFiles: res
         })
-        // Now we need to figure something out. jszip or emailer
       })
   }
   handleChange = (e) => {
@@ -175,8 +174,8 @@ export default class Form extends React.Component {
 
     let exportedJson = this.state.returnedFiles.map(opalFile => {
       let json = JSON.stringify(opalFile.file)
-      zip.file(`${opalFile.name}.json`, `${json}`)
-      // animationsZip.file(`${opalFile.name}.json`, `${json}`)
+      // zip.file(`${opalFile.name}.json`, `${json}`)
+      animationsZip.file(`${opalFile.name}.json`, `${json}`)
 
     })
 
