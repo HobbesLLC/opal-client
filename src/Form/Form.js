@@ -146,6 +146,17 @@ export default class Form extends React.Component {
           returnedFiles: res
         })
       })
+      .then(response => {
+        this.playLottie()
+      })
+  }
+  playLottie = e => {
+
+    let defaultOptions = {
+      loop: true,
+      autoplay: true,
+      animationData: this.state.returnedFiles[Math.floor(Math.random() * 201)]
+    }
   }
   handleChange = (e) => {
     e.preventDefault()
@@ -166,16 +177,29 @@ export default class Form extends React.Component {
     })
     this.calculateColor()
   }
+
   downloadFiles = () => {
 
     let zip = new JSZip()
 
-    let animationsZip = zip.folder('Animations')
+
 
     let exportedJson = this.state.returnedFiles.map(opalFile => {
       let json = JSON.stringify(opalFile.file)
+      if (opalFile.name === 'Alarm_Clock_Build' || opalFile.name === 'Alarm_Clock_Static') {
+        debugger;
+      }
+      if (opalFile.type === 'animation') {
+        let animationsZip = zip.folder('Animations')
+        animationsZip.file(`${opalFile.name}.json`, `${json}`)
+      } else if (opalFile.type === 'static') {
+        let staticZip = zip.folder('Static')
+        staticZip.file(`${opalFile.name}.json`, `${json}`)
+      }
+
+
       // zip.file(`${opalFile.name}.json`, `${json}`)
-      animationsZip.file(`${opalFile.name}.json`, `${json}`)
+
 
     })
 
@@ -189,9 +213,25 @@ export default class Form extends React.Component {
 
   }
   render() {
+    let defaultOptions
+    if (this.state.returnedFiles) {
+      defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: this.state.returnedFiles[Math.floor(Math.random() * 101)].file
+      }
+    }
+    // Temporarily doing this to test all playing files
+
+
     return (
       <div className='form-preview'>
-        <div id='preview'></div>
+        <div id='preview'>
+          {(this.state.returnedFiles)
+           ? <Lottie options={defaultOptions} />
+           : ''}
+        </div>
+
         <form
           className="lottie-edit-form"
           onSubmit={this.handleSubmit}
