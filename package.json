@@ -11,7 +11,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-lottie": "^1.2.3",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-svg": "^10.0.17"
   },
   "scripts": {
     "start": "react-scripts start",

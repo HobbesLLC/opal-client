@@ -4,16 +4,29 @@ import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Grid from './Grid/Grid'
 import Form from './Form/Form'
+import AnimationApiService from './services/animation-api-services'
+import OpalContext from './contexts/OpalContext'
 
 
 export default class App extends React.Component {
-  state = {
-    profile: 'light',
-    previewFile: null
+  static contextType = OpalContext
+
+  componentDidMount() {
+    AnimationApiService.getAnimations()
+      .then(res => {
+        let animationFiles = res.filter(json => json.type === 'animation')
+        let staticFiles = res.filter(json => json.type === 'static')
+        this.context.setJson({
+          animations: animationFiles,
+          static: staticFiles
+        })
+      })
+
+    this.context.setProfile('light')
   }
   renderClass() {
     let profile = ''
-    switch (this.state.profile) {
+    switch (this.context.profile) {
       case 'light':
         profile = 'opal-body default'
         break;
@@ -31,14 +44,12 @@ export default class App extends React.Component {
   setClass = (e) => {
     e.preventDefault()
     const color = e.target.id
-    this.setState({
-      profile: color
-    })
+    this.context.setProfile(color)
   }
   setPreview = (e) => {
     e.preventDefault()
     const id = e.target.getAttribute('data-id')
-    debugger;
+
   }
   render() {
 

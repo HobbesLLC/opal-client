@@ -1,52 +1,34 @@
 import React from 'react'
 import './Header.scss'
-import Logo from '../Img/Opal_Slash.svg'
+import Logo from '../Img/Opal_Logo.svg'
 import Hobbes from '../Img/Hobbes.svg'
+// import Hobbes from '../Img/Hobbes_Logo_RightJustified.svg'
+import ReactSVG from 'react-svg'
 
 
 export default class Header extends React.Component{
   state = {
-    expanded: false
+
   }
 
-  openMenu = (e) => {
-    this.setState({
-      expanded: true
-    })
-  }
-  closeMenu = (e) => {
-    this.setState({
-      expanded: false
-    })
-  }
   render() {
-    let expandedDiv = (
-      <aside className='about'>
-        <p onClick={this.closeMenu}>Close</p>
-        <h1>Opal</h1>
-        <p>lorem ipsum lorem ipsum</p>
-      </aside>
-    )
+
     return (
       <>
       <header className='opal-header'>
 
-          <img src={Logo}
+          <ReactSVG
+            src={Logo}
             alt='Opal Logo'
             aria-label="Opal Logo"
-            className='opal-logo'/>
+            className='opal-logo' />
 
 
-          <img src={Hobbes}
+          <ReactSVG src={Hobbes}
             className='hobbes-logo'
             aria-label="hobbes Logo"
-            onClick={this.openMenu}
             alt='Opal Logo'/>
       </header>
-      {(this.state.expanded)
-        ? expandedDiv
-        : expandedDiv = ''
-        }
       </>
     )
   }

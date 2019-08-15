@@ -17,8 +17,8 @@ const AnimationApiService = {
         : res.json()
       )
   },
-  getById(id) {
-    return fetch(`${config.API_ENDPOINT}/animations/${id}`)
+  getByName(name) {
+    return fetch(`${config.API_ENDPOINT}/animations/${name}`)
       .then(res =>
         (!res.ok)
         ? res.json().then(e => Promise.reject(e))

@@ -28,20 +28,43 @@ figure,
 hr {  margin: 0;  padding: 0;}
 
 body {
-  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+  font-family: 'IBM Plex Sans', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+  font-size: 11px;
+  @media (min-width: 1800px) {
+    font-size: 15px;
+  }
 }
 
 .light {
   background: #ffffff;
   color: #000000;
+  aside.about {
+    background: #ffffff;
+  }
 }
 .grey {
   color: #1a1a1a;
   background: #f0f0f0;
+  aside.about {
+    background: #f0f0f0;
+  }
 }
 .dark {
   color: #ffffff;
   background: #1a1a1a;
+  aside.about {
+    background: #1a1a1a;
+  }
+  svg,
+  path {
+    fill: #ffffff;
+  }
+  #lottie-player {
+    svg,
+    path {
+      stroke: #fff;
+    }
+  }
 }
 
 // header
@@ -53,7 +76,6 @@ body {
   position: -ms-sticky;
   position: -o-sticky;
   position: relative;
-  // top: 40px;
   padding: 0 40px;
   padding: 40px 40px 0 40px;
 
@@ -62,7 +84,7 @@ body {
       max-width: 20px;
   }
   .hobbes-logo {
-    cursor: pointer;
+
   }
 }
 
@@ -97,11 +119,12 @@ body {
 
     #lottie-player {
       padding: 3.33%;
+      margin-top: 33px;
       width: 100%;
     }
     .lottie-grid {
       width: 100%;
-      height: 100%;
+      padding: 33px 0;
 
       @media (max-width: 750px) {
         display: none;
@@ -124,16 +147,16 @@ body {
   }
   .form-preview {
     margin-left: 100px;
-    // vertical-align: top;
-    // float: right;
+    padding-top: 45px;
 
     @media (max-width: 750px) {
       width: 100%;
     }
 
     #preview {
-      width: 400px;
-      height: 400px;
+      width: 210px;
+      border: 1px solid;
+      height: 210px;
       margin: 0 auto;
       transform: translate3d(0,0,0);
       text-align: center;
@@ -456,18 +479,20 @@ body {
 
 // footer
 footer {
-  display: flex;
-  position: relative;
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
-  padding-left: 40px;
-  // bottom: 40px;
-  padding-right: 40px;
-  justify-content: space-between;
+  
+  .hobbes-about,
+  .color-picker {
+    position: fixed;
+    bottom: 40px;
+  }
+  .hobbes-about {
+    cursor: pointer;
+    left: 40px;
+  }
 
   .color-picker {
+    position: fixed;
+    right: 40px;
     display: flex;
 
 
@@ -496,5 +521,35 @@ footer {
     #dark {
       margin-left: 15px;
     }
+  }
+}
+
+
+// Aside
+.about {
+  background: #fff;
+  width: 360px;
+  position: absolute;
+  padding: 60px;
+  padding-top: 210px;
+  // temporary
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-100%);
+  transition: transform .2s ease;
+  box-shadow: 2px 2px 39px #eee;
+  &.expanded {
+    transform: translateX(0);
+    // temporary
+    box-shadow: 2px 2px 39px #eee;
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+  }
+  p {
+    line-height: 1.5;
   }
 }

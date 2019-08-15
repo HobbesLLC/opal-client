@@ -2,10 +2,12 @@ import React from 'react'
 import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
 import { saveAs } from 'file-saver'
+import OpalContext from '../contexts/OpalContext'
 let JSZip = require('jszip')
 
 
 export default class Form extends React.Component {
+  static contextType = OpalContext
   state = {
     hue: 0,
     saturation: 100,
@@ -142,13 +144,17 @@ export default class Form extends React.Component {
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
+        let animationFiles = res.filter(json => json.type === 'animation')
+        let staticFiles = res.filter(json => json.type === 'static')
+        this.context.setExportFiles({
+          animations: animationFiles,
+          static: staticFiles
+        })
         this.setState({
           returnedFiles: res
         })
       })
-      .then(response => {
-        this.playLottie()
-      })
+
   }
   playLottie = e => {
 
@@ -186,9 +192,6 @@ export default class Form extends React.Component {
 
     let exportedJson = this.state.returnedFiles.map(opalFile => {
       let json = JSON.stringify(opalFile.file)
-      if (opalFile.name === 'Alarm_Clock_Build' || opalFile.name === 'Alarm_Clock_Static') {
-        debugger;
-      }
       if (opalFile.type === 'animation') {
         let animationsZip = zip.folder('Animations')
         animationsZip.file(`${opalFile.name}.json`, `${json}`)
@@ -196,10 +199,6 @@ export default class Form extends React.Component {
         let staticZip = zip.folder('Static')
         staticZip.file(`${opalFile.name}.json`, `${json}`)
       }
-
-
-      // zip.file(`${opalFile.name}.json`, `${json}`)
-
 
     })
 
@@ -213,21 +212,41 @@ export default class Form extends React.Component {
 
   }
   render() {
-    let defaultOptions
-    if (this.state.returnedFiles) {
+    let defaultOptions = ''
+
+    if (this.context.previewJson) {
       defaultOptions = {
         loop: true,
         autoplay: true,
-        animationData: this.state.returnedFiles[Math.floor(Math.random() * 101)].file
+        animationData: this.context.previewJson.file
       }
     }
-    // Temporarily doing this to test all playing files
+
+    // if (this.context.exportFiles !== null && this.context.previewJson !== null) {
+    //   debugger;
+    //   defaultOptions = {
+    //     loop: true,
+    //     autoplay: true,
+    //     animationData: this.context.previewJson.json
+    //   }
+    // }
+    // else if (this.context.previewJson !== null) {
+    //   defaultOptions = {
+    //     loop: true,
+    //     autoplay: true,
+    //     animationData: this.context.previewJson.json
+    //   }
+    // }
+
+    // NEEDS WORK
+    // Do this in Grid.js
+    //
 
 
     return (
       <div className='form-preview'>
         <div id='preview'>
-          {(this.state.returnedFiles)
+          {(this.context.previewJson || this.context.exportFiles)
            ? <Lottie options={defaultOptions} />
            : ''}
         </div>
