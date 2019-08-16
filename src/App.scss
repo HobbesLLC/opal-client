@@ -38,22 +38,37 @@ body {
 .light {
   background: #ffffff;
   color: #000000;
-  aside.about {
+  aside.about,
+  input,
+  label {
     background: #ffffff;
+  }
+  input,
+  label {
+    color: #000000;
   }
 }
 .grey {
   color: #1a1a1a;
   background: #f0f0f0;
-  aside.about {
+  aside.about,
+  input,
+  label {
     background: #f0f0f0;
   }
+  color: #1A1A1A;
 }
 .dark {
   color: #ffffff;
   background: #1a1a1a;
-  aside.about {
+  aside.about,
+  input,
+  label {
     background: #1a1a1a;
+  }
+  input,
+  label {
+    color: #ffffff;
   }
   svg,
   path {
@@ -155,7 +170,6 @@ body {
 
     #preview {
       width: 210px;
-      border: 1px solid;
       height: 210px;
       margin: 0 auto;
       transform: translate3d(0,0,0);
@@ -479,7 +493,7 @@ body {
 
 // footer
 footer {
-  
+
   .hobbes-about,
   .color-picker {
     position: fixed;

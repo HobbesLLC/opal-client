@@ -13,6 +13,7 @@ export default class Form extends React.Component {
     saturation: 100,
     lightness: 50,
     lottieColor: null,
+    hexolor: null,
     duration: 3000,
     scale: 24,
     stroke: 1
@@ -52,6 +53,8 @@ export default class Form extends React.Component {
 
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
+
+
 
   function rgbatolottie(h,s,l){
     s /= 100;
@@ -131,9 +134,11 @@ export default class Form extends React.Component {
 
     return '#' + r + g + b;
   }
+
   let lottieColor = rgbatolottie(this.state.hue, this.state.saturation, this.state.lightness)
 
   this.setState({
+    hexolor: hslToHex(this.state.hue, this.state.saturation, this.state.lightness),
     lottieColor
   })
   }
