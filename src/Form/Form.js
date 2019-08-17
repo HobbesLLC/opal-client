@@ -13,15 +13,15 @@ export default class Form extends React.Component {
     saturation: 100,
     lightness: 50,
     lottieColor: null,
-    hexolor: null,
+    hexcolor: null,
     duration: 3000,
+    previewFrameRate: null,
     scale: 24,
     stroke: 1
   }
 
   calculateColor = () => {
-
-  let hsl = `hsl(${this.state.hue}, ${this.state.saturation}%, ${this.state.lightness}%)`;
+  let hsl = `hsl(${this.context.hue}, ${this.context.saturation}%, ${this.context.lightness}%)`;
 
   function hslToRgb(h,s,l) {
     s /= 100;
@@ -138,14 +138,14 @@ export default class Form extends React.Component {
   let lottieColor = rgbatolottie(this.state.hue, this.state.saturation, this.state.lightness)
 
   this.setState({
-    hexolor: hslToHex(this.state.hue, this.state.saturation, this.state.lightness),
+    hexcolor: hslToHex(this.state.hue, this.state.saturation, this.state.lightness),
     lottieColor
   })
+  this.context.updatePreview(this.context.previewJson.file, lottieColor, this.state.scale, this.state.stroke, this.state.duration)
   }
   handleSubmit = (e) => {
     e.preventDefault()
     const {lottieColor, duration, scale, stroke} = this.state
-    // let scaleStrokeDuration = [scale, stroke, duration]
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
@@ -161,14 +161,7 @@ export default class Form extends React.Component {
       })
 
   }
-  playLottie = e => {
 
-    let defaultOptions = {
-      loop: true,
-      autoplay: true,
-      animationData: this.state.returnedFiles[Math.floor(Math.random() * 201)]
-    }
-  }
   handleChange = (e) => {
     e.preventDefault()
     let hue = e.currentTarget.hue.value
@@ -177,15 +170,19 @@ export default class Form extends React.Component {
     let duration = e.currentTarget.duration.value
     let scale = e.currentTarget.scale.value
     let stroke = e.currentTarget.stroke.value
-
+    let op = 30;
+    let framerate = parseFloat(((op/duration)*1000), 10);
+    let previewFrameRate = Math.round(framerate * 1e2) / 1e2;
     this.setState({
       hue,
       lightness,
       saturation,
       duration,
+      previewFrameRate,
       scale,
       stroke
     })
+    // investigate why previewFrameRate isn't being updated in the context
     this.calculateColor()
   }
 
@@ -207,7 +204,6 @@ export default class Form extends React.Component {
 
     })
 
-    // all the array indexes are undefined
     zip.generateAsync({type:'blob'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
     });
@@ -226,27 +222,6 @@ export default class Form extends React.Component {
         animationData: this.context.previewJson.file
       }
     }
-
-    // if (this.context.exportFiles !== null && this.context.previewJson !== null) {
-    //   debugger;
-    //   defaultOptions = {
-    //     loop: true,
-    //     autoplay: true,
-    //     animationData: this.context.previewJson.json
-    //   }
-    // }
-    // else if (this.context.previewJson !== null) {
-    //   defaultOptions = {
-    //     loop: true,
-    //     autoplay: true,
-    //     animationData: this.context.previewJson.json
-    //   }
-    // }
-
-    // NEEDS WORK
-    // Do this in Grid.js
-    //
-
 
     return (
       <div className='form-preview'>
