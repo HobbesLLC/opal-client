@@ -141,7 +141,14 @@ export default class Form extends React.Component {
     hexcolor: hslToHex(this.state.hue, this.state.saturation, this.state.lightness),
     lottieColor
   })
-  this.context.updatePreview(this.context.previewJson.file, lottieColor, this.state.scale, this.state.stroke, this.state.duration)
+  if (this.context.previewJson) {
+    this.context.updatePreview(this.context.previewJson.file, lottieColor, this.state.scale, this.state.stroke, this.state.duration)
+
+    setTimeout(() => {
+      this.playPreview()
+    }, 1000);
+  }
+
   }
   handleSubmit = (e) => {
     e.preventDefault()
@@ -207,28 +214,44 @@ export default class Form extends React.Component {
     zip.generateAsync({type:'blob'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
     });
-
-
-
-
   }
-  render() {
+  playPreview = () => {
     let defaultOptions = ''
-
+    let previewJsonFile
     if (this.context.previewJson) {
+      previewJsonFile = JSON.stringify(this.context.previewJson.file)
+      // this.calculateColor()
+      // This works, but need to limit the amount of times this runs somehow
+      // debugger;
       defaultOptions = {
         loop: true,
         autoplay: true,
         animationData: this.context.previewJson.file
       }
+
+      return <Lottie options={defaultOptions} />
     }
+
+  }
+  // Need to create a function that plays the file
+  render() {
+    // let defaultOptions = ''
+    //
+    // if (this.context.previewJson) {
+    //
+    //   debugger;
+    //   defaultOptions = {
+    //     loop: true,
+    //     autoplay: true,
+    //     animationData:
+    //   }
+    // }
 
     return (
       <div className='form-preview'>
         <div id='preview'>
-          {(this.context.previewJson || this.context.exportFiles)
-           ? <Lottie options={defaultOptions} />
-           : ''}
+          {this.playPreview()}
+
         </div>
 
         <form

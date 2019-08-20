@@ -413,6 +413,7 @@ export class OpalContextProvider extends React.Component {
     file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
     file.layers[2].shapes[1].it[1].w.k = strokeAdjusted;
     file.layers[3].shapes[0].it[1].w.k = strokeAdjusted;
+    debugger;
     break;
     case 'Heart_Build':
     case 'Heart_Static':
