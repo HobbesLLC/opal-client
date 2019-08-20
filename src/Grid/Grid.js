@@ -1,5 +1,4 @@
 import React from 'react'
-import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
 import animationData from '../Opal_Grid_081419.json'
 import OpalContext from '../contexts/OpalContext'
@@ -40,16 +39,6 @@ export default class Grid extends React.Component {
       autoplay: true,
       animationData: animationData
     }
-
-    // if (this.context.json.animations) {
-    //   gridDivs = this.context.json.animations.map(icon => {
-    //     return (
-    //       <div className='icon' data-id={icon.id} key={icon.id} data-name={icon.name} onClick={this.setPreview}></div>
-    //     )
-    //   })
-    // }
-
-
     return (
       <div
       className='grid-container'
