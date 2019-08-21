@@ -19,7 +19,24 @@ export default class Form extends React.Component {
     scale: 24,
     stroke: 1
   }
-
+  componentDidMount() {
+    // STEP 1
+    // GET all animations
+    // set them as this.context.exportFiles.animations
+    AnimationApiService.saveAnimation(this.context.lottieColor, this.context.duration, this.context.stroke, this.context.scale)
+      .then(res => {
+        let animationFiles = res.filter(json => json.type === 'animation')
+        let staticFiles = res.filter(json => json.type === 'static')
+        this.context.setExportFiles({
+          animations: animationFiles,
+          static: staticFiles
+        })
+        debugger;
+        // this.setState({
+        //   returnedFiles: res
+        // })
+      })
+  }
   calculateColor = () => {
   let hsl = `hsl(${this.context.hue}, ${this.context.saturation}%, ${this.context.lightness}%)`;
 
@@ -142,11 +159,18 @@ export default class Form extends React.Component {
     lottieColor
   })
   if (this.context.previewJson) {
-    this.context.updatePreview(this.context.previewJson.file, lottieColor, this.state.scale, this.state.stroke, this.state.duration)
+    // there is already exportFiles in context from componentDidMount()
+    // consider removing this if statement
+    // Make the updates to all the context files
+    const updatePreview = async () => {
+      this.context.updatePreview(this.context.previewJson.file, lottieColor, this.state.scale, this.state.stroke, this.state.duration)
+    }
+    updatePreview()
+      .then(res => {
+        console.log('play preview .then()');
+        this.playPreview()
+      })
 
-    setTimeout(() => {
-      this.playPreview()
-    }, 1000);
   }
 
   }
@@ -189,15 +213,13 @@ export default class Form extends React.Component {
       scale,
       stroke
     })
-    // investigate why previewFrameRate isn't being updated in the context
+
     this.calculateColor()
   }
 
   downloadFiles = () => {
 
     let zip = new JSZip()
-
-
 
     let exportedJson = this.state.returnedFiles.map(opalFile => {
       let json = JSON.stringify(opalFile.file)
@@ -233,22 +255,15 @@ export default class Form extends React.Component {
     }
 
   }
-  // Need to create a function that plays the file
+
   render() {
-    // let defaultOptions = ''
-    //
-    // if (this.context.previewJson) {
-    //
-    //   debugger;
-    //   defaultOptions = {
-    //     loop: true,
-    //     autoplay: true,
-    //     animationData:
-    //   }
-    // }
+
 
     return (
       <div className='form-preview'>
+        <div className='preview-header'>
+
+        </div>
         <div id='preview'>
           {this.playPreview()}
 
