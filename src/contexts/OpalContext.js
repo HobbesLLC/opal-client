@@ -1,7 +1,6 @@
 import React from 'react'
 
 const initialState = {
-  json: {},
   profile: '',
   previewJson: null,
   exportFiles: null,
@@ -19,10 +18,11 @@ const initialState = {
 const OpalContext = React.createContext({
   ...initialState,
   setPreview: () => { },
-  setJson: () => { },
   setProfile: () => { },
   setExportFiles: () => { },
-  setPreviewColor: () => {},
+  setColor: () => {},
+  updateState: () => {},
+  updateFiles: () => {},
   updatePreview: () => {}
 })
 
@@ -37,14 +37,18 @@ export class OpalContextProvider extends React.Component {
     this.setState({ previewJson })
   }
 
-  updatePreview = (previewFile, lottieColor, scale, stroke, duration) => {
-    // update the preview for all the files
-    this.exportFiles.animations.forEach(file => {
+  updateFiles = () => {
+    let updatedAnimations = this.state.exportFiles.animations.map(file => {
+
       file.op = 30;
+      let lottieColor = this.state.lottieColor
+      let scale = this.state.scale
+      let stroke = this.state.stroke
+      let duration = this.state.duration
       let strokeAdjusted = stroke*20
       let height = parseInt(scale)
-      let outputheight = ((height/24)*100).toFixed(2)
-      let jsonsize = [outputheight, outputheight, 100]
+      // let outputheight = ((height/24)*100).toFixed(2)
+      // let jsonsize = [outputheight, outputheight, 100]
       let framerate = parseFloat(((file.op/duration)*1000), 10);
 
       let lottieFramerate = Math.round(framerate * 1e2) / 1e2;
@@ -921,19 +925,30 @@ export class OpalContextProvider extends React.Component {
       return file
     })
     this.setState({
-      previewJson: {
-        ...this.state.previewJson,
-        previewFile
+      exportFiles: {
+        animations: updatedAnimations,
+        ...this.state.exportFiles
       }
     })
   }
 
-  setPreviewColor = (colorValues) => {
+  updateState = (updateValues) => {
     this.setState({
-      ...this.state,
+      hue: updateValues.hue,
+      duration: updateValues.duration,
+      lightness: updateValues.lightness,
+      previewFrameRate: updateValues.previewFrameRate,
+      saturation: updateValues.saturation,
+      scale: updateValues.scale,
+      stroke: updateValues.stroke
+    })
+  }
+  setColor = (colorValues) => {
+    this.setState({
       hexcolor: colorValues.hexcolor,
       lottieColor: colorValues.lottieColor
     })
+    this.updateFiles()
   }
   setProfile = profile => {
     this.setState({ profile })
@@ -950,7 +965,6 @@ export class OpalContextProvider extends React.Component {
   render() {
     const value = {
       // values
-      json: this.state.json,
       profile: this.state.profile,
       exportFiles: this.state.exportFiles,
       previewJson: this.state.previewJson,
@@ -965,8 +979,10 @@ export class OpalContextProvider extends React.Component {
       stroke: this.state.stroke,
       // methods
       setPreview: this.setPreview,
-      setPreviewColor: this.setPreviewColor,
+      setColor: this.setColor,
+      updateState: this.updateState,
       setProfile: this.setProfile,
+      updateFiles: this.updateFiles,
       setExportFiles: this.setExportFiles,
       updatePreview: this.updatePreview,
       setJson: this.setJson

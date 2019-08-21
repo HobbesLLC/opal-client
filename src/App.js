@@ -12,15 +12,19 @@ export default class App extends React.Component {
   static contextType = OpalContext
 
   componentDidMount() {
-    AnimationApiService.getAnimations()
-      .then(res => {
-        let animationFiles = res.filter(json => json.type === 'animation')
-        let staticFiles = res.filter(json => json.type === 'static')
-        this.context.setJson({
-          animations: animationFiles,
-          static: staticFiles
-        })
-      })
+    // AnimationApiService.getAnimations()
+    //   .then(res => {
+    //     let animationFiles = res.filter(json => json.type === 'animation')
+    //     let staticFiles = res.filter(json => json.type === 'static')
+    //     this.context.setExportFiles({
+    //       exportFiles: {
+    //         animations: animationFiles,
+    //         static: staticFiles
+    //       }
+    //       // animations: animationFiles,
+    //       // static: staticFiles
+    //     })
+    //   })
 
     this.context.setProfile('light')
   }
@@ -46,11 +50,11 @@ export default class App extends React.Component {
     const color = e.target.id
     this.context.setProfile(color)
   }
-  setPreview = (e) => {
-    e.preventDefault()
-    const id = e.target.getAttribute('data-id')
-
-  }
+  // setPreview = (e) => {
+  //   e.preventDefault()
+  //   const id = e.target.getAttribute('data-id')
+  //
+  // }
   render() {
 
     return (
