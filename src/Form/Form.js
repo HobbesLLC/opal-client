@@ -216,7 +216,7 @@ export default class Form extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const {lottieColor, duration, scale, stroke} = this.context
-    
+
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
         let animationFiles = res.filter(json => json.type === 'animation')
@@ -245,8 +245,8 @@ export default class Form extends React.Component {
         let staticZip = zip.folder('Static')
         staticZip.file(`${opalFile.name}.json`, `${json}`)
       }
-
     })
+
 
     zip.generateAsync({type:'blob'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
