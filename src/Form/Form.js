@@ -215,8 +215,8 @@ export default class Form extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const {lottieColor, duration, scale, stroke} = this.state
-
+    const {lottieColor, duration, scale, stroke} = this.context
+    
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
         let animationFiles = res.filter(json => json.type === 'animation')
