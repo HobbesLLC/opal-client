@@ -18,9 +18,8 @@ export default class Form extends React.Component {
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
-        console.log('component did mount');
-        let animationFiles = res.filter(json => json.type === 'animation')
-        let staticFiles = res.filter(json => json.type === 'static')
+        let animationFiles = res.filter(file => file.type === 'animation')
+        let staticFiles = res.filter(file => file.type === 'static')
         this.context.setExportFiles({
           animations: animationFiles,
           static: staticFiles
@@ -202,12 +201,12 @@ export default class Form extends React.Component {
       })
 
       if (this.state.previewFile) {
-        console.log(JSON.stringify(this.state.previewFile));
+        console.log(this.state.previewFile);
         debugger;
         defaultOptions = {
           loop: true,
           autoplay: true,
-          animationData: JSON.stringify(this.state.previewFile)
+          animationData: this.state.previewFile
           // neither the this.context.previewJson.file nor this.context.previewJson.jsonString is working because neither are a JSON file?
         }
 

@@ -34,6 +34,7 @@ export class OpalContextProvider extends React.Component {
   }
 
   setPreview = previewJson => {
+    debugger
     this.setState({ previewJson: previewJson.previewJson })
   }
 

@@ -23,7 +23,7 @@ export default class Grid extends React.Component {
       jsonString = JSON.stringify(previewFile.file)
       debugger;
       this.context.setPreview({
-        previewJson: previewFile.file
+        previewJson: jsonString
       })
     }
 
