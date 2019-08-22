@@ -1,7 +1,9 @@
 import React from 'react'
 import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
+import lottie from 'lottie-web'
 import { saveAs } from 'file-saver'
+import animationData from '../Opal_Grid_081419.json'
 import OpalContext from '../contexts/OpalContext'
 let JSZip = require('jszip')
 
@@ -9,25 +11,23 @@ let JSZip = require('jszip')
 export default class Form extends React.Component {
   static contextType = OpalContext
   state = {
-    // hue: 0,
-    // saturation: 100,
-    // lightness: 50,
-    // lottieColor: null,
-    // hexcolor: null,
-    // duration: 3000,
-    // previewFrameRate: null,
-    // scale: 24,
-    // stroke: 1
+    previewFile: null
   }
   componentDidMount() {
-    AnimationApiService.saveAnimation(this.context.lottieColor, this.context.duration, this.context.stroke, this.context.scale)
+    const {lottieColor, duration, scale, stroke} = this.context
+
+    AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
+        console.log('component did mount');
         let animationFiles = res.filter(json => json.type === 'animation')
         let staticFiles = res.filter(json => json.type === 'static')
         this.context.setExportFiles({
           animations: animationFiles,
           static: staticFiles
         })
+        // this.setState({
+        //   returnedFiles: res
+        // })
       })
   }
 
@@ -153,20 +153,14 @@ export default class Form extends React.Component {
 
       this.context.updateFiles()
 
-      // if (this.context.previewJson) {
-      //   // there is already exportFiles in context from componentDidMount()
-      //   // consider removing this if statement
-      //   // Make the updates to all the context files
-      //   const updatePreview = async () => {
-      //     this.context.updatePreview(this.context.previewJson.file, lottieColor, this.state.scale, this.state.stroke, this.state.duration)
-      //   }
-      //   updatePreview()
-      //     .then(res => {
-      //       console.log('play preview .then()');
-      //       this.playPreview()
-      //     })
-      //
-      // }
+      if (this.context.previewJson) {
+        debugger;
+        // there is already exportFiles in context from componentDidMount()
+        // consider removing this if statement
+        // Make the updates to all the context files
+        this.playPreview()
+
+      }
 
   }
 
@@ -196,19 +190,30 @@ export default class Form extends React.Component {
 
   playPreview = () => {
     let defaultOptions = ''
-    let previewJsonFile
-    if (this.context.previewJson) {
-      previewJsonFile = JSON.stringify(this.context.previewJson.file)
+
+    if (this.context.previewJson !== null) {
+      let previewJsonFile
+      // previewJsonFile = JSON.stringify(this.context.previewJson.file)
       // this.calculateColor()
       // This works, but need to limit the amount of times this runs somehow
-      // debugger;
-      defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: this.context.previewJson.file
+      debugger;
+      this.setState({
+        previewFile: this.context.previewJson
+      })
+
+      if (this.state.previewFile) {
+        console.log(JSON.stringify(this.state.previewFile));
+        debugger;
+        defaultOptions = {
+          loop: true,
+          autoplay: true,
+          animationData: JSON.stringify(this.state.previewFile)
+          // neither the this.context.previewJson.file nor this.context.previewJson.jsonString is working because neither are a JSON file?
+        }
+
+        return <Lottie options={defaultOptions} />
       }
 
-      return <Lottie options={defaultOptions} />
     }
 
   }
@@ -255,7 +260,6 @@ export default class Form extends React.Component {
 
   render() {
 
-
     return (
       <div className='form-preview'>
         <div className='preview-header'>
@@ -263,7 +267,6 @@ export default class Form extends React.Component {
         </div>
         <div id='preview'>
           {this.playPreview()}
-
         </div>
 
         <form

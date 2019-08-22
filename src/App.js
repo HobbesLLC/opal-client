@@ -21,8 +21,6 @@ export default class App extends React.Component {
     //         animations: animationFiles,
     //         static: staticFiles
     //       }
-    //       // animations: animationFiles,
-    //       // static: staticFiles
     //     })
     //   })
 

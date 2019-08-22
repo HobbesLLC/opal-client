@@ -34,12 +34,12 @@ export class OpalContextProvider extends React.Component {
   }
 
   setPreview = previewJson => {
-    this.setState({ previewJson })
+    this.setState({ previewJson: previewJson.previewJson })
   }
 
   updateFiles = () => {
-    let updatedAnimations = this.state.exportFiles.animations.map(file => {
-
+    let updatedAnimations = this.state.exportFiles.animations.map(object => {
+      let file = object.file
       file.op = 30;
       let lottieColor = this.state.lottieColor
       let scale = this.state.scale
@@ -418,7 +418,6 @@ export class OpalContextProvider extends React.Component {
         file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[1].it[1].w.k = strokeAdjusted;
         file.layers[3].shapes[0].it[1].w.k = strokeAdjusted;
-        debugger;
         break;
         case 'Heart_Build':
         case 'Heart_Static':
@@ -943,6 +942,7 @@ export class OpalContextProvider extends React.Component {
       stroke: updateValues.stroke
     })
   }
+
   setColor = (colorValues) => {
     this.setState({
       hexcolor: colorValues.hexcolor,
