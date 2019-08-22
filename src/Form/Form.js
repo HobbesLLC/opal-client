@@ -3,7 +3,7 @@ import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
 import lottie from 'lottie-web'
 import { saveAs } from 'file-saver'
-import animationData from '../Opal_Grid_081419.json'
+import test2 from '../test2.json'
 import OpalContext from '../contexts/OpalContext'
 let JSZip = require('jszip')
 
@@ -207,7 +207,9 @@ export default class Form extends React.Component {
           loop: true,
           autoplay: true,
           animationData: this.state.previewFile
-          // neither the this.context.previewJson.file nor this.context.previewJson.jsonString is working because neither are a JSON file?
+          //
+          // Ok, so it appears that this only works if you link to a .json file explicitly. Using a JSON.stringify() source doesn't work here. Will try and use another Lottie module
+          //
         }
 
         return <Lottie options={defaultOptions} />
