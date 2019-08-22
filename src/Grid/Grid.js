@@ -16,12 +16,11 @@ export default class Grid extends React.Component {
   setPreview = (e) => {
     let previewFile
     let jsonString
-    // need to refactor this code.
     this.context.previewJson = null
     if (this.context.exportFiles !== null) {
       previewFile = this.context.exportFiles.animations.find(icon => icon.name === e.target.dataset.name)
       jsonString = JSON.stringify(previewFile.file)
-      debugger;
+
       this.context.setPreview({
         previewJson: jsonString
       })

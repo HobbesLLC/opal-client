@@ -24,46 +24,10 @@ export default class Form extends React.Component {
           animations: animationFiles,
           static: staticFiles
         })
-        // this.setState({
-        //   returnedFiles: res
-        // })
       })
   }
 
   calculateColor = () => {
-      // let hsl = `hsl(${this.context.hue}, ${this.context.saturation}%, ${this.context.lightness}%)`;
-      //
-      // function hslToRgb(h,s,l) {
-      //   s /= 100;
-      //   l /= 100;
-      //
-      //   let c = (1 - Math.abs(2 * l - 1)) * s,
-      //       x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-      //       m = l - c/2,
-      //       r = 0,
-      //       g = 0,
-      //       b = 0;
-      //
-      //   if (0 <= h && h < 60) {
-      //     r = c; g = x; b = 0;
-      //   } else if (60 <= h && h < 120) {
-      //     r = x; g = c; b = 0;
-      //   } else if (120 <= h && h < 180) {
-      //     r = 0; g = c; b = x;
-      //   } else if (180 <= h && h < 240) {
-      //     r = 0; g = x; b = c;
-      //   } else if (240 <= h && h < 300) {
-      //     r = x; g = 0; b = c;
-      //   } else if (300 <= h && h < 360) {
-      //     r = c; g = 0; b = x;
-      //   }
-      //   r = Math.round((r + m) * 255);
-      //   g = Math.round((g + m) * 255);
-      //   b = Math.round((b + m) * 255);
-      //
-      //   return 'rgb(' + r + ',' + g + ',' + b + ')';
-      // }
-
       function rgbatolottie(h,s,l){
         s /= 100;
         l /= 100;
@@ -150,16 +114,14 @@ export default class Form extends React.Component {
         lottieColor
       })
 
-      this.context.updateFiles()
-
-      if (this.context.previewJson) {
-        debugger;
-        // there is already exportFiles in context from componentDidMount()
-        // consider removing this if statement
-        // Make the updates to all the context files
-        this.playPreview()
-
+      const updateFileColors = async () => {
+        this.context.updateFiles()
       }
+    updateFileColors()
+      .then(response => {
+        debugger;
+        this.playPreview()
+      })
 
   }
 
@@ -191,29 +153,21 @@ export default class Form extends React.Component {
     let defaultOptions = ''
 
     if (this.context.previewJson !== null) {
-      let previewJsonFile
-      // previewJsonFile = JSON.stringify(this.context.previewJson.file)
-      // this.calculateColor()
-      // This works, but need to limit the amount of times this runs somehow
-      debugger;
-      this.setState({
-        previewFile: this.context.previewJson
-      })
+      // this.setState({
+      //   previewFile: this.context.previewJson
+      // })
 
-      if (this.state.previewFile) {
-        console.log(this.state.previewFile);
-        debugger;
+      // if (this.state.previewFile) {
+      debugger;
         defaultOptions = {
           loop: true,
           autoplay: true,
-          animationData: this.state.previewFile
-          //
-          // Ok, so it appears that this only works if you link to a .json file explicitly. Using a JSON.stringify() source doesn't work here. Will try and use another Lottie module
-          //
+          animationData: JSON.parse(this.context.previewJson)
+          // THIS WAS IT
         }
 
         return <Lottie options={defaultOptions} />
-      }
+      // }
 
     }
 
@@ -267,7 +221,9 @@ export default class Form extends React.Component {
 
         </div>
         <div id='preview'>
-          {this.playPreview()}
+          {this.context.previewJson
+            ? this.playPreview()
+            : ''}
         </div>
 
         <form

@@ -4,13 +4,13 @@ const initialState = {
   profile: '',
   previewJson: null,
   exportFiles: null,
-  lottieColor: null,
+  lottieColor: [0,0,0,1],
   previewFrameRate: null,
   hue: 0,
   saturation: 100,
   lightness: 50,
   hexcolor: null,
-  duration: 3000,
+  duration: 1500,
   scale: 24,
   stroke: 1
 }
@@ -34,7 +34,6 @@ export class OpalContextProvider extends React.Component {
   }
 
   setPreview = previewJson => {
-    debugger
     this.setState({ previewJson: previewJson.previewJson })
   }
 
