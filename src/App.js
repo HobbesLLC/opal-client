@@ -4,7 +4,6 @@ import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Grid from './Grid/Grid'
 import Form from './Form/Form'
-import AnimationApiService from './services/animation-api-services'
 import OpalContext from './contexts/OpalContext'
 
 
@@ -36,17 +35,11 @@ export default class App extends React.Component {
     const color = e.target.id
     this.context.setProfile(color)
   }
-  // setPreview = (e) => {
-  //   e.preventDefault()
-  //   const id = e.target.getAttribute('data-id')
-  //
-  // }
   render() {
 
     return (
       <main
         className={this.renderClass()}
-
         >
         <Header />
         <div className='form-grid'>

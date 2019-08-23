@@ -928,7 +928,8 @@ export class OpalContextProvider extends React.Component {
         animations: updatedAnimations,
         ...this.state.exportFiles
       }
-    })
+    },
+    this.updatePreview())
   }
 
   updateState = (updateValues) => {
@@ -940,15 +941,30 @@ export class OpalContextProvider extends React.Component {
       saturation: updateValues.saturation,
       scale: updateValues.scale,
       stroke: updateValues.stroke
-    })
+    },
+    this.updateFiles())
   }
 
+  updatePreview = (preview) => {
+    if (this.state.previewJson) {
+      let tempName = JSON.parse(this.state.previewJson).nm
+      let updatedPreview = this.state.exportFiles.animations.find(file => file.name === tempName)
+      this.setState({
+        previewJson: JSON.stringify(updatedPreview.file)
+      }, function() {
+        return
+      })
+    } else {
+      return
+    }
+  }
   setColor = (colorValues) => {
     this.setState({
       hexcolor: colorValues.hexcolor,
       lottieColor: colorValues.lottieColor
-    })
-    this.updateFiles()
+    }, this.updateFiles()
+    )
+
   }
   setProfile = profile => {
     this.setState({ profile })

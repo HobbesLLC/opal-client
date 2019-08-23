@@ -1,9 +1,7 @@
 import React from 'react'
 import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
-import lottie from 'lottie-web'
 import { saveAs } from 'file-saver'
-import test2 from '../test2.json'
 import OpalContext from '../contexts/OpalContext'
 let JSZip = require('jszip')
 
@@ -119,7 +117,6 @@ export default class Form extends React.Component {
       }
     updateFileColors()
       .then(response => {
-        debugger;
         this.playPreview()
       })
 
@@ -136,17 +133,24 @@ export default class Form extends React.Component {
     let op = 30;
     let framerate = parseFloat(((op/duration)*1000), 10);
     let previewFrameRate = Math.round(framerate * 1e2) / 1e2;
-    this.context.updateState({
-      hue,
-      lightness,
-      saturation,
-      duration,
-      previewFrameRate,
-      scale,
-      stroke
-    })
 
-    this.calculateColor()
+    const updateContextValues = async () => {
+      this.context.updateState({
+        hue,
+        lightness,
+        saturation,
+        duration,
+        previewFrameRate,
+        scale,
+        stroke
+      })
+    }
+    updateContextValues()
+      .then(res => {
+        this.calculateColor()
+      })
+
+
   }
 
   playPreview = () => {
@@ -158,7 +162,6 @@ export default class Form extends React.Component {
       // })
 
       // if (this.state.previewFile) {
-      debugger;
         defaultOptions = {
           loop: true,
           autoplay: true,
@@ -196,7 +199,7 @@ export default class Form extends React.Component {
 
     let zip = new JSZip()
 
-    let exportedJson = this.state.returnedFiles.map(opalFile => {
+    this.state.returnedFiles.forEach(opalFile => {
       let json = JSON.stringify(opalFile.file)
       if (opalFile.type === 'animation') {
         let animationsZip = zip.folder('Animations')
