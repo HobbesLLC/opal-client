@@ -2,7 +2,6 @@ import React from 'react'
 import './Header.scss'
 import Logo from '../Img/Opal_Logo.svg'
 import Hobbes from '../Img/Hobbes.svg'
-// import Hobbes from '../Img/Hobbes_Logo_RightJustified.svg'
 import ReactSVG from 'react-svg'
 
 
@@ -23,11 +22,15 @@ export default class Header extends React.Component{
             aria-label="Opal Logo"
             className='opal-logo' />
 
+          <a href="https://www.hobbes.work"
+              target="_blank"
+              rel="noopener noreferrer">
+            <ReactSVG src={Hobbes}
+              className='hobbes-logo'
+              aria-label="hobbes Logo"
+              alt='Opal Logo'/>
+          </a>
 
-          <ReactSVG src={Hobbes}
-            className='hobbes-logo'
-            aria-label="hobbes Logo"
-            alt='Opal Logo'/>
       </header>
       </>
     )
