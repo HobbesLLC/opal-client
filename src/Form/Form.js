@@ -157,20 +157,14 @@ export default class Form extends React.Component {
     let defaultOptions = ''
 
     if (this.context.previewJson !== null) {
-      // this.setState({
-      //   previewFile: this.context.previewJson
-      // })
 
-      // if (this.state.previewFile) {
         defaultOptions = {
           loop: true,
           autoplay: true,
           animationData: JSON.parse(this.context.previewJson)
-          // THIS WAS IT
         }
 
         return <Lottie options={defaultOptions} />
-      // }
 
     }
 
@@ -234,13 +228,14 @@ export default class Form extends React.Component {
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
           >
-          <fieldset name='color'>
+          <fieldset name='color' className='color-edit'>
             <span className="field-labels">
               <label htmlFor='hue'>Hue</label>
               <input name="hueOutputName" id="hueOutputId" value={this.context.hue}></input>
             </span>
 
             <input type="range" name="hue" id="hueID" min="0" max="360" defaultValue={this.context.hue} required/>
+
             <span className="field-labels">
               <label htmlFor='saturation'>Saturation</label>
               <span><input name="saturationOutputName" id="saturationOutputId" value={this.context.saturation}></input>%</span>
