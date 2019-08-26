@@ -182,6 +182,9 @@ export default class Form extends React.Component {
           animations: animationFiles,
           static: staticFiles
         })
+        // add a this.setState({ isRendering: true})
+        // and this.playRender()
+        // That will play another Lottie animation for a duration of 2s to show the user we are "building" the files
         this.setState({
           returnedFiles: res
         })
