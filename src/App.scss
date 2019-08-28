@@ -2,6 +2,10 @@ $trackpointerwidth: 1px;
 $trackpointerheight: 20px;
 $trackpointerwidth: 1px;
 $trackpointerborder: 1px solid #000000;
+$white: #ffffff;
+$black: #000000;
+$offblack: #1A1A1A;
+$grey: #f0f0f0;
 
 
 $trackheight: 1px;
@@ -34,50 +38,64 @@ body {
   }
 }
 
-.light {
-  background: #ffffff;
-  color: #000000;
+.default {
+  background: $white;
+  color: $black;
   aside.about,
   input,
   label {
-    background: #ffffff;
+    background: $white;;
   }
   input,
   label {
-    color: #000000;
+    color: $black;
+  }
+  #light {
+    border: 1px solid $black;
   }
 }
 .grey {
-  color: #1a1a1a;
-  background: #f0f0f0;
+  color: $offblack;
+  background: $grey;
   aside.about,
   input,
   label {
-    background: #f0f0f0;
+    background: $grey;
   }
-  color: #1A1A1A;
+  color: $offblack;
+
+  // color icons
+  #grey {
+    border: 1px solid $offblack;
+  }
 }
 .dark {
-  color: #ffffff;
-  background: #1a1a1a;
+  color: $white;
+  background: $offblack;
   aside.about,
   input,
   label {
-    background: #1a1a1a;
+    background: $offblack;
   }
   input,
   label {
-    color: #ffffff;
+    color: $white;
   }
-  svg,
-  path {
-    fill: #ffffff;
+  #lottie-grid {
+    svg,
+    path {
+      fill: $white;
+    }
   }
+
   #lottie-player {
     svg,
     path {
-      stroke: #fff;
+      stroke: $white;
     }
+  }
+  #dark {
+    border: 1px solid $white;
   }
 }
 
@@ -510,15 +528,12 @@ footer {
       cursor: pointer;
     }
     #light {
-      border: 1px solid #1A1A1A;
       background: #ffffff;
     }
     #grey {
       background: #F0F0F0;
-      border: 1px solid #F0F0F0;
     }
     #dark {
-      border: 1px solid #1A1A1A;
       background: #1A1A1A;
     }
     #grey,

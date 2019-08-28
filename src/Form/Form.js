@@ -22,6 +22,7 @@ export default class Form extends React.Component {
           animations: animationFiles,
           static: staticFiles
         })
+        // find the pencil icon and set it to be playing
       })
   }
 
@@ -160,6 +161,8 @@ export default class Form extends React.Component {
 
         defaultOptions = {
           loop: true,
+          // set loop to false
+          // play, pause when it's near the end somehow and then play again after a setTimeout
           autoplay: true,
           animationData: JSON.parse(this.context.previewJson)
         }
