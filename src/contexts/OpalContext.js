@@ -42,11 +42,11 @@ export class OpalContextProvider extends React.Component {
       let file = object.file
       file.op = 30;
       let lottieColor = this.state.lottieColor
-      let scale = this.state.scale
+      // let scale = this.state.scale
       let stroke = this.state.stroke
       let duration = this.state.duration
       let strokeAdjusted = stroke*20
-      let height = parseInt(scale)
+      // let height = parseInt(scale)
       // let outputheight = ((height/24)*100).toFixed(2)
       // let jsonsize = [outputheight, outputheight, 100]
       let framerate = parseFloat(((file.op/duration)*1000), 10);

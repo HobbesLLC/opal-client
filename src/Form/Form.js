@@ -1,7 +1,10 @@
 import React from 'react'
 import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
+import ReactSVG from 'react-svg'
 import { saveAs } from 'file-saver'
+import Build from '../Img/Download_Moment.json'
+import BackArrow from '../Img/BackArrow.svg'
 import OpalContext from '../contexts/OpalContext'
 let JSZip = require('jszip')
 
@@ -9,7 +12,11 @@ let JSZip = require('jszip')
 export default class Form extends React.Component {
   static contextType = OpalContext
   state = {
-    previewFile: null
+    previewFile: null,
+    isRendering: false,
+    doneRendering: false,
+    renderingText: 'packaging files',
+    fillBar: null
   }
   componentDidMount() {
     const {lottieColor, duration, scale, stroke} = this.context
@@ -154,6 +161,17 @@ export default class Form extends React.Component {
 
   }
 
+  backToForm = (e) => {
+    e.preventDefault()
+    console.log(`clicked back`);
+    this.setState({
+      isRendering: false,
+      fillBar: null,
+      renderingText: 'packaging files'
+      // setting the text back to it's default state for the next download action
+    })
+  }
+
   playPreview = () => {
     let defaultOptions = ''
 
@@ -171,6 +189,7 @@ export default class Form extends React.Component {
 
     }
 
+
   }
 
   handleSubmit = (e) => {
@@ -184,14 +203,25 @@ export default class Form extends React.Component {
         this.context.setExportFiles({
           animations: animationFiles,
           static: staticFiles
-        })
-        // add a this.setState({ isRendering: true})
-        // and this.playRender()
-        // That will play another Lottie animation for a duration of 2s to show the user we are "building" the files
+        },
         this.setState({
-          returnedFiles: res
-        })
+          returnedFiles: res,
+          isRendering: true,
+        }))
       })
+      setTimeout(() => {
+        this.setState({
+          fillBar: true,
+        })
+      }, 500)
+      setTimeout(() => {
+        this.setState({
+          renderingText: 'finished'
+        },
+        this.downloadFiles())
+      }, 3000)
+
+
 
   }
 
@@ -210,81 +240,105 @@ export default class Form extends React.Component {
       }
     })
 
-
     zip.generateAsync({type:'blob'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
     });
   }
 
   render() {
+    let buildOptions = {
+      loop: false,
+      autoplay: true,
+      animationData: Build
+    }
 
     return (
       <div className='form-preview'>
-        <div className='preview-header'>
+        {this.state.isRendering
+          ? (
+            <div id='build'>
+              <ReactSVG
+                src={BackArrow}
+                className='back-arrow'
+                onClick={this.backToForm}
+                />
+              <Lottie options={buildOptions} />
+              <div className='fill-bar'>
+                <span>{this.state.renderingText}</span>
+                {this.state.fillBar
+                ? ( <div className='bar active'></div>)
+                : ( <div className='bar'></div>)}
+              </div>
+            </div>
+          )
+          : (
+            <>
+            <div className='preview-header'>
+            </div>
+            <div id='preview'>
+              {this.context.previewJson
+                ? this.playPreview()
+                : ''}
+            </div>
+            <form
+              className="lottie-edit-form"
+              onSubmit={this.handleSubmit}
+              onChange={this.handleChange}
+              >
+              <fieldset name='color' className='color-edit'>
+                <span className="field-labels">
+                  <label htmlFor='hue'>Hue</label>
+                  <input name="hueOutputName" id="hueOutputId" value={this.context.hue}></input>
+                </span>
 
-        </div>
-        <div id='preview'>
-          {this.context.previewJson
-            ? this.playPreview()
-            : ''}
-        </div>
+                <input type="range" name="hue" id="hueID" min="0" max="360" defaultValue={this.context.hue} required/>
 
-        <form
-          className="lottie-edit-form"
-          onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
-          >
-          <fieldset name='color' className='color-edit'>
-            <span className="field-labels">
-              <label htmlFor='hue'>Hue</label>
-              <input name="hueOutputName" id="hueOutputId" value={this.context.hue}></input>
-            </span>
+                <span className="field-labels">
+                  <label htmlFor='saturation'>Saturation</label>
+                  <span><input name="saturationOutputName" id="saturationOutputId" value={this.context.saturation}></input>%</span>
+                </span>
+                <input type="range" name="saturation" id="saturationID" min="0" max="100" defaultValue={this.context.saturation} steps="100" required/>
 
-            <input type="range" name="hue" id="hueID" min="0" max="360" defaultValue={this.context.hue} required/>
-
-            <span className="field-labels">
-              <label htmlFor='saturation'>Saturation</label>
-              <span><input name="saturationOutputName" id="saturationOutputId" value={this.context.saturation}></input>%</span>
-            </span>
-            <input type="range" name="saturation" id="saturationID" min="0" max="100" defaultValue={this.context.saturation} steps="100" required/>
-
-            <span className="field-labels">
-              <label htmlFor='lightness'>Lightness</label>
-              <span><input name="lightnessOutputName" id="lightnessOutputId" value={this.context.lightness}></input>%</span>
-            </span>
+                <span className="field-labels">
+                  <label htmlFor='lightness'>Lightness</label>
+                  <span><input name="lightnessOutputName" id="lightnessOutputId" value={this.context.lightness}></input>%</span>
+                </span>
 
 
-            <input type="range" name="lightness" id="lightnessID" min="0" max="100" defaultValue={this.context.lightness} steps="100" required/>
-          </fieldset>
-          <div className="scale-edit">
-            <span className="field-labels">
-              <label htmlFor="scale">Scale</label>
-              <span><input name="scaleOutputName" id="scaleOutputId" value={this.context.scale} ></input>px</span>
-            </span>
+                <input type="range" name="lightness" id="lightnessID" min="0" max="100" defaultValue={this.context.lightness} steps="100" required/>
+              </fieldset>
+              <div className="scale-edit">
+                <span className="field-labels">
+                  <label htmlFor="scale">Scale</label>
+                  <span><input name="scaleOutputName" id="scaleOutputId" value={this.context.scale} ></input>px</span>
+                </span>
 
-            <input type="range" name="scale" id="scale" required min="24" max="1080" defaultValue={this.context.scale} />
-          </div>
-          <div className="stroke-edit">
-            <span className="field-labels">
-              <label htmlFor="stroke">Stroke</label>
-              <span><input name="strokeOutputName" id="strokeOutputId" value={this.context.stroke}></input>pt</span>
-            </span>
+                <input type="range" name="scale" id="scale" required min="24" max="1080" defaultValue={this.context.scale} />
+              </div>
+              <div className="stroke-edit">
+                <span className="field-labels">
+                  <label htmlFor="stroke">Stroke</label>
+                  <span><input name="strokeOutputName" id="strokeOutputId" value={this.context.stroke}></input>pt</span>
+                </span>
 
-            <input type="range" name="stroke" id="stroke" required min="1" max="90" defaultValue={this.context.stroke} />
+                <input type="range" name="stroke" id="stroke" required min="1" max="90" defaultValue={this.context.stroke} />
 
-          </div>
-          <div className="duration-edit">
-            <span className="field-labels">
-              <label htmlFor="duration">Duration</label>
-              <span><input name="durationOutputName" id="durationOutputId"  value={this.context.duration}></input>ms</span>
-            </span>
-            <input type="range" name="duration" id="duration" required min="200" max="3000" defaultValue={this.context.duration}/>
-          </div>
-          <button type="submit" id="render">Render <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></button>
-          {(this.state.returnedFiles)
-           ? <button onClick={this.downloadFiles} className='download'>Download Now</button>
-           : ''}
-        </form>
+              </div>
+              <div className="duration-edit">
+                <span className="field-labels">
+                  <label htmlFor="duration">Duration</label>
+                  <span><input name="durationOutputName" id="durationOutputId"  value={this.context.duration}></input>ms</span>
+                </span>
+                <input type="range" name="duration" id="duration" required min="200" max="3000" defaultValue={this.context.duration}/>
+              </div>
+              <button type="submit" id="render">Download All</button>
+              {/*(this.state.returnedFiles)
+               ? <button onClick={this.downloadFiles} className='download'>Download Now</button>
+               : '' */}
+            </form>
+            </>
+          )}
+
       </div>
     )
   }
