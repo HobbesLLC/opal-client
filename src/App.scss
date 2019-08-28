@@ -106,22 +106,28 @@ body {
 
 // header
 .opal-header {
-  display: flex;
-  position: sticky;
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
-  position: relative;
-  padding: 0 40px;
-  padding: 40px 40px 0 40px;
+  // display: flex;
+  // position: sticky;
+  // position: -webkit-sticky;
+  // position: -moz-sticky;
+  // position: -ms-sticky;
+  // position: -o-sticky;
+  // position: relative;
+  // padding: 0 40px;
+  // padding: 40px 40px 0 40px;
 
   .opal-logo,
   .hobbes-logo {
-      max-width: 20px;
+    max-width: 20px;
+    position: fixed;
+    z-index: 2;
+    top: 40px;
+  }
+  .opal-logo {
+    left: 40px;
   }
   .hobbes-logo {
-
+    right: 40px;
   }
 }
 
