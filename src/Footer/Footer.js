@@ -1,20 +1,38 @@
 import React from 'react'
-import About from '../Img/About.svg'
 import ReactSVG from 'react-svg'
-
-
+import Lottie from 'react-lottie'
+import PlusToMinus from '../Img/Plus_to_Minus.json'
+import MinusToPlus from '../Img/Minus_to_Plus.json'
+import PlusIcon from '../Img/Plus_Icon.svg'
 
 export default class Footer extends React.Component {
   state = {
     profile: 'default',
-    expanded: false
+    expanded: false,
+    footerIcon: null,
+    footerImage: PlusIcon
   }
   openMenu = (e) => {
+    if (this.state.footerIcon === MinusToPlus) {
+      this.setState({
+        footerIcon: PlusToMinus,
+      })
+    }
+    else if (this.state.footerIcon === PlusToMinus) {
+      this.setState({
+        footerIcon: MinusToPlus
+      })
+    }
+    else {
+      this.setState({
+        footerIcon: PlusToMinus
+      })
+    }
     this.setState({
-      expanded: !this.state.expanded
+      expanded: !this.state.expanded,
+      footerImage: null
     })
   }
-
 
   render() {
     let expandedDiv = (
@@ -38,7 +56,13 @@ export default class Footer extends React.Component {
       )
     }
 
-// <img src={About} alt='About Hobbes'/>
+    let defaultOptions = {
+      loop: false,
+      autoplay: false,
+      animationData: this.state.footerIcon
+    }
+
+
 
     return (
       <>
@@ -47,9 +71,11 @@ export default class Footer extends React.Component {
         <div
           onClick={this.openMenu}
           className='hobbes-about'>
+          <Lottie options={defaultOptions} />
           <ReactSVG
-
-            src={About} />
+            src={this.state.footerImage}
+            alt='Plus Icon'
+            />
         </div>
 
         <div className='color-picker'>
