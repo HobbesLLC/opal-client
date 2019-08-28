@@ -50,13 +50,16 @@ export class OpalContextProvider extends React.Component {
       // let outputheight = ((height/24)*100).toFixed(2)
       // let jsonsize = [outputheight, outputheight, 100]
       let framerate = parseFloat(((file.op/duration)*1000), 10);
-
       let lottieFramerate = Math.round(framerate * 1e2) / 1e2;
-
       file.fr = lottieFramerate;
-      // file.layers[0].ks['s'].k = jsonsize;
-      file.h = height;
-      file.w = height;
+
+      // if (file.layers[0].ks['s'].k) {
+      //   // need to dig deeper. I get bugs when attempting to preview files like this. Maybe this only occurs on the backend server with Dan's example files
+      //   file.layers[0].ks['s'].k = jsonsize;
+      // }
+
+      // file.h = height;
+      // file.w = height;
 
       // Current JSON paths:
       switch (file.nm) {

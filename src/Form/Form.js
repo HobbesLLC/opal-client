@@ -22,7 +22,7 @@ export default class Form extends React.Component {
           animations: animationFiles,
           static: staticFiles
         })
-        // find the pencil icon and set it to be playing
+
       })
   }
 
