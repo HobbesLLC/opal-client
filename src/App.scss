@@ -97,6 +97,11 @@ body {
   #dark {
     border: 1px solid $white;
   }
+  .about {
+    &.expanded {
+      box-shadow: 2px 2px 40px $black;
+    }
+  }
 }
 
 // header
@@ -551,17 +556,15 @@ footer {
   position: absolute;
   padding: 60px;
   padding-top: 210px;
-  // temporary
   top: 0;
   left: 0;
   bottom: 0;
   transform: translateX(-100%);
-  transition: transform .2s ease;
-  box-shadow: 2px 2px 39px #eee;
+  transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0;
   &.expanded {
     transform: translateX(0);
-    // temporary
-    box-shadow: 2px 2px 39px #eee;
+    box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.07);
   }
   h1 {
     font-weight: bold;
