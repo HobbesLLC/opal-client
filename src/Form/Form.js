@@ -171,7 +171,6 @@ export default class Form extends React.Component {
   }
 
   playPreview = () => {
-    console.log('running playPreview');
     let defaultOptions = ''
 
     // let tempFile = this.context.previewJson
@@ -198,7 +197,6 @@ export default class Form extends React.Component {
           {
             eventName: 'complete',
             callback: () => {
-              console.log('callback');
               this.playPreview()
             },
           }
@@ -209,7 +207,7 @@ export default class Form extends React.Component {
           options={defaultOptions} />
 
       } else {
-        console.log(this.context.previewJson)
+
       }
     // else if (file) {
     //   this.setState({
@@ -275,7 +273,6 @@ export default class Form extends React.Component {
       setTimeout(() => {
         this.setState({
           renderingText: 'finished',
-
         },
         this.downloadFiles()
       )
@@ -299,13 +296,14 @@ export default class Form extends React.Component {
         staticZip.file(`${opalFile.name}.json`, `${json}`)
       }
     })
-
-    zip.generateAsync({type:'application/zip'}).then(function(content) {
-      saveAs(content, 'exportedjson.zip');
+    let blob = new Blob([zip], {type: 'application/zip'})
+    zip.generateAsync({type:'blob'}).then(function(content) {
+      saveAs(blob, 'exportedjson.zip');
     });
 
     // There seems to be an issue with Chrome (maybe FireFox) which blocks the downloading of this zip file.
     // Safari works ok
+    // Might need to reach out to Chrome somehow
   }
 
   render() {
