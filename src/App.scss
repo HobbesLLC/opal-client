@@ -44,7 +44,7 @@ body {
   aside.about,
   input,
   label {
-    background: $white;;
+    background: transparent;
   }
   input,
   label {
@@ -245,7 +245,7 @@ body {
         border: 1px transparent ;
         height: 2px;
       }
-      
+
     }
   }
 }
@@ -480,6 +480,7 @@ body {
         background: $trackbackground;
         border-radius: 1.3px;
         border: $trackpointerborder;
+        z-index: 2;
       }
 
       input[type=range]:focus::-webkit-slider-runnable-track {
@@ -494,6 +495,7 @@ body {
         background: $trackbackground;
         border-radius: 1.3px;
         border: $trackpointerborder;
+        z-index: 2;
       }
 
       input[type=range]::-ms-track {
@@ -505,6 +507,7 @@ body {
         border-color: transparent;
         border-width: 16px 0;
         color: transparent;
+        z-index: 2;
       }
       input[type=range]::-ms-fill-lower {
         background: $trackbackground;
@@ -645,9 +648,10 @@ body {
       #visibleSaturation {
         height: 2px;
         position: relative;
-        top: 4px;
-        margin: 0 2px;
-        z-index: -1;
+        top: 10px;
+        z-index: 0;
+        border-radius: 1.3px;
+        width: 98.5%;
       }
       #visibleLightness {
         background:linear-gradient(to right, black, grey, lightgrey, white);

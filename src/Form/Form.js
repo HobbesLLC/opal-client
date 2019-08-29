@@ -3,7 +3,6 @@ import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
 import ReactSVG from 'react-svg'
 import { saveAs } from 'file-saver'
-import { css, jsx } from '@emotion/core'
 import Build from '../Img/Download_Moment.json'
 import BackArrow from '../Img/BackArrow.svg'
 import OpalContext from '../contexts/OpalContext'
@@ -314,7 +313,12 @@ export default class Form extends React.Component {
       autoplay: true,
       animationData: Build
     }
-
+    let saturationStyle = {
+      background: `linear-gradient(to right, hsl(${this.context.hue}, 10%, 0%), hsl(${this.context.hue}, 20%, 50%), hsl(${this.context.hue}, 30%, 50%), hsl(${this.context.hue}, 40%, 50%), hsl(${this.context.hue}, 50%, 50%), hsl(${this.context.hue}, 60%, 50%), hsl(${this.context.hue}, 70%, 50%), hsl(${this.context.hue}, 80%, 50%), hsl(${this.context.hue}, 90%, 50%), hsl(${this.context.hue}, 100%, 50%))`
+    };
+    let lightnessStyle = {
+      background: `linear-gradient(to right, hsl(${this.context.hue}, 100%, 0%), hsl(${this.context.hue}, 100%, 20%), hsl(${this.context.hue}, 100%, 30%), hsl(${this.context.hue}, 100%, 40%), hsl(${this.context.hue}, 100%, 50%), hsl(${this.context.hue}, 100%, 60%), hsl(${this.context.hue}, 100%, 70%), hsl(${this.context.hue}, 100%, 80%),hsl(${this.context.hue}, 100%, 90%), hsl(${this.context.hue}, 100%, 100%))`
+    };
     return (
       <div className='form-preview'>
         {this.state.isRendering
@@ -356,19 +360,43 @@ export default class Form extends React.Component {
 
                 <input type="range" name="hue" id="hueID" min="0" max="360" defaultValue={this.context.hue} required/>
 
+
                 <span className="field-labels">
                   <label htmlFor='saturation'>Saturation</label>
                   <span><input name="saturationOutputName" id="saturationOutputId" value={this.context.saturation}></input>%</span>
                 </span>
-                <input type="range" name="saturation" id="saturationID" min="0" max="100" defaultValue={this.context.saturation} steps="100" required/>
+                <div
+                  id="visibleSaturation"
+                  style={saturationStyle}
+                  />
+                <input
+                  type="range"
+                  name="saturation"
+                  id="saturationID"
+                  min="0"
+                  max="100"
+                  defaultValue={this.context.saturation}
+                  steps="100"
+                  required/>
 
                 <span className="field-labels">
                   <label htmlFor='lightness'>Lightness</label>
                   <span><input name="lightnessOutputName" id="lightnessOutputId" value={this.context.lightness}></input>%</span>
                 </span>
 
-
-                <input type="range" name="lightness" id="lightnessID" min="0" max="100" defaultValue={this.context.lightness} steps="100" required/>
+                <div
+                  id="visibleLightness"
+                  style={lightnessStyle}
+                  ></div>
+                <input
+                  type="range"
+                  name="lightness"
+                  id="lightnessID"
+                  min="0"
+                  max="100"
+                  defaultValue={this.context.lightness}
+                  steps="100"
+                  required/>
               </fieldset>
               <div className="scale-edit">
                 <span className="field-labels">
