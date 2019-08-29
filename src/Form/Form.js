@@ -16,7 +16,8 @@ export default class Form extends React.Component {
     isRendering: false,
     doneRendering: false,
     renderingText: 'packaging files',
-    fillBar: null
+    fillBar: null,
+    pausedStatus: false
   }
   componentDidMount() {
     const {lottieColor, duration, scale, stroke} = this.context
@@ -157,13 +158,10 @@ export default class Form extends React.Component {
       .then(res => {
         this.calculateColor()
       })
-
-
   }
 
   backToForm = (e) => {
     e.preventDefault()
-    console.log(`clicked back`);
     this.setState({
       isRendering: false,
       fillBar: null,
@@ -173,21 +171,81 @@ export default class Form extends React.Component {
   }
 
   playPreview = () => {
+    console.log('running playPreview');
     let defaultOptions = ''
 
+    // let tempFile = this.context.previewJson
+
+    // this.context.setPreview({
+    //   previewJson: null
+    // })
+    // setTimeout(() => {
+    //   this.context.setPreview({
+    //     previewJson: tempFile
+    //   })
+    // }, 500)
     if (this.context.previewJson !== null) {
 
         defaultOptions = {
-          loop: true,
+          loop: false,
           // set loop to false
           // play, pause when it's near the end somehow and then play again after a setTimeout
           autoplay: true,
           animationData: JSON.parse(this.context.previewJson)
         }
 
-        return <Lottie options={defaultOptions} />
+        let opalEvents = [
+          {
+            eventName: 'complete',
+            callback: () => {
+              console.log('callback');
+              this.playPreview()
+            },
+          }
+        ]
 
-    }
+        return <Lottie
+          eventListeners={opalEvents}
+          options={defaultOptions} />
+
+      } else {
+        console.log(this.context.previewJson)
+      }
+    // else if (file) {
+    //   this.setState({
+    //     previewFile: file
+    //   })
+    //   defaultOptions = {
+    //     loop: false,
+    //     // set loop to false
+    //     // play, pause when it's near the end somehow and then play again after a setTimeout
+    //     autoplay: true,
+    //     animationData: this.state.previewFile
+    //   }
+    //   debugger;
+    //   let opalEvents = [
+    //     {
+    //       eventName: 'complete',
+    //       callback: () => {
+    //         this.context.setPreview({
+    //           previewJson:null
+    //         })
+    //         setTimeout(() => {
+    //           console.log('after 500ms');
+    //           this.playPreview(tempFile)
+    //         }, 500)
+    //
+    //       },
+    //     }
+    //   ]
+    //   return <Lottie
+    //     eventListeners={opalEvents}
+    //     options={defaultOptions} />
+    // }
+
+
+    // setting the componentState from isPaused to true / false seems to just result in infinite loops
+
 
 
   }
@@ -216,9 +274,11 @@ export default class Form extends React.Component {
       }, 500)
       setTimeout(() => {
         this.setState({
-          renderingText: 'finished'
+          renderingText: 'finished',
+
         },
-        this.downloadFiles())
+        this.downloadFiles()
+      )
       }, 3000)
 
 
@@ -243,6 +303,9 @@ export default class Form extends React.Component {
     zip.generateAsync({type:'blob'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
     });
+
+    // There seems to be an issue with Chrome (maybe FireFox) which blocks the downloading of this zip file.
+    // Safari works ok
   }
 
   render() {
@@ -332,12 +395,14 @@ export default class Form extends React.Component {
                 <input type="range" name="duration" id="duration" required min="200" max="3000" defaultValue={this.context.duration}/>
               </div>
               <button type="submit" id="render">Download All</button>
-              {/*(this.state.returnedFiles)
-               ? <button onClick={this.downloadFiles} className='download'>Download Now</button>
-               : '' */}
             </form>
             </>
           )}
+          {/*(this.state.downloadReady)
+           ? <button onClick={this.downloadFiles} className='download'>Download Now</button>
+           : '' */
+           /* the issue with downloading files seems to occur regardless of the action beign taken on a setTimeout or on an onClick function*/
+         }
 
       </div>
     )
