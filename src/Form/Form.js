@@ -300,7 +300,7 @@ export default class Form extends React.Component {
       }
     })
 
-    zip.generateAsync({type:'blob'}).then(function(content) {
+    zip.generateAsync({type:'application/zip'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
     });
 
