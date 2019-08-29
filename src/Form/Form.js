@@ -3,6 +3,7 @@ import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
 import ReactSVG from 'react-svg'
 import { saveAs } from 'file-saver'
+import { css, jsx } from '@emotion/core'
 import Build from '../Img/Download_Moment.json'
 import BackArrow from '../Img/BackArrow.svg'
 import OpalContext from '../contexts/OpalContext'
@@ -186,7 +187,7 @@ export default class Form extends React.Component {
     if (this.context.previewJson !== null) {
 
         defaultOptions = {
-          loop: false,
+          loop: true,
           // set loop to false
           // play, pause when it's near the end somehow and then play again after a setTimeout
           autoplay: true,
@@ -298,7 +299,8 @@ export default class Form extends React.Component {
     })
     let blob = new Blob([zip], {type: 'application/zip'})
     zip.generateAsync({type:'blob'}).then(function(content) {
-      saveAs(blob, 'exportedjson.zip');
+      saveAs(content, 'exportedjson.zip');
+      // setting saveAs(blob, ....) results in .cpgz files
     });
 
     // There seems to be an issue with Chrome (maybe FireFox) which blocks the downloading of this zip file.
