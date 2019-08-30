@@ -4,7 +4,7 @@ const initialState = {
   profile: '',
   previewJson: null,
   exportFiles: null,
-  lottieColor: [0,0,0,1],
+  lottieColor: [1,0,0,1],
   previewFrameRate: null,
   hue: 0,
   saturation: 100,
@@ -330,6 +330,15 @@ export class OpalContextProvider extends React.Component {
         file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[3].shapes[0].it[1].w.k = strokeAdjusted;
         break;
+        case 'Dots_Horizontal_Build_DotSolve':
+        case 'Dots_Horizontal_Build_OpenPathSolve':
+        file.layers[1].shapes[0].it[1].c.k = lottieColor
+        file.layers[2].shapes[0].it[1].c.k = lottieColor
+        file.layers[3].shapes[0].it[1].c.k = lottieColor
+        file.layers[1].shapes[0].it[1].w.k = strokeAdjusted
+        file.layers[2].shapes[0].it[1].w.k = strokeAdjusted
+        file.layers[3].shapes[0].it[1].w.k = strokeAdjusted
+        break;
         case 'Dots_Vertical_Build':
         case 'Dots_Vertical_Static':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
@@ -362,6 +371,7 @@ export class OpalContextProvider extends React.Component {
         break;
         case 'Edit_Build':
         case 'Edit_Static':
+        case 'Edit_Build_480_04':
         file.layers[2].shapes[0].it[1].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
         file.layers[4].shapes[0].it[1].c.k = lottieColor;
@@ -952,6 +962,8 @@ export class OpalContextProvider extends React.Component {
     if (this.state.previewJson) {
       let tempName = JSON.parse(this.state.previewJson).nm
       let updatedPreview = this.state.exportFiles.animations.find(file => file.name === tempName)
+
+
       this.setState({
         previewJson: JSON.stringify(updatedPreview.file)
       }, function() {

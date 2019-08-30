@@ -23,6 +23,7 @@ export default class Form extends React.Component {
     const {lottieColor, duration, scale, stroke} = this.context
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
+    // AnimationApiService.getAnimations()
       .then(res => {
         let animationFiles = res.filter(file => file.type === 'animation')
         let staticFiles = res.filter(file => file.type === 'static')
