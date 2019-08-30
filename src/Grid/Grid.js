@@ -10,9 +10,6 @@ export default class Grid extends React.Component {
     loaded: true
   }
 
-  componentDidMount() {
-
-  }
   setPreview = (e) => {
     let previewFile
     let jsonString

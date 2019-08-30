@@ -31,6 +31,14 @@ export default class Form extends React.Component {
           animations: animationFiles,
           static: staticFiles
         })
+      })
+      .then(data => {
+        let defaultAnimation = this.context.exportFiles.animations.find(icon => icon.name === 'Pencil_Build');
+        let jsonString = JSON.stringify(defaultAnimation.file)
+        
+        this.context.setPreview({
+          previewJson: jsonString
+        })
 
       })
   }
@@ -174,16 +182,6 @@ export default class Form extends React.Component {
   playPreview = () => {
     let defaultOptions = ''
 
-    // let tempFile = this.context.previewJson
-
-    // this.context.setPreview({
-    //   previewJson: null
-    // })
-    // setTimeout(() => {
-    //   this.context.setPreview({
-    //     previewJson: tempFile
-    //   })
-    // }, 500)
     if (this.context.previewJson !== null) {
 
         defaultOptions = {
