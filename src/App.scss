@@ -41,7 +41,9 @@ body {
 .default {
   background: $white;
   color: $black;
-  aside.about,
+  aside.about {
+    background: $white;
+  }
   input,
   label {
     background: transparent;
@@ -88,10 +90,14 @@ body {
     }
   }
 
-  #lottie-player {
+  #lottie-player,
+  .hobbes-about,
+  .opal-header,
+  .hobbes-logo {
     svg,
     path {
       stroke: $white;
+      fill: $white;
     }
   }
   #dark {
@@ -258,16 +264,6 @@ body {
 
 // header
 .opal-header {
-  // display: flex;
-  // position: sticky;
-  // position: -webkit-sticky;
-  // position: -moz-sticky;
-  // position: -ms-sticky;
-  // position: -o-sticky;
-  // position: relative;
-  // padding: 0 40px;
-  // padding: 40px 40px 0 40px;
-
   .opal-logo,
   .hobbes-logo {
     max-width: 20px;
@@ -308,6 +304,7 @@ body {
 
   }
   .grid-container {
+
     // margin-right: 100px;
     top: -16%;
     -webkit-transform: translateY(-50%);
@@ -347,13 +344,18 @@ body {
 
       }
     }
+    @media (max-width: 1024px) {
+      display: none;
+    }
   }
   .form-preview {
     // margin-left: 100px;
     padding-top: 45px;
-
+    z-index: 0;
     @media (max-width: 750px) {
       width: 100%;
+      padding: 0 40px;
+
     }
 
     #preview {
@@ -776,5 +778,11 @@ footer {
   }
   a {
     color: inherit;
+  }
+
+  @media (max-width: 1024px) {
+    max-width: 556px;
+    width: 100%;
+    font-size: 14px;
   }
 }
