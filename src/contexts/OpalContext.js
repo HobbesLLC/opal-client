@@ -42,24 +42,23 @@ export class OpalContextProvider extends React.Component {
       let file = object.file
       file.op = 30;
       let lottieColor = this.state.lottieColor
-      // let scale = this.state.scale
+      let scale = this.state.scale
       let stroke = this.state.stroke
       let duration = this.state.duration
       let strokeAdjusted = stroke*20
-      // let height = parseInt(scale)
-      // let outputheight = ((height/24)*100).toFixed(2)
-      // let jsonsize = [outputheight, outputheight, 100]
+      let height = parseInt(scale)
+      let outputheight = parseInt(((height/24)*100).toFixed(2))
+      let jsonsize = [outputheight, outputheight, 100]
       let framerate = parseFloat(((file.op/duration)*1000), 10);
       let lottieFramerate = Math.round(framerate * 1e2) / 1e2;
       file.fr = lottieFramerate;
 
-      // if (file.layers[0].ks['s'].k) {
-      //   // need to dig deeper. I get bugs when attempting to preview files like this. Maybe this only occurs on the backend server with Dan's example files
-      //   file.layers[0].ks['s'].k = jsonsize;
-      // }
+      if (file.layers[0].ks['s'].k) {
+        file.layers[0].ks['s'].k = jsonsize;
+      }
 
-      // file.h = height;
-      // file.w = height;
+      file.h = height;
+      file.w = height;
 
       // Current JSON paths:
       switch (file.nm) {
@@ -450,36 +449,39 @@ export class OpalContextProvider extends React.Component {
         break;
         case 'Image_Add_Build':
         case 'Image_Add_Static':
+        file.layers[1].shapes[0].it[1].c.k = lottieColor;
+        file.layers[1].shapes[0].it[2].c.k = lottieColor;
         file.layers[2].shapes[0].it[1].c.k = lottieColor;
-        file.layers[3].shapes[0].it[1].c.k = lottieColor;
-        file.layers[3].shapes[1].it[1].c.k = lottieColor;
-        file.layers[3].shapes[2].c.k = lottieColor;
-        file.layers[4].shapes[2].c.k = lottieColor;
-        file.layers[5].shapes[0].it[1].c.k = lottieColor;
-        file.layers[5].shapes[0].it[2].c.k = lottieColor;
+        file.layers[2].shapes[0].it[2].c.k = lottieColor;
+        file.layers[4].shapes[0].it[1].c.k = lottieColor;
+        file.layers[5].shapes[2].c.k = lottieColor;
+        file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
-        file.layers[3].shapes[2].w.k = strokeAdjusted;
-        file.layers[4].shapes[2].w.k = strokeAdjusted;
-        file.layers[5].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[4].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[5].shapes[2].w.k = strokeAdjusted;
         break;
         case 'Image_Build':
         case 'Image_Static':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
-        file.layers[1].shapes[1].it[1].c.k = lottieColor;
-        file.layers[1].shapes[2].c.k = lottieColor;
+        file.layers[1].shapes[0].it[2].c.k = lottieColor;
         file.layers[2].shapes[0].it[1].c.k = lottieColor;
+        file.layers[2].shapes[0].it[2].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
-        file.layers[1].shapes[2].w.k = strokeAdjusted;
+        file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[3].shapes[0].it[1].w.k = strokeAdjusted;
         break;
         case 'ImageGallery_Build':
         case 'ImageGallery_Static':
-        file.layers[1].shapes[3].c.k = lottieColor;
-        file.layers[1].shapes[4].c.k = lottieColor;
+
+        file.layers[1].shapes[0].it[1].c.k = lottieColor;
+        file.layers[1].shapes[0].it[2].c.k = lottieColor;
+        file.layers[1].shapes[1].it[1].c.k = lottieColor;
+        file.layers[1].shapes[1].it[2].c.k = lottieColor;
         file.layers[2].shapes[0].it[1].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
-        file.layers[1].shapes[3].w.k = strokeAdjusted;
+        file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[1].shapes[1].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[3].shapes[0].it[1].w.k = strokeAdjusted;
         break;
@@ -570,10 +572,12 @@ export class OpalContextProvider extends React.Component {
         break;
         case 'Notifications_Build':
         case 'Notifications_Static':
+
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[2].shapes[1].c.k = lottieColor;
         file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[1].w.k = strokeAdjusted;
+
         break;
         case 'Pause_Build':
         case 'Pause_Static':
@@ -962,7 +966,6 @@ export class OpalContextProvider extends React.Component {
     if (this.state.previewJson) {
       let tempName = JSON.parse(this.state.previewJson).nm
       let updatedPreview = this.state.exportFiles.animations.find(file => file.name === tempName)
-
 
       this.setState({
         previewJson: JSON.stringify(updatedPreview.file)

@@ -35,7 +35,7 @@ export default class Form extends React.Component {
       .then(data => {
         let defaultAnimation = this.context.exportFiles.animations.find(icon => icon.name === 'Pencil_Build');
         let jsonString = JSON.stringify(defaultAnimation.file)
-        
+
         this.context.setPreview({
           previewJson: jsonString
         })
@@ -186,8 +186,6 @@ export default class Form extends React.Component {
 
         defaultOptions = {
           loop: true,
-          // set loop to false
-          // play, pause when it's near the end somehow and then play again after a setTimeout
           autoplay: true,
           animationData: JSON.parse(this.context.previewJson)
         }
@@ -295,15 +293,10 @@ export default class Form extends React.Component {
         staticZip.file(`${opalFile.name}.json`, `${json}`)
       }
     })
-    let blob = new Blob([zip], {type: 'application/zip'})
     zip.generateAsync({type:'blob'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
-      // setting saveAs(blob, ....) results in .cpgz files
     });
 
-    // There seems to be an issue with Chrome (maybe FireFox) which blocks the downloading of this zip file.
-    // Safari works ok
-    // Might need to reach out to Chrome somehow
   }
 
   render() {
@@ -411,7 +404,7 @@ export default class Form extends React.Component {
                   <span><input name="strokeOutputName" id="strokeOutputId" value={this.context.stroke}></input>pt</span>
                 </span>
 
-                <input type="range" name="stroke" id="stroke" required min="1" max="90" defaultValue={this.context.stroke} />
+                <input type="range" name="stroke" id="stroke" required min={this.context.scale / 24} max={this.context.scale / 12} defaultValue={this.context.stroke} />
 
               </div>
               <div className="duration-edit">
@@ -425,11 +418,6 @@ export default class Form extends React.Component {
             </form>
             </>
           )}
-          {/*(this.state.downloadReady)
-           ? <button onClick={this.downloadFiles} className='download'>Download Now</button>
-           : '' */
-           /* the issue with downloading files seems to occur regardless of the action beign taken on a setTimeout or on an onClick function*/
-         }
 
       </div>
     )

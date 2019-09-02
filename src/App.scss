@@ -104,6 +104,12 @@ body {
   }
 
   .form-preview {
+    .back-arrow {
+      svg {
+        fill: $white;
+        stroke: $white;
+      }
+    }
     button {
       color: $white;
     }
