@@ -2,6 +2,7 @@ import React from 'react'
 import Lottie from 'react-lottie'
 import animationData from '../Opal_Grid_081419.json'
 import OpalContext from '../contexts/OpalContext'
+import MediaQuery from 'react-responsive'
 
 
 export default class Grid extends React.Component {
@@ -31,6 +32,8 @@ export default class Grid extends React.Component {
       animationData: animationData
     }
     return (
+      <>
+      <MediaQuery minWidth={1024}>
         <div
         className='grid-container'
         id='grid-container'
@@ -146,6 +149,8 @@ export default class Grid extends React.Component {
 
           </div>
         </div>
+      </MediaQuery>
+      </>
     )
   }
 }
