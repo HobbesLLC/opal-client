@@ -3,6 +3,7 @@ import AnimationApiService from '../services/animation-api-services'
 import Lottie from 'react-lottie'
 import ReactSVG from 'react-svg'
 import { saveAs } from 'file-saver'
+import MediaQuery from 'react-responsive'
 import Build from '../Img/Download_Moment.json'
 import BackArrow from '../Img/BackArrow.svg'
 import OpalContext from '../contexts/OpalContext'
@@ -311,6 +312,7 @@ export default class Form extends React.Component {
     let lightnessStyle = {
       background: `linear-gradient(to right, hsl(${this.context.hue}, 100%, 0%), hsl(${this.context.hue}, 100%, 20%), hsl(${this.context.hue}, 100%, 30%), hsl(${this.context.hue}, 100%, 40%), hsl(${this.context.hue}, 100%, 50%), hsl(${this.context.hue}, 100%, 60%), hsl(${this.context.hue}, 100%, 70%), hsl(${this.context.hue}, 100%, 80%),hsl(${this.context.hue}, 100%, 90%), hsl(${this.context.hue}, 100%, 100%))`
     };
+  
     return (
       <div className='form-preview'>
         {this.state.isRendering
@@ -333,6 +335,12 @@ export default class Form extends React.Component {
           : (
             <>
             <div className='preview-header'>
+              {this.context.previewJson
+              ? <span className='preview-name'>{JSON.parse(this.context.previewJson).nm}</span>
+              : ''}
+              {this.context.hexcolor
+              ? <span className='preview-hex'>{this.context.hexcolor}</span>
+              : ''}
             </div>
             <div id='preview'>
               {this.context.previewJson
@@ -414,7 +422,15 @@ export default class Form extends React.Component {
                 </span>
                 <input type="range" name="duration" id="duration" required min="200" max="3000" defaultValue={this.context.duration}/>
               </div>
-              <button type="submit" id="render">Download All</button>
+              <MediaQuery minWidth={1024}>
+                <button type="submit" id="render">Download All</button>
+              </MediaQuery>
+              <MediaQuery maxWidth={1024}>
+                <div className='mobile-form-announcement'>experience the full site on desktop</div>
+              </MediaQuery>
+
+
+
             </form>
             </>
           )}
