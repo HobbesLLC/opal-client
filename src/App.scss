@@ -1,4 +1,3 @@
-$trackpointerwidth: 1px;
 $trackpointerheight: 20px;
 $trackpointerwidth: 1px;
 $trackpointerborder: 1px solid #000000;
@@ -146,6 +145,10 @@ body {
         width: $trackpointerwidth;
         cursor: pointer;
         margin-top: -10px;
+        @media (max-width: 1024px){
+          width: 5px;
+          background: $white;
+        }
       }
       // Firefox Styling
       input[type=range]::-moz-range-thumb {
@@ -153,6 +156,10 @@ body {
         height: $trackpointerheight;
         width: $trackpointerwidth;
         cursor: pointer;
+        @media (max-width: 1024px){
+          width: 5px;
+          background: $white;
+        }
       }
       // Internet Explorer Styling
       input[type=range]::-ms-thumb {
@@ -160,6 +167,10 @@ body {
         height: $trackpointerheight;
         width: $trackpointerwidth;
         cursor: pointer;
+        @media (max-width: 1024px){
+          width: 5px;
+          background: $white;
+        }
       }
 
       // Track Styling
@@ -525,6 +536,10 @@ body {
         width: $trackpointerwidth;
         cursor: pointer;
         margin-top: -10px;
+        @media (max-width: 1024px) {
+          width: 5px;
+          background: $black;
+        }
       }
       // Firefox Styling
       input[type=range]::-moz-range-thumb {
@@ -532,6 +547,10 @@ body {
         height: $trackpointerheight;
         width: $trackpointerwidth;
         cursor: pointer;
+        @media (max-width: 1024px) {
+          width: 5px;
+          background: $black;
+        }
       }
       // Internet Explorer Styling
       input[type=range]::-ms-thumb {
@@ -539,6 +558,10 @@ body {
         height: $trackpointerheight;
         width: $trackpointerwidth;
         cursor: pointer;
+        @media (max-width: 1024px) {
+          width: 5px;
+          background: $black;
+        }
       }
 
       // Track Styling
@@ -865,6 +888,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
   &.expanded {
     transform: translateX(0);
     box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.07);
