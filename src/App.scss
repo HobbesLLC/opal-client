@@ -146,8 +146,11 @@ body {
         cursor: pointer;
         margin-top: -10px;
         @media (max-width: 1024px){
-          width: 5px;
-          border-radius: 5px;
+          height: 15px;
+          width: 15px;
+          position: relative;
+          top: 5px;
+          border-radius: 50%;
           background: $white;
         }
       }
@@ -158,8 +161,11 @@ body {
         width: $trackpointerwidth;
         cursor: pointer;
         @media (max-width: 1024px){
-          width: 5px;
-          border-radius: 5px;
+          height: 15px;
+          width: 15px;
+          position: relative;
+          top: 5px;
+          border-radius: 50%;
           background: $white;
         }
       }
@@ -170,8 +176,11 @@ body {
         width: $trackpointerwidth;
         cursor: pointer;
         @media (max-width: 1024px){
-          width: 5px;
-          border-radius: 5px;
+          height: 15px;
+          width: 15px;
+          position: relative;
+          top: 5px;
+          border-radius: 50%;
           background: $white;
         }
       }
@@ -404,7 +413,7 @@ body {
       max-width: 480px;
       height: 480px;
       padding: 0 35px;
-      margin-top: -20%;
+      height: auto;
     }
     .preview-header {
       position: relative;
@@ -488,7 +497,7 @@ body {
             margin-bottom: 10px;
           }
           @media (max-width: 768px) {
-            margin: 7.5px auto;
+            margin: 10px auto 20px;
           }
         }
       }
@@ -540,10 +549,11 @@ body {
         cursor: pointer;
         margin-top: -10px;
         @media (max-width: 1024px) {
-          width: 5px;
-          border-radius: 5px;
+          width: $trackpointerheight;
+          border-radius: 50%;
           background: $black;
         }
+
       }
       // Firefox Styling
       input[type=range]::-moz-range-thumb {
@@ -552,10 +562,11 @@ body {
         width: $trackpointerwidth;
         cursor: pointer;
         @media (max-width: 1024px) {
-          width: 5px;
-          border-radius: 5px;
+          width: $trackpointerheight;
+          border-radius: 50%;
           background: $black;
         }
+
       }
       // Internet Explorer Styling
       input[type=range]::-ms-thumb {
@@ -564,10 +575,10 @@ body {
         width: $trackpointerwidth;
         cursor: pointer;
         @media (max-width: 1024px) {
-          width: 5px;
-          border-radius: 5px;
+          width: $trackpointerheight;
           background: $black;
         }
+
       }
 
       // Track Styling
