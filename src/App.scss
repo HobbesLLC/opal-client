@@ -277,6 +277,15 @@ body {
   .hobbes-logo {
     right: 40px;
   }
+  @media (max-width: 1024px) {
+    top: 35px;
+    .opal-logo {
+      left: 35px;
+    }
+    .hobbes-logo {
+      right: 35px;
+    }
+  }
 }
 
 // main
@@ -354,7 +363,7 @@ body {
     z-index: 0;
     @media (max-width: 750px) {
       width: 100%;
-      padding: 0 40px;
+      padding: 0 35px;
 
     }
 
@@ -740,6 +749,20 @@ footer {
     #dark {
       margin-left: 15px;
     }
+  }
+
+  @media (max-width: 1024px) {
+    .hobbes-about,
+    .color-picker {
+      bottom: 35px;
+    }
+    .color-picker {
+      right: 35px;
+    }
+    .hobbes-about {
+      left: 35px;
+    }
+
   }
 }
 
