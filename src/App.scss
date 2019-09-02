@@ -277,6 +277,7 @@ body {
   .hobbes-logo {
     right: 40px;
   }
+
   @media (max-width: 1024px) {
     top: 35px;
     .opal-logo {
@@ -284,6 +285,16 @@ body {
     }
     .hobbes-logo {
       right: 35px;
+    }
+  }
+  @media (min-width: 1800px) {
+    .opal-logo,
+    .hobbes-logo {
+      max-width: 40px;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 }
@@ -296,13 +307,13 @@ body {
 }
 .form-grid {
   display: flex;
-  // width: calc(100% - 120px);
+
   margin: 0 auto;
-  // padding-top: 180px;
+
   height: 100vh;
   align-items: center;
   justify-content: space-evenly;
-  // flex: 1;
+
   width: 100vw;
   // background: lightblue;
 
@@ -310,7 +321,9 @@ body {
   .grid-container,
   .form-preview {
     width: 420px;
-
+    @media (min-width: 1800px) {
+      width: 840px;
+    }
   }
   .grid-container {
 
@@ -328,12 +341,10 @@ body {
 
     #lottie-player {
       padding: 3.33%;
-      // margin-top: 33px;
       width: 100%;
     }
     .lottie-grid {
       width: 100%;
-      // padding: 33px 0;
 
       @media (max-width: 750px) {
         display: none;
@@ -358,13 +369,11 @@ body {
     }
   }
   .form-preview {
-    // margin-left: 100px;
     padding-top: 45px;
     z-index: 0;
     @media (max-width: 750px) {
       width: 100%;
       padding: 0 35px;
-
     }
 
     #preview {
@@ -763,6 +772,27 @@ footer {
       left: 35px;
     }
 
+  }
+  @media (min-width: 1800px) {
+
+    .color-picker {
+      #light,
+      #grey,
+      #dark {
+        height: 40px;
+        width: 40px;
+      }
+    }
+    .hobbes-about {
+      height: 40px;
+      width: 40px;
+      img,
+      svg {
+        vertical-align: middle;
+        height: 40px;
+        width: 40px;
+      }
+    }
   }
 }
 
