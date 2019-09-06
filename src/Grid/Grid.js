@@ -1,6 +1,5 @@
 import React from 'react'
 import Lottie from 'react-lottie'
-// import animationData from '../Opal_Grid_081419.json'
 import animationData from '../Opal_Grid.json'
 import OpalContext from '../contexts/OpalContext'
 import MediaQuery from 'react-responsive'
@@ -11,7 +10,10 @@ export default class Grid extends React.Component {
   state = {
     loaded: true
   }
-
+  componentDidMount() {
+    let jsonGrid = JSON.stringify(animationData)
+    this.context.setGrid(jsonGrid)
+  }
   setPreview = (e) => {
     let previewFile
     let jsonString
@@ -19,19 +21,30 @@ export default class Grid extends React.Component {
     if (this.context.exportFiles !== null) {
       previewFile = this.context.exportFiles.animations.find(icon => icon.name === e.target.dataset.name)
       jsonString = JSON.stringify(previewFile.file)
-
       this.context.setPreview({
         previewJson: jsonString
       })
     }
 
   }
+  playGrid = () => {
+    let defaultOptions = ''
+
+    if (this.context.gridFile !== null) {
+
+        defaultOptions = {
+          loop: true,
+          autoplay: true,
+          animationData: JSON.parse(this.context.gridFile)
+        }
+        return <Lottie
+          options={defaultOptions} />
+
+      } else {
+
+      }
+  }
   render() {
-    let defaultOptions = {
-      loop: true,
-      autoplay: true,
-      animationData: animationData
-    }
     return (
       <>
       <MediaQuery minWidth={1024}>
@@ -40,8 +53,8 @@ export default class Grid extends React.Component {
         id='grid-container'
         >
           <div id="lottie-player">
-            {(this.state.loaded)
-              ? <Lottie options={defaultOptions} />
+            {this.context.gridFile
+              ? this.playGrid()
               : ''}
           </div>
           <div className="lottie-grid">

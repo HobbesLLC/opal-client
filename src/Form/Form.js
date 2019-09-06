@@ -39,6 +39,7 @@ export default class Form extends React.Component {
         this.context.setPreview({
           previewJson: jsonString
         })
+        this.context.setDownloadFile(JSON.stringify(Build))
 
       })
   }
@@ -173,10 +174,13 @@ export default class Form extends React.Component {
     e.preventDefault()
     this.setState({
       isRendering: false,
-      fillBar: null,
+      fillBar: false,
       renderingText: 'packaging files'
       // setting the text back to it's default state for the next download action
-    })
+    },
+    () => {
+      return
+    } )
   }
 
   playPreview = () => {
@@ -207,6 +211,33 @@ export default class Form extends React.Component {
 
       }
   }
+  playBuild = () => {
+    let buildOptions
+
+    if (this.context.downloadFile !== null) {
+      buildOptions = {
+        loop: false,
+        autoplay: true,
+        animationData: JSON.parse(this.context.downloadFile)
+      }
+    }
+    return (
+      <div id='build'>
+        <ReactSVG
+          src={BackArrow}
+          className='back-arrow'
+          onClick={this.backToForm}
+          />
+        <Lottie options={buildOptions} />
+        <div className='fill-bar'>
+          <span>{this.state.renderingText}</span>
+          {this.state.fillBar
+          ? ( <div className='bar active'></div>)
+          : ( <div className='bar'></div>)}
+        </div>
+      </div>
+    )
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -222,14 +253,14 @@ export default class Form extends React.Component {
         },
         this.setState({
           returnedFiles: res,
-          isRendering: true,
+          isRendering: true
         }))
       })
       setTimeout(() => {
         this.setState({
           fillBar: true,
         })
-      }, 500)
+      }, 750)
       setTimeout(() => {
         this.setState({
           renderingText: 'finished',
@@ -263,11 +294,6 @@ export default class Form extends React.Component {
   }
 
   render() {
-    let buildOptions = {
-      loop: false,
-      autoplay: true,
-      animationData: Build
-    }
     let saturationStyle = {
       background: `linear-gradient(to right, hsl(${this.context.hue}, 10%, 0%), hsl(${this.context.hue}, 20%, 50%), hsl(${this.context.hue}, 30%, 50%), hsl(${this.context.hue}, 40%, 50%), hsl(${this.context.hue}, 50%, 50%), hsl(${this.context.hue}, 60%, 50%), hsl(${this.context.hue}, 70%, 50%), hsl(${this.context.hue}, 80%, 50%), hsl(${this.context.hue}, 90%, 50%), hsl(${this.context.hue}, 100%, 50%))`
     };
@@ -278,22 +304,7 @@ export default class Form extends React.Component {
     return (
       <div className='form-preview'>
         {this.state.isRendering
-          ? (
-            <div id='build'>
-              <ReactSVG
-                src={BackArrow}
-                className='back-arrow'
-                onClick={this.backToForm}
-                />
-              <Lottie options={buildOptions} />
-              <div className='fill-bar'>
-                <span>{this.state.renderingText}</span>
-                {this.state.fillBar
-                ? ( <div className='bar active'></div>)
-                : ( <div className='bar'></div>)}
-              </div>
-            </div>
-          )
+          ? this.playBuild()
           : (
             <>
             <div className='preview-header'>

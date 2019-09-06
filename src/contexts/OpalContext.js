@@ -3,9 +3,13 @@ import React from 'react'
 const initialState = {
   profile: '',
   previewJson: null,
+  gridFile: null,
+  downloadFile: null,
   exportFiles: null,
   lottieColor: [1,0,0,1],
   previewFrameRate: null,
+  isRendering: false,
+  pausedStatus: false,
   hue: 0,
   saturation: 100,
   lightness: 50,
@@ -23,7 +27,12 @@ const OpalContext = React.createContext({
   setColor: () => {},
   updateState: () => {},
   updateFiles: () => {},
-  updatePreview: () => {}
+  setGrid: () => {},
+  updateGrid: () => {},
+  setDownloadFile: () => {},
+  updateDownloadFile: () => {},
+  updatePreview: () => {},
+  updateRendering: () => {}
 })
 
 export default OpalContext
@@ -37,18 +46,64 @@ export class OpalContextProvider extends React.Component {
     this.setState({ previewJson: previewJson.previewJson })
   }
 
+  updateRendering = isRendering => {
+    this.setState({
+      isRendering
+    })
+  }
+
   updateFiles = () => {
+    let lottieColor = this.state.lottieColor
+    let scale = this.state.scale
+    let stroke = this.state.stroke
+    let duration = this.state.duration
+    let height = parseInt(scale)
+    let outputheight = parseInt(((height/24)*100).toFixed(2))
+    let jsonsize = [outputheight, outputheight, outputheight]
+    let strokeAdjusted = (100/outputheight)*(stroke*20)
+
+    // Update Grid & Download moments
+
+    if (this.state.gridFile && this.state.downloadFile) {
+      let grid = JSON.parse(this.state.gridFile)
+      grid.layers[0].shapes[1].c.k  = lottieColor;
+      grid.layers[1].shapes[1].c.k = lottieColor;
+
+
+      let build = JSON.parse(this.state.downloadFile)
+      build.layers[2].shapes[2].c.k = lottieColor
+      build.layers[3].shapes[1].c.k = lottieColor
+      build.layers[4].shapes[0].it[1].c.k = lottieColor
+      build.layers[5].shapes[0].it[1].c.k = lottieColor
+      build.layers[7].shapes[0].it[1].c.k = lottieColor
+      build.layers[8].shapes[0].it[1].c.k = lottieColor
+      build.layers[9].shapes[0].it[1].c.k = lottieColor
+      build.layers[11].shapes[1].c.k = lottieColor
+      build.layers[12].shapes[1].c.k = lottieColor
+      build.layers[13].shapes[2].c.k = lottieColor
+      build.layers[14].shapes[0].it[1].c.k = lottieColor
+      build.layers[15].shapes[0].it[1].c.k = lottieColor
+
+      build.layers[2].shapes[2].w.k = strokeAdjusted
+      build.layers[3].shapes[1].w.k = strokeAdjusted
+      build.layers[4].shapes[0].it[1].w.k = strokeAdjusted
+      build.layers[5].shapes[0].it[1].w.k = strokeAdjusted
+      build.layers[7].shapes[0].it[1].w.k = strokeAdjusted
+      build.layers[8].shapes[0].it[1].w.k = strokeAdjusted
+      build.layers[9].shapes[0].it[1].w.k = strokeAdjusted
+      build.layers[11].shapes[1].w.k = strokeAdjusted
+      build.layers[12].shapes[1].w.k = strokeAdjusted
+      build.layers[13].shapes[2].w.k = strokeAdjusted
+      build.layers[14].shapes[0].it[1].w.k = strokeAdjusted
+      build.layers[15].shapes[0].it[1].w.k = strokeAdjusted
+      this.updateDownloadFile(build)
+      this.updateGrid(grid)
+    }
+
     let updatedAnimations = this.state.exportFiles.animations.map(object => {
       let file = object.file
       file.op = 30;
-      let lottieColor = this.state.lottieColor
-      let scale = this.state.scale
-      let stroke = this.state.stroke
-      let duration = this.state.duration
-      let height = parseInt(scale)
-      let outputheight = parseInt(((height/24)*100).toFixed(2))
-      let jsonsize = [outputheight, outputheight, outputheight]
-      let strokeAdjusted = (100/outputheight)*(stroke*20)
+
 
 
 
@@ -62,6 +117,8 @@ export class OpalContextProvider extends React.Component {
 
       file.h = height;
       file.w = height;
+
+
 
       // Current JSON paths:
       switch (file.nm) {
@@ -1022,6 +1079,30 @@ export class OpalContextProvider extends React.Component {
       return
     }
   }
+  updateGrid = (grid) => {
+    if (this.state.gridFile) {
+      let tempFile = grid;
+      this.setState({
+        gridFile: JSON.stringify(tempFile)
+      }, function() {
+        return
+      })
+    } else {
+      return
+    }
+  }
+  updateDownloadFile = (downloadFile) => {
+    if (this.state.downloadFile) {
+      let tempFile = downloadFile;
+      this.setState({
+        gridFile: JSON.stringify(tempFile)
+      }, function() {
+        return
+      })
+    } else {
+      return
+    }
+  }
   setColor = (colorValues) => {
     this.setState({
       hexcolor: colorValues.hexcolor,
@@ -1042,6 +1123,17 @@ export class OpalContextProvider extends React.Component {
     this.setState({ json })
   }
 
+  setGrid = grid => {
+    this.setState({
+      gridFile: grid
+    })
+  }
+  setDownloadFile = downloadFile => {
+    this.setState({
+      downloadFile
+    })
+  }
+
   render() {
     const value = {
       // values
@@ -1057,6 +1149,10 @@ export class OpalContextProvider extends React.Component {
       duration: this.state.duration,
       scale: this.state.scale,
       stroke: this.state.stroke,
+      gridFile: this.state.gridFile,
+      downloadFile: this.state.downloadFile,
+      isRendering: this.state.isRendering,
+      pausedStatus: this.state.pausedStatus,
       // methods
       setPreview: this.setPreview,
       setColor: this.setColor,
@@ -1065,7 +1161,12 @@ export class OpalContextProvider extends React.Component {
       updateFiles: this.updateFiles,
       setExportFiles: this.setExportFiles,
       updatePreview: this.updatePreview,
-      setJson: this.setJson
+      setJson: this.setJson,
+      setGrid: this.setGrid,
+      updateGrid: this.updateGrid,
+      setDownloadFile: this.setDownloadFile,
+      updateDownloadFile: this.updateDownloadFile,
+      updateRendering: this.updateRendering
     }
     return (
       <OpalContext.Provider value={value}>
