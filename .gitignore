@@ -24,3 +24,5 @@ yarn-error.log*
 
 test.json
 test2.json
+*.pages
+*.pdf

@@ -24,7 +24,6 @@ export default class Form extends React.Component {
     const {lottieColor, duration, scale, stroke} = this.context
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
-    // AnimationApiService.getAnimations()
       .then(res => {
         let animationFiles = res.filter(file => file.type === 'animation')
         let staticFiles = res.filter(file => file.type === 'static')
@@ -207,43 +206,6 @@ export default class Form extends React.Component {
       } else {
 
       }
-    // else if (file) {
-    //   this.setState({
-    //     previewFile: file
-    //   })
-    //   defaultOptions = {
-    //     loop: false,
-    //     // set loop to false
-    //     // play, pause when it's near the end somehow and then play again after a setTimeout
-    //     autoplay: true,
-    //     animationData: this.state.previewFile
-    //   }
-    //   debugger;
-    //   let opalEvents = [
-    //     {
-    //       eventName: 'complete',
-    //       callback: () => {
-    //         this.context.setPreview({
-    //           previewJson:null
-    //         })
-    //         setTimeout(() => {
-    //           console.log('after 500ms');
-    //           this.playPreview(tempFile)
-    //         }, 500)
-    //
-    //       },
-    //     }
-    //   ]
-    //   return <Lottie
-    //     eventListeners={opalEvents}
-    //     options={defaultOptions} />
-    // }
-
-
-    // setting the componentState from isPaused to true / false seems to just result in infinite loops
-
-
-
   }
 
   handleSubmit = (e) => {
@@ -312,7 +274,7 @@ export default class Form extends React.Component {
     let lightnessStyle = {
       background: `linear-gradient(to right, hsl(${this.context.hue}, 100%, 0%), hsl(${this.context.hue}, 100%, 20%), hsl(${this.context.hue}, 100%, 30%), hsl(${this.context.hue}, 100%, 40%), hsl(${this.context.hue}, 100%, 50%), hsl(${this.context.hue}, 100%, 60%), hsl(${this.context.hue}, 100%, 70%), hsl(${this.context.hue}, 100%, 80%),hsl(${this.context.hue}, 100%, 90%), hsl(${this.context.hue}, 100%, 100%))`
     };
-  
+
     return (
       <div className='form-preview'>
         {this.state.isRendering
@@ -412,7 +374,7 @@ export default class Form extends React.Component {
                   <span><input name="strokeOutputName" id="strokeOutputId" value={this.context.stroke}></input>pt</span>
                 </span>
 
-                <input type="range" name="stroke" id="stroke" required min={this.context.scale / 24} max={this.context.scale / 12} defaultValue={this.context.stroke} />
+                <input type="range" name="stroke" id="stroke" required min={1} max={this.context.scale / 12} defaultValue={this.context.stroke} />
 
               </div>
               <div className="duration-edit">

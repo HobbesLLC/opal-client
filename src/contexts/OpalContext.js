@@ -45,10 +45,13 @@ export class OpalContextProvider extends React.Component {
       let scale = this.state.scale
       let stroke = this.state.stroke
       let duration = this.state.duration
-      let strokeAdjusted = stroke*20
       let height = parseInt(scale)
       let outputheight = parseInt(((height/24)*100).toFixed(2))
-      let jsonsize = [outputheight, outputheight, 100]
+      let jsonsize = [outputheight, outputheight, outputheight]
+      let strokeAdjusted = (100/outputheight)*(stroke*20)
+
+
+
       let framerate = parseFloat(((file.op/duration)*1000), 10);
       let lottieFramerate = Math.round(framerate * 1e2) / 1e2;
       file.fr = lottieFramerate;
@@ -389,8 +392,16 @@ export class OpalContextProvider extends React.Component {
         file.layers[1].shapes[1].w.k = strokeAdjusted;
         file.layers[2].shapes[1].w.k = strokeAdjusted;
         break;
-        case 'Eye_Off_Build':
+
         case 'Eye_Off_Static':
+        file.layers[1].shapes[1].c.k = lottieColor;
+        file.layers[2].shapes[1].c.k = lottieColor;
+        file.layers[3].shapes[1].c.k = lottieColor;
+        file.layers[1].shapes[1].w.k = strokeAdjusted;
+        file.layers[2].shapes[1].w.k = strokeAdjusted;
+        file.layers[3].shapes[1].w.k = strokeAdjusted;
+        break;
+        case 'Eye_Off_Build':
         file.layers[1].shapes[1].c.k = lottieColor;
         file.layers[2].shapes[1].c.k = lottieColor;
         file.layers[3].shapes[1].c.k = lottieColor;
@@ -513,8 +524,19 @@ export class OpalContextProvider extends React.Component {
         file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
         break;
-        case 'Mail_Build':
         case 'Mail_Static':
+        file.layers[2].shapes[0].it[2].c.k = lottieColor;
+        file.layers[3].shapes[0].it[2].c.k = lottieColor;
+        file.layers[4].shapes[0].it[1].c.k = lottieColor;
+        file.layers[5].shapes[0].it[1].c.k = lottieColor;
+        file.layers[6].shapes[0].it[1].c.k = lottieColor;
+        file.layers[2].shapes[0].it[2].w.k = strokeAdjusted;
+        file.layers[3].shapes[0].it[2].w.k = strokeAdjusted;
+        file.layers[4].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[5].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[6].shapes[0].it[1].w.k = strokeAdjusted;
+        break;
+        case 'Mail_Build':
         file.layers[2].shapes[0].it[2].c.k = lottieColor;
         file.layers[3].shapes[0].it[2].c.k = lottieColor;
         file.layers[4].shapes[0].it[1].c.k = lottieColor;
@@ -572,12 +594,10 @@ export class OpalContextProvider extends React.Component {
         break;
         case 'Notifications_Build':
         case 'Notifications_Static':
-
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[2].shapes[1].c.k = lottieColor;
         file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[1].w.k = strokeAdjusted;
-
         break;
         case 'Pause_Build':
         case 'Pause_Static':
@@ -747,7 +767,7 @@ export class OpalContextProvider extends React.Component {
         file.layers[3].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[4].shapes[0].it[1].w.k = strokeAdjusted;
         break;
-        case 'Share_Build':
+
         case 'Share_Static':
         file.layers[3].shapes[1].c.k = lottieColor;
         file.layers[4].shapes[1].c.k = lottieColor;
@@ -760,8 +780,34 @@ export class OpalContextProvider extends React.Component {
         file.layers[6].shapes[1].w.k = strokeAdjusted;
         file.layers[7].shapes[1].w.k = strokeAdjusted;
         break;
-        case 'Shuffle_Build':
+
+        case 'Share_Build':
+        file.layers[3].shapes[1].c.k = lottieColor;
+        file.layers[4].shapes[1].c.k = lottieColor;
+        file.layers[5].shapes[1].c.k = lottieColor;
+        file.layers[6].shapes[1].c.k = lottieColor;
+        file.layers[7].shapes[1].c.k = lottieColor;
+        file.layers[3].shapes[1].w.k = strokeAdjusted;
+        file.layers[4].shapes[1].w.k = strokeAdjusted;
+        file.layers[5].shapes[1].w.k = strokeAdjusted;
+        file.layers[6].shapes[1].w.k = strokeAdjusted;
+        file.layers[7].shapes[1].w.k = strokeAdjusted;
+
+        break;
+
         case 'Shuffle_Static':
+        file.layers[1].shapes[0].it[1].c.k = lottieColor;
+        file.layers[2].shapes[0].it[1].c.k = lottieColor;
+        file.layers[3].shapes[0].it[1].c.k = lottieColor;
+        file.layers[4].shapes[0].it[1].c.k = lottieColor;
+        file.layers[5].shapes[0].it[1].c.k = lottieColor;
+        file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[2].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[3].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[4].shapes[0].it[1].w.k = strokeAdjusted;
+        file.layers[5].shapes[0].it[1].w.k = strokeAdjusted;
+        break;
+        case 'Shuffle_Build':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[2].shapes[0].it[1].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
