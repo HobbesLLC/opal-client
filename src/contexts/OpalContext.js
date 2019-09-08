@@ -30,6 +30,12 @@ const OpalContext = React.createContext({
   setGrid: () => {},
   updateGrid: () => {},
   setDownloadFile: () => {},
+  setHue: () => {},
+  setLightness: () => {},
+  setSaturation: () => {},
+  setScale: () => {},
+  setStroke: () => {},
+  setDuration: () => {},
   updateDownloadFile: () => {},
   updatePreview: () => {},
   updateRendering: () => {}
@@ -1133,7 +1139,40 @@ export class OpalContextProvider extends React.Component {
       downloadFile
     })
   }
-
+  setHue = hue => {
+    this.setState({
+      hue: Number(hue)
+    },
+    () => {
+      console.log('I updated the Hue?');
+      return
+    })
+  }
+  setLightness = lightness => {
+    this.setState({
+      lightness
+    })
+  }
+  setSaturation = saturation => {
+    this.setState({
+      saturation
+    })
+  }
+  setScale = scale => {
+    this.setState({
+      scale
+    })
+  }
+  setStroke = stroke => {
+    this.setState({
+      stroke
+    })
+  }
+  setDuration = duration => {
+    this.setState({
+      duration
+    })
+  }
   render() {
     const value = {
       // values
@@ -1165,6 +1204,12 @@ export class OpalContextProvider extends React.Component {
       setGrid: this.setGrid,
       updateGrid: this.updateGrid,
       setDownloadFile: this.setDownloadFile,
+      setHue: this.setHue,
+      setLightness: this.setLightness,
+      setSaturation: this.setSaturation,
+      setScale: this.setScale,
+      setStroke: this.setStroke,
+      setDuration: this.setDuration,
       updateDownloadFile: this.updateDownloadFile,
       updateRendering: this.updateRendering
     }

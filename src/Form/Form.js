@@ -169,7 +169,45 @@ export default class Form extends React.Component {
         this.calculateColor()
       })
   }
+  handleHueChange = (e) => {
+    e.preventDefault()
+    let hue = e.currentTarget.value
+    const updateContextValues = async () => {
+      this.context.setHue(hue)
+    }
+    updateContextValues()
+      .then(res => {
+        console.log(`then`);
+        this.calculateColor()
+      })
+  }
+  handleSaturationChange = (e) => {
+    e.preventDefault()
 
+    let saturation = e.currentTarget.value
+  }
+  handleLightnessChange = (e) => {
+    e.preventDefault()
+
+    let lightness = e.currentTarget.value
+  }
+  handleScaleChange = (e) => {
+    e.preventDefault()
+
+    let scale = e.currentTarget.value
+  }
+  handleStrokeChange = (e) => {
+    e.preventDefault()
+
+    let stroke = e.currentTarget.value
+  }
+  handleDurationChange = (e) => {
+    e.preventDefault()
+    let op = 30;
+    let duration = e.currentTarget.value
+    let framerate = parseFloat(((op/duration)*1000), 10);
+    let previewFrameRate = Math.round(framerate * 1e2) / 1e2;
+  }
   backToForm = (e) => {
     e.preventDefault()
     this.setState({
@@ -294,6 +332,10 @@ export default class Form extends React.Component {
   }
 
   render() {
+    let hueStyle = {
+      background: `-webkit-linear-gradient(left, hsla(0, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1))`,
+      background: `-moz-linear-gradient(left, hsla(0, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1))`
+    }
     let saturationStyle = {
       background: `linear-gradient(to right, hsl(${this.context.hue}, 10%, 0%), hsl(${this.context.hue}, 20%, 50%), hsl(${this.context.hue}, 30%, 50%), hsl(${this.context.hue}, 40%, 50%), hsl(${this.context.hue}, 50%, 50%), hsl(${this.context.hue}, 60%, 50%), hsl(${this.context.hue}, 70%, 50%), hsl(${this.context.hue}, 80%, 50%), hsl(${this.context.hue}, 90%, 50%), hsl(${this.context.hue}, 100%, 50%))`
     };
@@ -328,15 +370,18 @@ export default class Form extends React.Component {
               <fieldset name='color' className='color-edit'>
                 <span className="field-labels">
                   <label htmlFor='hue'>Hue</label>
-                  <input name="hueOutputName" id="hueOutputId" value={this.context.hue}></input>
+                  <input name="hueOutputName" id="hueOutputId" value={this.context.hue} onChange={this.handleHueChange}></input>
                 </span>
-
+                <div
+                  id="visibleHue"
+                  style={hueStyle}
+                  />
                 <input type="range" name="hue" id="hueID" min="0" max="360" defaultValue={this.context.hue} required/>
 
 
                 <span className="field-labels">
                   <label htmlFor='saturation'>Saturation</label>
-                  <span><input name="saturationOutputName" id="saturationOutputId" value={this.context.saturation}></input>%</span>
+                  <span><input name="saturationOutputName" id="saturationOutputId" value={this.context.saturation} onChange={this.handleSaturationChange}></input>%</span>
                 </span>
                 <div
                   id="visibleSaturation"
@@ -354,7 +399,7 @@ export default class Form extends React.Component {
 
                 <span className="field-labels">
                   <label htmlFor='lightness'>Lightness</label>
-                  <span><input name="lightnessOutputName" id="lightnessOutputId" value={this.context.lightness}></input>%</span>
+                  <span><input name="lightnessOutputName" id="lightnessOutputId" value={this.context.lightness} onChange={this.handleLightnessChange}></input>%</span>
                 </span>
 
                 <div
@@ -374,7 +419,7 @@ export default class Form extends React.Component {
               <div className="scale-edit">
                 <span className="field-labels">
                   <label htmlFor="scale">Scale</label>
-                  <span><input name="scaleOutputName" id="scaleOutputId" value={this.context.scale} ></input>px</span>
+                  <span><input name="scaleOutputName" id="scaleOutputId" value={this.context.scale} onChange={this.handleScaleChange}></input>px</span>
                 </span>
 
                 <input type="range" name="scale" id="scale" required min="24" max="1080" defaultValue={this.context.scale} />
@@ -382,7 +427,7 @@ export default class Form extends React.Component {
               <div className="stroke-edit">
                 <span className="field-labels">
                   <label htmlFor="stroke">Stroke</label>
-                  <span><input name="strokeOutputName" id="strokeOutputId" value={this.context.stroke}></input>pt</span>
+                  <span><input name="strokeOutputName" id="strokeOutputId" value={this.context.stroke} onChange={this.handleStrokeChange}></input>pt</span>
                 </span>
 
                 <input type="range" name="stroke" id="stroke" required min={1} max={this.context.scale / 12} defaultValue={this.context.stroke} />
@@ -391,7 +436,7 @@ export default class Form extends React.Component {
               <div className="duration-edit">
                 <span className="field-labels">
                   <label htmlFor="duration">Duration</label>
-                  <span><input name="durationOutputName" id="durationOutputId"  value={this.context.duration}></input>ms</span>
+                  <span><input name="durationOutputName" id="durationOutputId"  value={this.context.duration} onChange={this.handleDurationChange}></input>ms</span>
                 </span>
                 <input type="range" name="duration" id="duration" required min="200" max="3000" defaultValue={this.context.duration}/>
               </div>

@@ -1,10 +1,17 @@
-$trackpointerheight: 20px;
+$trackpointerheight: 14px;
 $trackpointerwidth: 1px;
 $trackpointerborder: 1px solid #000000;
 $white: #ffffff;
 $black: #000000;
 $offblack: #1A1A1A;
 $grey: #f0f0f0;
+
+@media (max-width: 1024px) {
+  $trackpointerheight: 24px;
+}
+@media (max-width: 768px) {
+  $trackpointerheight: 14px;
+}
 
 
 $trackheight: 1px;
@@ -417,6 +424,9 @@ body {
       .preview-hex {
         text-transform: uppercase;
       }
+      @media (max-width: 1024px) {
+        display: none;
+      }
     }
     #preview {
       width: 218px;
@@ -426,8 +436,9 @@ body {
       text-align: center;
 
       @media (max-width: 768px) {
-        height: 248px;
-        width: 248px;
+        margin: 0 auto;
+        width: 51.72%;
+        height: 51.72%;
       }
       @media (min-width: 2200px) {
         height: 436px;
@@ -448,7 +459,7 @@ body {
       flex-direction: column;
       font-size: 10.5px;
       @media (max-width: 1024px) {
-        font-size: 15px;
+        font-size: 14px;
       }
       @media (min-width: 2200px) {
         font-size: 15px;
@@ -475,6 +486,13 @@ body {
             border: none;
             font-size: 1em;
 
+            @media (max-width: 768px) {
+              width: 5.75ch;
+              margin-right: 0;
+              position: relative;
+              right: -5px;
+            }
+
             &:focus {
               outline: none;
             }
@@ -488,7 +506,7 @@ body {
             margin-bottom: 10px;
           }
           @media (max-width: 768px) {
-            margin: 10px auto 20px;
+            margin: 5px auto;
           }
         }
       }
@@ -538,11 +556,12 @@ body {
         height: $trackpointerheight;
         width: $trackpointerwidth;
         cursor: pointer;
-        margin-top: -10px;
+        margin-top: -7px;
         @media (max-width: 1024px) {
           width: $trackpointerheight;
           border-radius: 50%;
           background: $black;
+          margin-top: -7px;
         }
 
       }
@@ -749,12 +768,15 @@ body {
       #visibleSaturation {
         height: 2px;
         position: relative;
-        top: 10px;
+        top: 11px;
         z-index: 0;
         border-radius: 1.3px;
-        width: 99.5%;
+        width: 98.5%;
         @media (max-width: 1024px) {
           width: 98.5%;
+        }
+        @media (max-width: 768px) {
+          top: 6px;
         }
       }
       #visibleLightness {
@@ -769,6 +791,10 @@ body {
         font-size: 21px;
         text-align: center;
         margin-top: 1em;
+        @media (max-width: 768px) {
+          margin-top: 51px;
+          font-size: 14px;
+        }
       }
     }
 
@@ -794,11 +820,18 @@ body {
 
 // footer
 footer {
-
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 35px 35px 35px;
+  }
   .hobbes-about,
   .color-picker {
     position: fixed;
     bottom: 40px;
+    @media (max-width: 768px) {
+      position: static;
+    }
   }
   .hobbes-about {
     cursor: pointer;
@@ -814,7 +847,6 @@ footer {
   }
 
   .color-picker {
-    position: fixed;
     right: 40px;
     display: flex;
 
