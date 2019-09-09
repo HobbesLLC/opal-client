@@ -355,9 +355,6 @@ export default class Form extends React.Component {
   }
 
   render() {
-    let hueStyle = {
-      background: `-webkit-linear-gradient(left, hsla(0, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1),hsla(${this.context.hue}, 100%, 50%, 1))`
-    }
     let saturationStyle = {
       background: `linear-gradient(to right, hsl(${this.context.hue}, 10%, 0%), hsl(${this.context.hue}, 20%, 50%), hsl(${this.context.hue}, 30%, 50%), hsl(${this.context.hue}, 40%, 50%), hsl(${this.context.hue}, 50%, 50%), hsl(${this.context.hue}, 60%, 50%), hsl(${this.context.hue}, 70%, 50%), hsl(${this.context.hue}, 80%, 50%), hsl(${this.context.hue}, 90%, 50%), hsl(${this.context.hue}, 100%, 50%))`
     };
@@ -401,7 +398,6 @@ export default class Form extends React.Component {
                 </span>
                 <div
                   id="visibleHue"
-                  style={hueStyle}
                   />
                 <input
                   type="range"
