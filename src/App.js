@@ -12,6 +12,37 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.context.setProfile('light')
+    this._doSignature()
+  }
+  _doSignature() {
+
+    var styles = [
+         'width: 100vw '
+       , 'color: black'
+       , 'margin: 0'
+       , 'padding: 0'
+       , 'margin-right: -7.5px'
+       , 'padding-right: 0px'
+       , 'padding-bottom: 0px'
+       , 'margin-bottom: 0px'
+       , 'display: block'
+       , 'text-align: center'
+       , 'font-size: 24px'
+       , 'font-family: Helvetica Neue, Helvetica'
+       , 'font-weight: regular'
+    ].join(';');
+
+    var style2 = [
+       'position: absolute'
+       , 'bottom: 100px'
+       , 'text-align: center'
+       , 'font-size: 25px'
+       , 'font-family: Helvetica Neue, Helvetica'
+       , 'font-weight: 500'
+       , 'text-transform: uppercase'
+    ].join(';');
+
+    console.log('%c Built by %c Buena Suerte ', styles, style2);
   }
   renderClass() {
     let profile = ''
