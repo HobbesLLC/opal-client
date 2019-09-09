@@ -959,14 +959,14 @@ footer {
       margin-bottom: 0.5em;
       opacity: 0;
       transition: opacity .5s;
-      transition-timing-function: cubic-bezier(0.17, 0.17, 0.2, 1);
+      transition-timing-function: cubic-bezier(0.8, 0, 0.83, 0.83);
     }
     p {
       line-height: 1.5;
       margin-bottom: 1em;
       opacity: 0;
       transition: opacity .5s;
-      transition-timing-function: cubic-bezier(0.17, 0.17, 0.2, 1);
+      transition-timing-function: cubic-bezier(0.8, 0, 0.83, 0.83);
     }
     a {
       color: inherit;
@@ -984,7 +984,8 @@ footer {
       h1,
       p {
         opacity: 1;
-        transition-timing-function: cubic-bezier(0.8, 0, 0.83, 0.83);
+        transition-timing-function: cubic-bezier(0.17, 0.17, 0.2, 1);
+
       }
     }
   }
