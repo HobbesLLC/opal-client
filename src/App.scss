@@ -441,7 +441,13 @@ body {
       left: 0;
       right: 0;
       .preview-hex {
-        text-transform: uppercase;
+        input {
+          text-align: right;
+          max-width: 8ch;
+          border: none;
+          text-transform: uppercase;
+        }
+
       }
       @media (max-width: 1024px) {
         display: none;

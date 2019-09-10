@@ -24,7 +24,8 @@ const OpalContext = React.createContext({
   setPreview: () => { },
   setProfile: () => { },
   setExportFiles: () => { },
-  setColor: () => {},
+  setLottieColor: () => {},
+  setLottieColorFromHex: () => {},
   updateState: () => {},
   updateFiles: () => {},
   setGrid: () => {},
@@ -1055,7 +1056,8 @@ export class OpalContextProvider extends React.Component {
         ...this.state.exportFiles
       }
     },
-    this.updatePreview())
+    this.updatePreview()
+  )
   }
 
   updateState = (updateValues) => {
@@ -1109,13 +1111,21 @@ export class OpalContextProvider extends React.Component {
       return
     }
   }
-  setColor = (colorValues) => {
+  setLottieColor = (colorValues) => {
     this.setState({
       hexcolor: colorValues.hexcolor,
       lottieColor: colorValues.lottieColor
     }, this.updateFiles()
     )
-
+  }
+  setLottieColorFromHex = (colorValues) => {
+    this.setState({
+      hue: colorValues.hue,
+      saturation: colorValues.saturation,
+      lightness: colorValues.lightness,
+      hexcolor: colorValues.hexcolor,
+      lottieColor: colorValues.lottieColor
+    }, this.updateFiles())
   }
   setProfile = profile => {
     this.setState({ profile })
@@ -1194,7 +1204,8 @@ export class OpalContextProvider extends React.Component {
       pausedStatus: this.state.pausedStatus,
       // methods
       setPreview: this.setPreview,
-      setColor: this.setColor,
+      setLottieColor: this.setLottieColor,
+      setLottieColorFromHex: this.setLottieColorFromHex,
       updateState: this.updateState,
       setProfile: this.setProfile,
       updateFiles: this.updateFiles,
