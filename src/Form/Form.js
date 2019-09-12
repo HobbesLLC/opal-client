@@ -419,65 +419,70 @@ export default class Form extends React.Component {
               onSubmit={this.handleSubmit}
               onChange={this.handleChange}
               >
-              <fieldset name='color' className='color-edit'>
-                <span className="field-labels">
-                  <label htmlFor='hue'>Hue</label>
+
+                <div className='option'>
+                  <span className="field-labels">
+                    <label htmlFor='hue'>Hue</label>
+                    <input
+                      name="hueOutputName"
+                      id="hueOutputId"
+                      min="0"
+                      max="360"
+                      value={this.context.hue}></input>
+                  </span>
+                  <div
+                    id="visibleHue"
+                    />
                   <input
-                    name="hueOutputName"
-                    id="hueOutputId"
+                    type="range"
+                    name="hue"
+                    id="hueID"
                     min="0"
                     max="360"
-                    value={this.context.hue}></input>
-                </span>
-                <div
-                  id="visibleHue"
-                  />
-                <input
-                  type="range"
-                  name="hue"
-                  id="hueID"
-                  min="0"
-                  max="360"
-                  value={this.context.hue}
-                  onChange={this.handleHueChange}
-                  required/>
+                    value={this.context.hue}
+                    onChange={this.handleHueChange}
+                    required/>
+                </div>
 
-
-                <span className="field-labels">
-                  <label htmlFor='saturation'>Saturation</label>
-                  <span><input
-                    name="saturationOutputName"
-                    id="saturationOutputId"
+                <div className='option'>
+                  <span className="field-labels">
+                    <label htmlFor='saturation'>Saturation</label>
+                    <span><input
+                      name="saturationOutputName"
+                      id="saturationOutputId"
+                      min="0"
+                      max="100"
+                      value={this.context.saturation}
+                      onChange={this.handleHueChange}></input>%</span>
+                  </span>
+                  <div
+                    id="visibleSaturation"
+                    style={saturationStyle}
+                    />
+                  <input
+                    type="range"
+                    name="saturation"
+                    id="saturationID"
                     min="0"
                     max="100"
                     value={this.context.saturation}
-                    onChange={this.handleHueChange}></input>%</span>
-                </span>
-                <div
-                  id="visibleSaturation"
-                  style={saturationStyle}
-                  />
-                <input
-                  type="range"
-                  name="saturation"
-                  id="saturationID"
-                  min="0"
-                  max="100"
-                  value={this.context.saturation}
-                  onChange={this.handleHueChange}
-                  steps="100"
-                  required/>
+                    onChange={this.handleHueChange}
+                    steps="100"
+                    required/>
+                </div>
 
-                <span className="field-labels">
-                  <label htmlFor='lightness'>Lightness</label>
-                  <span><input
-                    name="lightnessOutputName"
-                    id="lightnessOutputId"
-                    min="0"
-                    max="100"
-                    value={this.context.lightness}
-                    onChange={this.handleHueChange}/>%</span>
-                </span>
+                <div className='option'>
+                  <span className="field-labels">
+                    <label htmlFor='lightness'>Lightness</label>
+                    <span><input
+                      name="lightnessOutputName"
+                      id="lightnessOutputId"
+                      min="0"
+                      max="100"
+                      value={this.context.lightness}
+                      onChange={this.handleHueChange}/>%</span>
+                  </span>
+
 
                 <div
                   id="visibleLightness"
@@ -493,7 +498,8 @@ export default class Form extends React.Component {
                   onChange={this.handleHueChange}
                   steps="100"
                   required/>
-              </fieldset>
+              </div>
+
               <div className="scale-edit">
                 <span className="field-labels">
                   <label htmlFor="scale">Scale</label>
