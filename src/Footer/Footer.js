@@ -7,7 +7,7 @@ import PlusIcon from '../Img/Plus_Icon.svg'
 
 export default class Footer extends React.Component {
   state = {
-    profile: 'default',
+    profile: 'grey',
     expanded: false,
     footerIcon: null,
     footerImage: PlusIcon

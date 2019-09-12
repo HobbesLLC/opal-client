@@ -1,7 +1,7 @@
 import React from 'react'
 
 const initialState = {
-  profile: '',
+  profile: 'grey',
   previewJson: null,
   gridFile: null,
   downloadFile: null,

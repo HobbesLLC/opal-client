@@ -11,7 +11,7 @@ export default class App extends React.Component {
   static contextType = OpalContext
 
   componentDidMount() {
-    this.context.setProfile('light')
+    this.context.setProfile('grey')
     this._doSignature()
   }
   _doSignature() {
@@ -48,7 +48,7 @@ export default class App extends React.Component {
     let profile = ''
     switch (this.context.profile) {
       case 'light':
-        profile = 'opal-body default'
+        profile = 'opal-body light'
         break;
       case 'grey':
         profile = 'opal-body grey'

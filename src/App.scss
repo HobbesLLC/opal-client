@@ -40,12 +40,12 @@ hr {  margin: 0;  padding: 0;}
 body {
   font-family: 'IBM Plex Sans', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
   font-size: 11px;
-  @media (min-width: 2200px) {
+  @media (min-width: 2880px) {
     font-size: 15px;
   }
 }
 
-.default {
+.light {
   background: $white;
   color: $black;
   aside.about {
@@ -317,7 +317,7 @@ body {
     //   position: static;
     // }
   }
-  @media (min-width: 2200px) {
+  @media (min-width: 2880px) {
     .opal-logo,
     .hobbes-logo {
       max-width: 40px;
@@ -348,7 +348,7 @@ body {
     align-items: center;
     height: 100vh;
   }
-  @media (min-width: 2200px) {
+  @media (min-width: 2880px) {
     height: auto;
     align-items: center;
   }
@@ -357,7 +357,7 @@ body {
   .grid-container,
   .form-preview {
     width: 420px;
-    @media (min-width: 2200px) {
+    @media (min-width: 2880px) {
       width: 840px;
       align-self: flex-start;
     }
@@ -369,7 +369,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @media (min-width: 2200px) {
+    @media (min-width: 2880px) {
       width: 840px;
       height: 840px;
     }
@@ -465,7 +465,7 @@ body {
         width: 51.72%;
         height: 51.72%;
       }
-      @media (min-width: 2200px) {
+      @media (min-width: 2880px) {
         height: 436px;
         width: 436px;
       }
@@ -486,7 +486,7 @@ body {
       @media (max-width: 1024px) {
         font-size: 14px;
       }
-      @media (min-width: 2200px) {
+      @media (min-width: 2880px) {
         font-size: 15px;
       }
       fieldset {
@@ -913,7 +913,7 @@ footer {
     }
 
   }
-  @media (min-width: 2200px) {
+  @media (min-width: 2880px) {
 
     .color-picker {
       #light,
