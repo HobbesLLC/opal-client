@@ -396,7 +396,7 @@ export default class Form extends React.Component {
               {this.context.previewJson
               ? <span className='preview-name'>{JSON.parse(this.context.previewJson).nm}</span>
               : ''}
-              {this.context.hexcolor
+              {this.context.previewJson
               ? <form
               className='preview-hex'
               onChange={this.handleHexSubmit}>
