@@ -365,7 +365,8 @@ body {
 
   .grid-container {
     width: 420px;
-    height: 420px;
+    height: 480px;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -456,7 +457,7 @@ body {
     #preview {
       width: 218px;
       height: 218px;
-      margin: 0 auto -10px;
+      margin: -15px auto -17px;
       transform: translate3d(0,0,0);
       text-align: center;
 
@@ -465,6 +466,7 @@ body {
         width: 51.72%;
         height: 51.72%;
       }
+
       @media (min-width: 2880px) {
         height: 436px;
         width: 436px;
@@ -483,6 +485,7 @@ body {
       display: flex;
       flex-direction: column;
       font-size: 10.5px;
+      height: auto;
       @media (max-width: 1024px) {
         font-size: 14px;
       }
@@ -497,10 +500,12 @@ body {
         margin-inline-end: 0;
         border: 0;
       }
+      .option,
       .color-edit,
       .scale-edit,
       .stroke-edit,
       .duration-edit {
+        height: 8%;
         .field-labels {
           display: flex;
           width: 100%;
