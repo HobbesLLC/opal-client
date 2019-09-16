@@ -313,7 +313,9 @@ export default class Form extends React.Component {
           className='back-arrow'
           onClick={this.backToForm}
           />
-        <Lottie options={buildOptions} />
+        <div id='build-json'>
+          <Lottie options={buildOptions} />
+        </div>
         <div className='fill-bar'>
           <span>{this.state.renderingText}</span>
           {this.state.fillBar

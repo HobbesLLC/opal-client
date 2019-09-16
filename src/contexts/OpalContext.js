@@ -29,7 +29,6 @@ const OpalContext = React.createContext({
   updateState: () => {},
   updateFiles: () => {},
   setGrid: () => {},
-  updateGrid: () => {},
   setDownloadFile: () => {},
   setHue: () => {},
   setLightness: () => {},
@@ -69,14 +68,9 @@ export class OpalContextProvider extends React.Component {
     let jsonsize = [outputheight, outputheight, outputheight]
     let strokeAdjusted = (100/outputheight)*(stroke*20)
 
-    // Update Grid & Download moments
+    //Download moments
 
-    if (this.state.gridFile && this.state.downloadFile) {
-      let grid = JSON.parse(this.state.gridFile)
-      grid.layers[0].shapes[1].c.k  = lottieColor;
-      grid.layers[1].shapes[1].c.k = lottieColor;
-
-
+    if (this.state.downloadFile) {
       let build = JSON.parse(this.state.downloadFile)
       build.layers[2].shapes[2].c.k = lottieColor
       build.layers[3].shapes[1].c.k = lottieColor
@@ -104,7 +98,6 @@ export class OpalContextProvider extends React.Component {
       build.layers[14].shapes[0].it[1].w.k = strokeAdjusted
       build.layers[15].shapes[0].it[1].w.k = strokeAdjusted
       this.updateDownloadFile(build)
-      this.updateGrid(grid)
     }
 
     let updatedAnimations = this.state.exportFiles.animations.map(object => {
@@ -138,7 +131,7 @@ export class OpalContextProvider extends React.Component {
         file.layers[3].shapes[3].w.k = strokeAdjusted;
         file.layers[4].shapes[2].w.k = strokeAdjusted;
         break;
-        
+
         case 'Arrow_BottomLeft_Build':
         case 'Arrow_BottomLeft_Static':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
@@ -146,7 +139,7 @@ export class OpalContextProvider extends React.Component {
         file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
         file.layers[2].shapes[1].w.k = strokeAdjusted;
         break;
-        
+
         case 'Arrow_BottomRight_Build':
         case 'Arrow_BottomRight_Static':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
@@ -1185,23 +1178,11 @@ export class OpalContextProvider extends React.Component {
       return
     }
   }
-  updateGrid = (grid) => {
-    if (this.state.gridFile) {
-      let tempFile = grid;
-      this.setState({
-        gridFile: JSON.stringify(tempFile)
-      }, function() {
-        return
-      })
-    } else {
-      return
-    }
-  }
   updateDownloadFile = (downloadFile) => {
     if (this.state.downloadFile) {
       let tempFile = downloadFile;
       this.setState({
-        gridFile: JSON.stringify(tempFile)
+        downloadFile: JSON.stringify(tempFile)
       }, function() {
         return
       })
@@ -1311,7 +1292,6 @@ export class OpalContextProvider extends React.Component {
       updatePreview: this.updatePreview,
       setJson: this.setJson,
       setGrid: this.setGrid,
-      updateGrid: this.updateGrid,
       setDownloadFile: this.setDownloadFile,
       setHue: this.setHue,
       setLightness: this.setLightness,

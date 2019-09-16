@@ -31,7 +31,6 @@ export default class Grid extends React.Component {
     let defaultOptions = ''
 
     if (this.context.gridFile !== null) {
-
         defaultOptions = {
           loop: true,
           autoplay: true,
