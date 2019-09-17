@@ -1,5 +1,5 @@
 $trackpointerheight: 14px;
-$trackpointerwidth: 1px;
+$trackpointerwidth: 2px;
 $trackpointerborder: 1px solid #000000;
 $white: #ffffff;
 $black: #000000;
@@ -62,7 +62,81 @@ body {
   #light {
     border: 1px solid $black;
   }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: $trackpointerheight;
+    box-sizing: content-box;
+    width: $trackpointerwidth;
+    border-left: 5px solid $white;
+    border-right: 5px solid $white;
+    background-color: black;
+    cursor: pointer;
+    margin-top: -7px;
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 5px;
+      right: 5px;
+      background: orange;
+      z-index: 999;
+    }
+    @media (max-width: 1024px) {
+      width: $trackpointerheight;
+      border-radius: 50%;
+      background: $black;
+      margin-top: -7px;
+    }
+
+  }
+  // Firefox Styling
+  input[type=range]::-moz-range-thumb {
+    height: $trackpointerheight;
+    box-sizing: content-box;
+    width: $trackpointerwidth;
+    border-left: 5px solid $white;
+    border-right: 5px solid $white;
+    background-color: black;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 5px;
+      right: 5px;
+      background: orange;
+      z-index: 999;
+    }
+    @media (max-width: 1024px) {
+      width: $trackpointerheight;
+      border-radius: 50%;
+      background: $black;
+    }
+
+  }
+  // Internet Explorer Styling
+  input[type=range]::-ms-thumb {
+    height: $trackpointerheight;
+    box-sizing: content-box;
+    width: $trackpointerwidth;
+    border-left: 5px solid $white;
+    border-right: 5px solid $white;
+    background-color: black;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 5px;
+      right: 5px;
+      background: orange;
+      z-index: 999;
+    }
+    @media (max-width: 1024px) {
+      width: $trackpointerheight;
+      background: $black;
+    }
+
+  }
 }
+// GREY MODE
 .grey {
   color: $offblack;
   background: $grey;
@@ -78,6 +152,8 @@ body {
     border: 1px solid $offblack;
   }
 }
+
+// DARK MODE
 .dark {
   color: $white;
   background: $offblack;
@@ -133,7 +209,7 @@ body {
             background: transparent;
       }
       input[type=range]::-webkit-slider-thumb {
-        -webkit-appearance: none;
+        // -webkit-appearance: none;
       }
       input[type=range]:focus {
         outline: none;
@@ -145,44 +221,7 @@ body {
         border-color: transparent;
         color: transparent;
       }
-      // Webkit
-      input[type=range]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        border: 1px solid $white;
-        height: $trackpointerheight;
-        width: $trackpointerwidth;
-        cursor: pointer;
-        margin-top: -10px;
-        @media (max-width: 1024px){
-          width: $trackpointerheight;
-          border-radius: 50%;
-          background: $white;
-        }
-      }
-      // Firefox Styling
-      input[type=range]::-moz-range-thumb {
-        border: 1px solid $white;
-        height: $trackpointerheight;
-        width: $trackpointerwidth;
-        cursor: pointer;
-        @media (max-width: 1024px){
-          width: $trackpointerheight;
-          border-radius: 50%;
-          background: $white;
-        }
-      }
-      // Internet Explorer Styling
-      input[type=range]::-ms-thumb {
-        border: 1px solid $white;
-        height: $trackpointerheight;
-        width: $trackpointerwidth;
-        cursor: pointer;
-        @media (max-width: 1024px){
-          width: $trackpointerheight;
-          border-radius: 50%;
-          background: $white;
-        }
-      }
+
 
       // Track Styling
       input[type=range]::-webkit-slider-runnable-track {
@@ -197,6 +236,7 @@ body {
 
       input[type=range]:focus::-webkit-slider-runnable-track {
         background: $white;
+
       }
 
       input[type=range]::-moz-range-track {
@@ -234,6 +274,80 @@ body {
       }
       input[type=range]:focus::-ms-fill-upper {
         background: $white;
+      }
+
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: $trackpointerheight;
+        box-sizing: content-box;
+        width: $trackpointerwidth;
+        border-left: 5px solid $offblack;
+        border-right: 5px solid $offblack;
+        background-color: $white;
+        cursor: pointer;
+        margin-top: -7px;
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 5px;
+          right: 5px;
+          background: orange;
+          z-index: 999;
+        }
+        @media (max-width: 1024px) {
+          width: $trackpointerheight;
+          border-radius: 50%;
+          background: $white;
+          margin-top: -7px;
+        }
+
+      }
+      // Firefox Styling
+      input[type=range]::-moz-range-thumb {
+        height: $trackpointerheight;
+        box-sizing: content-box;
+        width: $trackpointerwidth;
+        border-left: 5px solid $offblack;
+        border-right: 5px solid $offblack;
+        background-color: $white;
+        cursor: pointer;
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 5px;
+          right: 5px;
+          background: orange;
+          z-index: 999;
+        }
+        @media (max-width: 1024px) {
+          width: $trackpointerheight;
+          border-radius: 50%;
+          background: $white;
+        }
+
+      }
+      // Internet Explorer Styling
+      input[type=range]::-ms-thumb {
+        height: $trackpointerheight;
+        box-sizing: content-box;
+        width: $trackpointerwidth;
+        border-left: 5px solid $offblack;
+        border-right: 5px solid $offblack;
+        background-color: $white;
+        cursor: pointer;
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 5px;
+          right: 5px;
+          background: orange;
+          z-index: 999;
+        }
+        @media (max-width: 1024px) {
+          width: $trackpointerheight;
+          background: $white;
+        }
+
       }
 
 
@@ -562,11 +676,22 @@ body {
       // Webkit
       input[type=range]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        border: $trackpointerborder;
         height: $trackpointerheight;
+        box-sizing: content-box;
         width: $trackpointerwidth;
+        border-left: 5px solid $grey;
+        border-right: 5px solid $grey;
+        background-color: black;
         cursor: pointer;
         margin-top: -7px;
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 5px;
+          right: 5px;
+          background: orange;
+          z-index: 999;
+        }
         @media (max-width: 1024px) {
           width: $trackpointerheight;
           border-radius: 50%;
@@ -577,10 +702,21 @@ body {
       }
       // Firefox Styling
       input[type=range]::-moz-range-thumb {
-        border: $trackpointerborder;
         height: $trackpointerheight;
+        box-sizing: content-box;
         width: $trackpointerwidth;
+        border-left: 5px solid $grey;
+        border-right: 5px solid $grey;
+        background-color: black;
         cursor: pointer;
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 5px;
+          right: 5px;
+          background: orange;
+          z-index: 999;
+        }
         @media (max-width: 1024px) {
           width: $trackpointerheight;
           border-radius: 50%;
@@ -590,10 +726,21 @@ body {
       }
       // Internet Explorer Styling
       input[type=range]::-ms-thumb {
-        border: $trackpointerborder;
         height: $trackpointerheight;
+        box-sizing: content-box;
         width: $trackpointerwidth;
+        border-left: 5px solid $grey;
+        border-right: 5px solid $grey;
+        background-color: black;
         cursor: pointer;
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 5px;
+          right: 5px;
+          background: orange;
+          z-index: 999;
+        }
         @media (max-width: 1024px) {
           width: $trackpointerheight;
           background: $black;

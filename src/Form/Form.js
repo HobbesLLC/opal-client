@@ -7,6 +7,7 @@ import MediaQuery from 'react-responsive'
 import Build from '../Img/Download_Moment.json'
 import BackArrow from '../Img/BackArrow.svg'
 import OpalContext from '../contexts/OpalContext'
+import RenderingText from './RenderingText'
 
 
 let hexToHsl = require('hex-to-hsl');
@@ -19,7 +20,6 @@ export default class Form extends React.Component {
     previewFile: null,
     isRendering: false,
     doneRendering: false,
-    renderingText: 'packaging files',
     fillBar: null,
     pausedStatus: false
   }
@@ -261,8 +261,6 @@ export default class Form extends React.Component {
     this.setState({
       isRendering: false,
       fillBar: false,
-      renderingText: 'packaging files'
-      // setting the text back to it's default state for the next download action
     },
     () => {
       return
@@ -380,7 +378,7 @@ export default class Form extends React.Component {
               </div>
               <div className='fill-bar'>
                 {/* need to dynamically change rendering text without updating state and re-rendering this component*/}
-                <span>{'packaging files'}</span>
+                <RenderingText />
                 <div className='bar active'></div>
               </div>
             </div>
