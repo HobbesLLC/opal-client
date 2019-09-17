@@ -378,7 +378,9 @@ export default class Form extends React.Component {
                   {this.playBuild()}
               </div>
               <div className='fill-bar'>
+                {/* need to dynamically change rendering text without updating state and re-rendering this component*/}
                 <span>{'packaging files'}</span>
+                {/* need to dynamically change the width without updating state and re-rendering this component*/}
                 {this.state.fillBar
                 ? ( <div className='bar active' style={{width: `100%`}}></div>)
                 : ( <div className='bar' style={{width: `100%`, transition: `width 3s ease`}}></div>)}
