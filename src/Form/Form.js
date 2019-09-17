@@ -283,6 +283,7 @@ export default class Form extends React.Component {
           {
             eventName: 'complete',
             callback: () => {
+              defaultOptions.loop = false
               this.playPreview()
             },
           }
@@ -298,7 +299,6 @@ export default class Form extends React.Component {
   }
   playBuild = () => {
     let buildOptions
-
     if (this.context.downloadFile !== null) {
       buildOptions = {
         loop: false,
@@ -307,20 +307,7 @@ export default class Form extends React.Component {
       }
     }
     return (
-      <div id='build'>
-        <ReactSVG
-          src={BackArrow}
-          className='back-arrow'
-          onClick={this.backToForm}
-          />
-        <Lottie options={buildOptions} />
-        <div className='fill-bar'>
-          <span>{this.state.renderingText}</span>
-          {this.state.fillBar
-          ? ( <div className='bar active'></div>)
-          : ( <div className='bar'></div>)}
-        </div>
-      </div>
+      <Lottie options={buildOptions} />
     )
   }
 
@@ -342,26 +329,13 @@ export default class Form extends React.Component {
         }))
       })
       setTimeout(() => {
-        this.setState({
-          fillBar: true,
-        })
-      }, 750)
-      setTimeout(() => {
-        this.setState({
-          renderingText: 'finished',
-        },
         this.downloadFiles()
-      )
       }, 3000)
-
-
 
   }
 
   downloadFiles = () => {
-
     let zip = new JSZip()
-
     this.state.returnedFiles.forEach(opalFile => {
       let json = JSON.stringify(opalFile.file)
       if (opalFile.type === 'animation') {
@@ -375,9 +349,13 @@ export default class Form extends React.Component {
     zip.generateAsync({type:'blob'}).then(function(content) {
       saveAs(content, 'exportedjson.zip');
     });
-
   }
-
+  returnText(text) {
+    if (text === 'finished!') {
+      return `finished!`
+    }
+    return text
+  }
   render() {
     let saturationStyle = {
       background: `linear-gradient(to right, hsl(${this.context.hue}, 10%, 0%), hsl(${this.context.hue}, 20%, 50%), hsl(${this.context.hue}, 30%, 50%), hsl(${this.context.hue}, 40%, 50%), hsl(${this.context.hue}, 50%, 50%), hsl(${this.context.hue}, 60%, 50%), hsl(${this.context.hue}, 70%, 50%), hsl(${this.context.hue}, 80%, 50%), hsl(${this.context.hue}, 90%, 50%), hsl(${this.context.hue}, 100%, 50%))`
@@ -389,7 +367,26 @@ export default class Form extends React.Component {
     return (
       <div className='form-preview'>
         {this.state.isRendering
-          ? this.playBuild()
+          ? (
+            <div id='build'>
+              <ReactSVG
+                src={BackArrow}
+                className='back-arrow'
+                onClick={this.backToForm}
+                />
+              <div id='build-json'>
+                  {this.playBuild()}
+              </div>
+              <div className='fill-bar'>
+                {/* need to dynamically change rendering text without updating state and re-rendering this component*/}
+                <span>{'packaging files'}</span>
+                {/* need to dynamically change the width without updating state and re-rendering this component*/}
+                {this.state.fillBar
+                ? ( <div className='bar active' style={{width: `100%`}}></div>)
+                : ( <div className='bar' style={{width: `100%`, transition: `width 3s ease`}}></div>)}
+              </div>
+            </div>
+            )
           : (
             <>
             <div className='preview-header'>
