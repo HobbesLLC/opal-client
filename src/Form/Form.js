@@ -8,6 +8,7 @@ import Build from '../Img/Download_Moment.json'
 import BackArrow from '../Img/BackArrow.svg'
 import OpalContext from '../contexts/OpalContext'
 
+
 let hexToHsl = require('hex-to-hsl');
 let JSZip = require('jszip')
 
@@ -380,10 +381,7 @@ export default class Form extends React.Component {
               <div className='fill-bar'>
                 {/* need to dynamically change rendering text without updating state and re-rendering this component*/}
                 <span>{'packaging files'}</span>
-                {/* need to dynamically change the width without updating state and re-rendering this component*/}
-                {this.state.fillBar
-                ? ( <div className='bar active' style={{width: `100%`}}></div>)
-                : ( <div className='bar' style={{width: `100%`, transition: `width 3s ease`}}></div>)}
+                <div className='bar active'></div>
               </div>
             </div>
             )
@@ -420,12 +418,12 @@ export default class Form extends React.Component {
                 <div className='option'>
                   <span className="field-labels">
                     <label htmlFor='hue'>Hue</label>
-                    <input
+                    <span><input
                       name="hueOutputName"
                       id="hueOutputId"
                       min="0"
                       max="360"
-                      value={this.context.hue}></input>
+                      value={this.context.hue}></input></span>
                   </span>
                   <div
                     id="visibleHue"
