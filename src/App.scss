@@ -401,6 +401,13 @@ body {
   flex-direction: column;
   min-height: 100vh;
   justify-content: center;
+  position: absolute;
+  min-height: 100%;
+
+  @media (min-width: 1024px) {
+    min-height: 100vh;
+    position: static;
+  }
 }
 .form-grid {
   display: flex;
@@ -543,6 +550,7 @@ body {
       @media (min-width: 2880px) {
         height: 436px;
         width: 436px;
+        margin: 56px auto;
       }
     }
     .color-values {
