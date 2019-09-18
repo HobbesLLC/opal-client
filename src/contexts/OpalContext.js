@@ -14,7 +14,7 @@ const initialState = {
   saturation: 100,
   lightness: 50,
   hexcolor: `#FF0000`,
-  duration: 1500,
+  duration: 1000,
   scale: 24,
   stroke: 1
 }
@@ -102,7 +102,7 @@ export class OpalContextProvider extends React.Component {
 
     let updatedAnimations = this.state.exportFiles.animations.map(object => {
       let file = object.file
-      
+
       let framerate = parseFloat(((file.op/duration)*1000), 10);
       let lottieFramerate = Math.round(framerate * 1e2) / 1e2;
       file.fr = lottieFramerate;

@@ -583,8 +583,8 @@ export default class Form extends React.Component {
                       <span><input
                         name="durationOutputName"
                         id="durationOutputId"
-                        min="200"
-                        max="3000"
+                        min="500"
+                        max="2000"
                         value={this.context.duration}
                         onChange={this.handleHueChange}></input>ms</span>
                     </MediaQuery>
@@ -597,8 +597,8 @@ export default class Form extends React.Component {
                   name="duration"
                   id="duration"
                   required
-                  min="200"
-                  max="3000"
+                  min="500"
+                  max="2000"
                   onChange={this.handleHueChange}
                   value={this.context.duration}
                   />
