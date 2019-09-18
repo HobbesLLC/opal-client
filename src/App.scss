@@ -564,7 +564,9 @@ body {
           justify-content: space-between;
           span {
             width: 63px;
-
+            @media (max-width: 768px) {
+              width: 70px;
+            }
           }
           input {
             width: 5ch;
@@ -591,10 +593,26 @@ body {
             font-size: 1em;
 
             @media (max-width: 768px) {
-              width: 5.75ch;
-              margin-right: 0;
-              position: relative;
-              right: -5px;
+              &#hueOutputId {
+                width: 5ch;
+              }
+              &#saturationOutputId {
+                width: 5ch;
+              }
+              &#lightnessOutputId {
+                width: 5ch;
+              }
+              &#scaleOutputId {
+                width: 5.75ch;
+                margin-right: -5px;
+              }
+              &#strokeOutputId {
+                width: 4ch;
+              }
+              &#durationOutputId {
+                width: 5.75ch;
+                margin-right: -5px;
+              }
             }
 
             &:focus {
@@ -665,7 +683,9 @@ body {
         cursor: pointer;
         margin-top: -6.5px;
         @media (max-width: 1024px) {
-          margin-top: -8px;
+          margin-top: -7px;
+          border: 0;
+          width: 25px;
         }
 
       }
@@ -681,7 +701,9 @@ body {
         cursor: pointer;
         margin-top: -6.5px;
         @media (max-width: 1024px) {
-          margin-top: -8px;
+          margin-top: -7px;
+          border: 0;
+          width: 25px;
         }
 
       }
@@ -697,7 +719,9 @@ body {
         cursor: pointer;
         margin-top: -6.5px;
         @media (max-width: 1024px) {
-          margin-top: -8px;
+          margin-top: -7px;
+          border: 0;
+          width: 25px;
 
         }
 

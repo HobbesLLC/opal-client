@@ -422,13 +422,19 @@ export default class Form extends React.Component {
                 <div className='option'>
                   <span className="field-labels">
                     <label htmlFor='hue'>Hue</label>
+                    <MediaQuery minWidth={1024}>
                     <span><input
                       name="hueOutputName"
                       id="hueOutputId"
                       min="0"
                       max="360"
                       value={this.context.hue}></input></span>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={1023}>
+                      <span>{this.context.hue}</span>
+                    </MediaQuery>
                   </span>
+
                   <div
                     id="visibleHue"
                     />
@@ -446,13 +452,20 @@ export default class Form extends React.Component {
                 <div className='option'>
                   <span className="field-labels">
                     <label htmlFor='saturation'>Saturation</label>
-                    <span><input
-                      name="saturationOutputName"
-                      id="saturationOutputId"
-                      min="0"
-                      max="100"
-                      value={this.context.saturation}
-                      onChange={this.handleHueChange}></input>%</span>
+                      <MediaQuery minWidth={1024}>
+                        <span><input
+                            name="saturationOutputName"
+                            id="saturationOutputId"
+                            min="0"
+                            max="100"
+                            value={this.context.saturation}
+                            onChange={this.handleHueChange}></input>%</span>
+                      </MediaQuery>
+                      <MediaQuery maxWidth={1023}>
+                        <span>{this.context.saturation}%</span>
+                      </MediaQuery>
+
+
                   </span>
                   <div
                     id="visibleSaturation"
@@ -473,13 +486,19 @@ export default class Form extends React.Component {
                 <div className='option'>
                   <span className="field-labels">
                     <label htmlFor='lightness'>Lightness</label>
-                    <span><input
-                      name="lightnessOutputName"
-                      id="lightnessOutputId"
-                      min="0"
-                      max="100"
-                      value={this.context.lightness}
-                      onChange={this.handleHueChange}/>%</span>
+                      <MediaQuery minWidth={1024}>
+                        <span><input
+                            name="lightnessOutputName"
+                            id="lightnessOutputId"
+                            min="0"
+                            max="100"
+                            value={this.context.lightness}
+                            onChange={this.handleHueChange}/>%</span>
+                      </MediaQuery>
+                      <MediaQuery maxWidth={1023}>
+                        <span>{this.context.lightness}%</span>
+                      </MediaQuery>
+
                   </span>
 
 
@@ -502,13 +521,18 @@ export default class Form extends React.Component {
               <div className="scale-edit">
                 <span className="field-labels">
                   <label htmlFor="scale">Scale</label>
-                  <span><input
-                    name="scaleOutputName"
-                    id="scaleOutputId"
-                    min="24"
-                    max="1080"
-                    value={this.context.scale}
-                    onChange={this.handleScaleChange}></input>px</span>
+                    <MediaQuery minWidth={1024}>
+                      <span><input
+                        name="scaleOutputName"
+                        id="scaleOutputId"
+                        min="24"
+                        max="1080"
+                        value={this.context.scale}
+                        onChange={this.handleScaleChange}></input>px</span>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={1023}>
+                      <span>{this.context.scale}px</span>
+                    </MediaQuery>
                 </span>
 
                 <input
@@ -524,13 +548,19 @@ export default class Form extends React.Component {
               <div className="stroke-edit">
                 <span className="field-labels">
                   <label htmlFor="stroke">Stroke</label>
-                  <span><input
-                    name="strokeOutputName"
-                    id="strokeOutputId"
-                    min={1}
-                    max={this.context.scale / 12}
-                    value={this.context.stroke}
-                    onChange={this.handleHueChange}></input>pt</span>
+
+                  <MediaQuery minWidth={1024}>
+                    <span><input
+                      name="strokeOutputName"
+                      id="strokeOutputId"
+                      min={1}
+                      max={this.context.scale / 12}
+                      value={this.context.stroke}
+                      onChange={this.handleHueChange}></input>pt</span>
+                  </MediaQuery>
+                  <MediaQuery maxWidth={1023}>
+                    <span>{this.context.stroke}pt</span>
+                  </MediaQuery>
                 </span>
 
                 <input
@@ -548,13 +578,19 @@ export default class Form extends React.Component {
               <div className="duration-edit">
                 <span className="field-labels">
                   <label htmlFor="duration">Duration</label>
-                  <span><input
-                    name="durationOutputName"
-                    id="durationOutputId"
-                    min="200"
-                    max="3000"
-                    value={this.context.duration}
-                    onChange={this.handleHueChange}></input>ms</span>
+
+                    <MediaQuery minWidth={1024}>
+                      <span><input
+                        name="durationOutputName"
+                        id="durationOutputId"
+                        min="200"
+                        max="3000"
+                        value={this.context.duration}
+                        onChange={this.handleHueChange}></input>ms</span>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={1023}>
+                      <span>{this.context.duration}ms</span>
+                    </MediaQuery>
                 </span>
                 <input
                   type="range"
