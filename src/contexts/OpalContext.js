@@ -102,18 +102,7 @@ export class OpalContextProvider extends React.Component {
 
     let updatedAnimations = this.state.exportFiles.animations.map(object => {
       let file = object.file
-      // file.op = 30;
-      //
-      // // temporary
-      // if (file.nm === 'Upload_Build_quartersec') {
-      //   file.op = 45
-      // }
-      // if (file.nm === 'Undo_Build_halfsec') {
-      //   file.op = 60
-      // }
-      // if (file.nm === 'Redo_Build_fullsec') {
-      //   file.op = 90
-      // }
+      
       let framerate = parseFloat(((file.op/duration)*1000), 10);
       let lottieFramerate = Math.round(framerate * 1e2) / 1e2;
       file.fr = lottieFramerate;
