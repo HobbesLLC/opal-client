@@ -626,7 +626,7 @@ body {
           margin: 9.25px auto;
 
           @media (max-width: 768px) {
-            // margin: 5px auto;
+            margin: 10px auto;
           }
 
         }
@@ -869,9 +869,7 @@ body {
         @media (max-width: 1024px) {
           width: 98.5%;
         }
-        // @media (max-width: 768px) {
-        //   top: 6px;
-        // }
+
       }
       #visibleLightness {
         background:linear-gradient(to right, black, grey, lightgrey, white);
