@@ -13,7 +13,7 @@ const initialState = {
   hue: 0,
   saturation: 100,
   lightness: 50,
-  hexcolor: `#FF0000`,
+  hexcolor: `FF0000`,
   duration: 1000,
   scale: 24,
   stroke: 1

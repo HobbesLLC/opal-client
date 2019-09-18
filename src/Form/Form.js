@@ -128,14 +128,14 @@ export default class Form extends React.Component {
     if (b.length === 1)
       b = '0' + b;
 
-    return '#' + r + g + b;
+    return r + g + b;
   }
   calculateColor = () => {
 
       let lottieColor = this.hslToLottie(this.context.hue, this.context.saturation, this.context.lightness)
 
       this.context.setLottieColor({
-        hexcolor: this.hslToHex(this.context.hue, this.context.saturation, this.context.lightness),
+        hexcolor: this.hslToHex(this.context.hue, this.context.saturation, this.context.lightness).toUpperCase(),
         lottieColor
       })
 
@@ -151,11 +151,10 @@ export default class Form extends React.Component {
   handleHexSubmit = e => {
     e.preventDefault()
 
-    if (e.target.value.length === 7) {
+    if (e.target.value.length === 6) {
+
       let newHSL = hexToHsl(e.target.value)
       let lottieColor = this.hslToLottie(newHSL[0], newHSL[1], newHSL[2])
-
-
 
         const updateFileColors = async () => {
           this.context.setLottieColorFromHex({
@@ -383,7 +382,6 @@ export default class Form extends React.Component {
                   {this.playBuild()}
               </div>
               <div className='fill-bar'>
-                {/* need to dynamically change rendering text without updating state and re-rendering this component*/}
                 <RenderingText />
                 <div className='bar active'></div>
               </div>
@@ -399,12 +397,24 @@ export default class Form extends React.Component {
               ? <form
               className='preview-hex'
               onChange={this.handleHexSubmit}>
-                <input
-                  type="text"
-                  value={this.context.hexcolor}
-                  onChange={this.handleHexSubmit}
-                  >
-                </input>
+               <span>#
+                  <input
+                    type="text"
+                    id="hexcolor-input"
+                    placeholder={this.context.hexcolor}
+                    onFocus={e => {
+                      e.target.defaultValue = this.context.hexcolor
+                    }}
+                    onBlur={e => {
+                      e.target.defaultValue = ''
+                    }}
+                    onChange={e => {
+                      e.target.defaultValue = ''
+                      this.handleHexSubmit(e)
+                    }}
+                    >
+                  </input>
+                </span>
               </form>
               : ''}
             </div>
