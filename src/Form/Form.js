@@ -28,11 +28,16 @@ export default class Form extends React.Component {
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
-        let animationFiles = res.filter(file => file.type === 'animation')
+        let animationFiles = res.filter(file => {
+          return (file.type === 'animation') || (file.type === 'preview')
+        })
         let staticFiles = res.filter(file => file.type === 'static')
+        // let previewFiles = res.filter(file => file.type === 'preview')
+        // Eventually replace every instance of animations with previews. Here and context file
         this.context.setExportFiles({
           animations: animationFiles,
-          static: staticFiles
+          static: staticFiles,
+          // previews: previewFiles
         })
       })
       .then(data => {

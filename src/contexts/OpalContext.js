@@ -826,6 +826,7 @@ export class OpalContextProvider extends React.Component {
         break;
 
         case 'Redo_Build':
+        case 'Redo_Build_fullsec':
         case 'Redo_Static':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
@@ -1021,6 +1022,7 @@ export class OpalContextProvider extends React.Component {
 
         case 'Undo_Build':
         case 'Undo_Static':
+        case 'Undo_Build_halfsec':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
         file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
@@ -1039,6 +1041,7 @@ export class OpalContextProvider extends React.Component {
 
         case 'Upload_Build':
         case 'Upload_Static':
+        case 'Upload_Build_quartersec':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[2].shapes[0].it[2].c.k = lottieColor;
         file.layers[3].shapes[1].c.k = lottieColor;
