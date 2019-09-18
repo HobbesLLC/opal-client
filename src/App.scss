@@ -1118,11 +1118,12 @@ footer {
   transition-timing-function: cubic-bezier(0.39, 0, 0.72, 0.12);
 
   .about-content {
-    height: 424px;
+    height: 420px;
+    padding: 15px 0;
     h1 {
       font-weight: bold;
       font-size: 1em;
-      margin-bottom: 0.5em;
+      margin-bottom: 1em;
       opacity: 0;
       transition: opacity .5s;
       transition-timing-function: cubic-bezier(0.8, 0, 0.83, 0.83);
