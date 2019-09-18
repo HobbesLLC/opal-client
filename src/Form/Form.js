@@ -7,6 +7,8 @@ import MediaQuery from 'react-responsive'
 import Build from '../Img/Download_Moment.json'
 import BackArrow from '../Img/BackArrow.svg'
 import OpalContext from '../contexts/OpalContext'
+import RenderingText from './RenderingText'
+
 
 let hexToHsl = require('hex-to-hsl');
 let JSZip = require('jszip')
@@ -18,7 +20,6 @@ export default class Form extends React.Component {
     previewFile: null,
     isRendering: false,
     doneRendering: false,
-    renderingText: 'packaging files',
     fillBar: null,
     pausedStatus: false
   }
@@ -27,11 +28,17 @@ export default class Form extends React.Component {
 
     AnimationApiService.saveAnimation(lottieColor, duration, stroke, scale)
       .then(res => {
-        let animationFiles = res.filter(file => file.type === 'animation')
+        let animationFiles = res.filter(file => {
+          return (file.type === 'animation') || (file.type === 'preview')
+        })
         let staticFiles = res.filter(file => file.type === 'static')
+        let previewFiles = res.filter(file => file.type === 'preview')
+
+        // Eventually replace every instance of animations with previews. Here and context file
         this.context.setExportFiles({
           animations: animationFiles,
-          static: staticFiles
+          static: staticFiles,
+          previews: previewFiles
         })
       })
       .then(data => {
@@ -260,8 +267,6 @@ export default class Form extends React.Component {
     this.setState({
       isRendering: false,
       fillBar: false,
-      renderingText: 'packaging files'
-      // setting the text back to it's default state for the next download action
     },
     () => {
       return
@@ -379,11 +384,8 @@ export default class Form extends React.Component {
               </div>
               <div className='fill-bar'>
                 {/* need to dynamically change rendering text without updating state and re-rendering this component*/}
-                <span>{'packaging files'}</span>
-                {/* need to dynamically change the width without updating state and re-rendering this component*/}
-                {this.state.fillBar
-                ? ( <div className='bar active' style={{width: `100%`}}></div>)
-                : ( <div className='bar' style={{width: `100%`, transition: `width 3s ease`}}></div>)}
+                <RenderingText />
+                <div className='bar active'></div>
               </div>
             </div>
             )
@@ -420,13 +422,19 @@ export default class Form extends React.Component {
                 <div className='option'>
                   <span className="field-labels">
                     <label htmlFor='hue'>Hue</label>
-                    <input
+                    <MediaQuery minWidth={1024}>
+                    <span><input
                       name="hueOutputName"
                       id="hueOutputId"
                       min="0"
                       max="360"
-                      value={this.context.hue}></input>
+                      value={this.context.hue}></input></span>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={1023}>
+                      <span>{this.context.hue}</span>
+                    </MediaQuery>
                   </span>
+
                   <div
                     id="visibleHue"
                     />
@@ -444,13 +452,20 @@ export default class Form extends React.Component {
                 <div className='option'>
                   <span className="field-labels">
                     <label htmlFor='saturation'>Saturation</label>
-                    <span><input
-                      name="saturationOutputName"
-                      id="saturationOutputId"
-                      min="0"
-                      max="100"
-                      value={this.context.saturation}
-                      onChange={this.handleHueChange}></input>%</span>
+                      <MediaQuery minWidth={1024}>
+                        <span><input
+                            name="saturationOutputName"
+                            id="saturationOutputId"
+                            min="0"
+                            max="100"
+                            value={this.context.saturation}
+                            onChange={this.handleHueChange}></input>%</span>
+                      </MediaQuery>
+                      <MediaQuery maxWidth={1023}>
+                        <span>{this.context.saturation}%</span>
+                      </MediaQuery>
+
+
                   </span>
                   <div
                     id="visibleSaturation"
@@ -471,13 +486,19 @@ export default class Form extends React.Component {
                 <div className='option'>
                   <span className="field-labels">
                     <label htmlFor='lightness'>Lightness</label>
-                    <span><input
-                      name="lightnessOutputName"
-                      id="lightnessOutputId"
-                      min="0"
-                      max="100"
-                      value={this.context.lightness}
-                      onChange={this.handleHueChange}/>%</span>
+                      <MediaQuery minWidth={1024}>
+                        <span><input
+                            name="lightnessOutputName"
+                            id="lightnessOutputId"
+                            min="0"
+                            max="100"
+                            value={this.context.lightness}
+                            onChange={this.handleHueChange}/>%</span>
+                      </MediaQuery>
+                      <MediaQuery maxWidth={1023}>
+                        <span>{this.context.lightness}%</span>
+                      </MediaQuery>
+
                   </span>
 
 
@@ -500,13 +521,18 @@ export default class Form extends React.Component {
               <div className="scale-edit">
                 <span className="field-labels">
                   <label htmlFor="scale">Scale</label>
-                  <span><input
-                    name="scaleOutputName"
-                    id="scaleOutputId"
-                    min="24"
-                    max="1080"
-                    value={this.context.scale}
-                    onChange={this.handleScaleChange}></input>px</span>
+                    <MediaQuery minWidth={1024}>
+                      <span><input
+                        name="scaleOutputName"
+                        id="scaleOutputId"
+                        min="24"
+                        max="1080"
+                        value={this.context.scale}
+                        onChange={this.handleScaleChange}></input>px</span>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={1023}>
+                      <span>{this.context.scale}px</span>
+                    </MediaQuery>
                 </span>
 
                 <input
@@ -522,13 +548,19 @@ export default class Form extends React.Component {
               <div className="stroke-edit">
                 <span className="field-labels">
                   <label htmlFor="stroke">Stroke</label>
-                  <span><input
-                    name="strokeOutputName"
-                    id="strokeOutputId"
-                    min={1}
-                    max={this.context.scale / 12}
-                    value={this.context.stroke}
-                    onChange={this.handleHueChange}></input>pt</span>
+
+                  <MediaQuery minWidth={1024}>
+                    <span><input
+                      name="strokeOutputName"
+                      id="strokeOutputId"
+                      min={1}
+                      max={this.context.scale / 12}
+                      value={this.context.stroke}
+                      onChange={this.handleHueChange}></input>pt</span>
+                  </MediaQuery>
+                  <MediaQuery maxWidth={1023}>
+                    <span>{this.context.stroke}pt</span>
+                  </MediaQuery>
                 </span>
 
                 <input
@@ -546,21 +578,27 @@ export default class Form extends React.Component {
               <div className="duration-edit">
                 <span className="field-labels">
                   <label htmlFor="duration">Duration</label>
-                  <span><input
-                    name="durationOutputName"
-                    id="durationOutputId"
-                    min="200"
-                    max="3000"
-                    value={this.context.duration}
-                    onChange={this.handleHueChange}></input>ms</span>
+
+                    <MediaQuery minWidth={1024}>
+                      <span><input
+                        name="durationOutputName"
+                        id="durationOutputId"
+                        min="500"
+                        max="2000"
+                        value={this.context.duration}
+                        onChange={this.handleHueChange}></input>ms</span>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={1023}>
+                      <span>{this.context.duration}ms</span>
+                    </MediaQuery>
                 </span>
                 <input
                   type="range"
                   name="duration"
                   id="duration"
                   required
-                  min="200"
-                  max="3000"
+                  min="500"
+                  max="2000"
                   onChange={this.handleHueChange}
                   value={this.context.duration}
                   />
@@ -569,7 +607,7 @@ export default class Form extends React.Component {
                 <button type="submit" id="render">Download All</button>
               </MediaQuery>
               <MediaQuery maxWidth={1024}>
-                <div className='mobile-form-announcement'>experience the full site on desktop</div>
+                <div className='mobile-form-announcement'>Experience the full site on desktop.</div>
               </MediaQuery>
 
 

@@ -14,7 +14,7 @@ const initialState = {
   saturation: 100,
   lightness: 50,
   hexcolor: `#FF0000`,
-  duration: 1500,
+  duration: 1000,
   scale: 24,
   stroke: 1
 }
@@ -102,10 +102,6 @@ export class OpalContextProvider extends React.Component {
 
     let updatedAnimations = this.state.exportFiles.animations.map(object => {
       let file = object.file
-      file.op = 30;
-
-
-
 
       let framerate = parseFloat(((file.op/duration)*1000), 10);
       let lottieFramerate = Math.round(framerate * 1e2) / 1e2;
@@ -826,6 +822,7 @@ export class OpalContextProvider extends React.Component {
         break;
 
         case 'Redo_Build':
+        case 'Redo_Build_fullsec':
         case 'Redo_Static':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
@@ -1021,6 +1018,7 @@ export class OpalContextProvider extends React.Component {
 
         case 'Undo_Build':
         case 'Undo_Static':
+        case 'Undo_Build_halfsec':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[3].shapes[0].it[1].c.k = lottieColor;
         file.layers[1].shapes[0].it[1].w.k = strokeAdjusted;
@@ -1039,6 +1037,7 @@ export class OpalContextProvider extends React.Component {
 
         case 'Upload_Build':
         case 'Upload_Static':
+        case 'Upload_Build_quartersec':
         file.layers[1].shapes[0].it[1].c.k = lottieColor;
         file.layers[2].shapes[0].it[2].c.k = lottieColor;
         file.layers[3].shapes[1].c.k = lottieColor;
