@@ -607,7 +607,7 @@ export default class Form extends React.Component {
                 <button type="submit" id="render">Download All</button>
               </MediaQuery>
               <MediaQuery maxWidth={1024}>
-                <div className='mobile-form-announcement'>experience the full site on desktop</div>
+                <div className='mobile-form-announcement'>Experience the full site on desktop.</div>
               </MediaQuery>
 
 
