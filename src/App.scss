@@ -99,6 +99,16 @@ body {
     cursor: pointer;
 
   }
+  .preview-hex {
+    #hexcolor-input {
+      ::-webkit-input-placeholder,
+      :-ms-input-placeholder
+      ::placeholder{
+        color: #000000 !important;
+      }
+    }
+
+  }
 }
 // GREY MODE
 .grey {
@@ -324,6 +334,17 @@ body {
 
     }
   }
+  .preview-hex {
+    #hexcolor-input {
+
+      &::-webkit-input-placeholder,
+      :-ms-input-placeholder
+      ::placeholder {
+        color: #FFFFFF;
+      }
+    }
+
+  }
 }
 
 // header
@@ -493,11 +514,16 @@ body {
       left: 0;
       right: 0;
       .preview-hex {
-        input {
-          text-align: right;
-          max-width: 8ch;
+        #hexcolor-input {
+          text-align: left;
+          max-width: 7ch;
           border: none;
           text-transform: uppercase;
+          &::-webkit-input-placeholder,
+          :-ms-input-placeholder
+          ::placeholder {
+            color: #1A1A1A !important;
+          }
         }
 
       }
