@@ -334,7 +334,7 @@ export default class Form extends React.Component {
       })
       setTimeout(() => {
         this.downloadFiles()
-      }, 3000)
+      }, 3250)
 
   }
 
