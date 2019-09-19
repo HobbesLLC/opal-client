@@ -166,6 +166,14 @@ body {
 
 
   }
+  .bar {
+    &.active {
+      &:before {
+      background: $offblack;
+      }
+    }
+  }
+
 }
 
 // DARK MODE
@@ -330,6 +338,18 @@ body {
 
 
     }
+
+  }
+  .form-grid {
+    .form-preview {
+      .bar {
+        &.active {
+          &:before {
+          background: $white;
+          }
+        }
+      }
+    }
   }
   .preview-hex {
     #hexcolor-input {
@@ -342,6 +362,7 @@ body {
     }
 
   }
+
 }
 
 // header
@@ -948,7 +969,7 @@ body {
           left: 0;
           bottom: 0;
           right: 0;
-          background: black;
+          background: $black;
           animation: active-animation 2.75s cubic-bezier(.58,0,.91,.08) 1;
           content: "";
           opacity: 1;

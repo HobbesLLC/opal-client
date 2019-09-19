@@ -83,12 +83,12 @@ export default class Grid extends React.Component {
             <div className='icon' data-id={62} data-name={'Pencil_Build'} onClick={this.setPreview}></div>
             <div className='icon' data-id={38} data-name={'Edit_Build'} onClick={this.setPreview}></div>
             <div className='icon' data-id={37} data-name={'Download_Build'} onClick={this.setPreview}></div>
-            {/*<div className='icon' data-id={90} data-name={'Upload_Build'} onClick={this.setPreview}></div>*/}
-            <div className='icon' data-name={'Upload_Build_quartersec'} onClick={this.setPreview}></div>
-            {/*<div className='icon' data-id={87} data-name={'Undo_Build'} onClick={this.setPreview}></div>*/}
-            <div className='icon' data-name={'Undo_Build_halfsec'} onClick={this.setPreview}></div>
-            {/*<div className='icon' data-id={72} data-name={'Redo_Build'} onClick={this.setPreview}></div>*/}
-            <div className='icon' data-name={'Redo_Build_fullsec'} onClick={this.setPreview}></div>
+            <div className='icon' data-id={90} data-name={'Upload_Build'} onClick={this.setPreview}></div>
+            {/*<div className='icon' data-name={'Upload_Build_quartersec'} onClick={this.setPreview}></div>*/}
+            <div className='icon' data-id={87} data-name={'Undo_Build'} onClick={this.setPreview}></div>
+            {/*<div className='icon' data-name={'Undo_Build_halfsec'} onClick={this.setPreview}></div>*/}
+            <div className='icon' data-id={72} data-name={'Redo_Build'} onClick={this.setPreview}></div>
+            {/*<div className='icon' data-name={'Redo_Build_fullsec'} onClick={this.setPreview}></div>*/}
             <div className='icon' data-id={55} data-name={'Menu_Build'} onClick={this.setPreview}></div>
             <div className='icon' data-id={57} data-name={'Microphone_Off_Build'} onClick={this.setPreview}></div>
             <div className='icon' data-id={40} data-name={'Eye_Off_Build'} onClick={this.setPreview}></div>
