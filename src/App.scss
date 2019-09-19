@@ -40,8 +40,8 @@ hr {  margin: 0;  padding: 0;}
 body {
   font-family: 'IBM Plex Sans', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
   font-size: 11px;
-  @media (min-width: 2880px) {
-    font-size: 15px;
+  @media (min-width: 2000px) {
+    font-size: 16.5px;
   }
 }
 
@@ -240,7 +240,6 @@ body {
 
       // Track Styling
       input[type=range]::-webkit-slider-runnable-track {
-        margin-right: 5px;
         width: 100%;
         height: $trackheight;
         cursor: pointer;
@@ -255,7 +254,6 @@ body {
       }
 
       input[type=range]::-moz-range-track {
-        margin-right: 5px;
         width: 100%;
         height: $trackheight;
         cursor: pointer;
@@ -265,7 +263,6 @@ body {
       }
 
       input[type=range]::-ms-track {
-        margin-right: 5px;
         width: 100%;
         height: $trackheight;
         cursor: pointer;
@@ -336,11 +333,11 @@ body {
   }
   .preview-hex {
     #hexcolor-input {
-
-      &::-webkit-input-placeholder,
+      color: #FFFFFF;
+      &:-webkit-input-placeholder,
       :-ms-input-placeholder
-      ::placeholder {
-        color: #FFFFFF;
+      :placeholder {
+        color: #FFFFFF !important;
       }
     }
 
@@ -375,13 +372,13 @@ body {
   @media (max-width: 768px) {
 
   }
-  @media (min-width: 2880px) {
+  @media (min-width: 2000px) {
     .opal-logo,
     .hobbes-logo {
-      max-width: 40px;
+      max-width: 30px;
       svg {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
       }
     }
   }
@@ -413,7 +410,7 @@ body {
     align-items: center;
     height: 100vh;
   }
-  @media (min-width: 2880px) {
+  @media (min-width: 2000px) {
     height: auto;
     align-items: center;
   }
@@ -422,8 +419,9 @@ body {
   .grid-container,
   .form-preview {
     width: 420px;
-    @media (min-width: 2880px) {
-      width: 840px;
+    @media (min-width: 2000px) {
+      // width: 840px;
+      width: 630px;
       align-self: flex-start;
     }
   }
@@ -435,9 +433,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @media (min-width: 2880px) {
-      width: 840px;
-      height: 840px;
+    @media (min-width: 2000px) {
+      // width: 840px;
+      // height: 840px;
+      width: 630px;
+      height: 640px;
     }
     @media (max-width: 1024px) {
       display: none;
@@ -486,7 +486,7 @@ body {
     #build-json {
       max-width: 84.75%;
       margin: 0 auto;
-      @media (min-width: 2880px) {
+      @media (min-width: 2000px) {
         max-width: 89%;
       }
     }
@@ -524,7 +524,11 @@ body {
           ::placeholder {
             color: #1A1A1A !important;
           }
+          @media (min-width: 2000px) {
+            font-size: 16.5px;
+          }
         }
+
 
       }
       @media (max-width: 1024px) {
@@ -544,10 +548,12 @@ body {
         height: 51.72%;
       }
 
-      @media (min-width: 2880px) {
-        height: 436px;
-        width: 436px;
-        margin: 56px auto;
+      @media (min-width: 2000px) {
+        // height: 436px;
+        // width: 436px;
+        height: 327px;
+        width: 327px;
+        margin: 15px auto;
       }
     }
     .color-values {
@@ -567,8 +573,8 @@ body {
       @media (max-width: 1024px) {
         font-size: 14px;
       }
-      @media (min-width: 2880px) {
-        font-size: 15px;
+      @media (min-width: 2000px) {
+        font-size: 16.5px;
       }
       fieldset {
         padding: 0;
@@ -589,57 +595,22 @@ body {
           width: 100%;
           justify-content: space-between;
           span {
-            width: 63px;
+
             @media (max-width: 768px) {
               width: 70px;
             }
+            @media (min-width: 1024px) {
+              text-align: right;
+            }
           }
           input {
-            width: 5ch;
+            width: 6ch;
+            @media (min-width: 1024px) {
+              text-align: right;
+            }
 
-            &#hueOutputId {
-              width: 3.25ch;
-            }
-            &#saturationOutputId {
-              width: 3.125ch;
-            }
-            &#lightnessOutputId {
-              width: 3ch;
-            }
-            &#scaleOutputId {
-              width: 4.125ch;
-            }
-            &#strokeOutputId {
-              width: 2.5ch;
-            }
-            &#durationOutputId {
-              width: 4.125ch;
-            }
             border: none;
             font-size: 1em;
-
-            @media (max-width: 768px) {
-              &#hueOutputId {
-                width: 5ch;
-              }
-              &#saturationOutputId {
-                width: 5ch;
-              }
-              &#lightnessOutputId {
-                width: 5ch;
-              }
-              &#scaleOutputId {
-                width: 5.75ch;
-                margin-right: -5px;
-              }
-              &#strokeOutputId {
-                width: 4ch;
-              }
-              &#durationOutputId {
-                width: 5.75ch;
-                margin-right: -5px;
-              }
-            }
 
             &:focus {
               outline: none;
@@ -755,7 +726,6 @@ body {
 
       // Track Styling
       input[type=range]::-webkit-slider-runnable-track {
-        margin-right: 5px;
         width: 100%;
         height: $trackheight;
         cursor: pointer;
@@ -770,7 +740,6 @@ body {
       }
 
       input[type=range]::-moz-range-track {
-        margin-right: 5px;
         width: 100%;
         height: $trackheight;
         cursor: pointer;
@@ -781,7 +750,6 @@ body {
       }
 
       input[type=range]::-ms-track {
-        margin-right: 5px;
         width: 100%;
         height: $trackheight;
         cursor: pointer;
@@ -933,10 +901,8 @@ body {
         top: 11px;
         z-index: 0;
         border-radius: 1.3px;
-        width: 98.5%;
-        @media (max-width: 1024px) {
-          width: 98.5%;
-        }
+        width: 100%;
+
 
       }
       #visibleLightness {
@@ -1073,24 +1039,24 @@ footer {
     }
 
   }
-  @media (min-width: 2880px) {
+  @media (min-width: 2000px) {
 
     .color-picker {
       #light,
       #grey,
       #dark {
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
       }
     }
     .hobbes-about {
-      height: 40px;
-      width: 40px;
+      height: 30px;
+      width: 30px;
       img,
       svg {
         vertical-align: middle;
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
       }
     }
   }
