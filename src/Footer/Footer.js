@@ -41,7 +41,7 @@ export default class Footer extends React.Component {
             <h1>About</h1>
             <p>Opal is a free web tool for creating fully customized animated JSON iconsets</p>
             <p>JSON files are lightweight text files that (with the help of <a href='https://aescripts.com/bodymovin/' target='_blank' rel="noopener noreferrer">Bodymovin</a> and <a href='https://airbnb.io/lottie/#/' target='_blank' rel="noopener noreferrer">Lottie</a>) can be used to render SVG animations. This assures that each animated icon is vector-based and fully scalable for any website or application.</p>
-            <p>Check out the details on the Lottie Website here or in the readme file included in the download.</p>
+            <p>Check out the details on the <a href='https://airbnb.io/lottie/#/' target='_blank' rel="noopener noreferrer">Lottie</a> website.</p>
             <p>Created by <a href='https://www.hobbes.work'>Hobbes</a></p>
           </div>
         </aside>
@@ -53,7 +53,7 @@ export default class Footer extends React.Component {
             <h1>About</h1>
             <p>Opal is a free web tool for creating fully customized animated JSON iconsets</p>
             <p>JSON files are lightweight text files that (with the help of <a href='https://aescripts.com/bodymovin/' target='_blank' rel="noopener noreferrer">Bodymovin</a> and <a href='https://airbnb.io/lottie/#/' target='_blank' rel="noopener noreferrer">Lottie</a>) can be used to render SVG animations. This assures that each animated icon is vector-based and fully scalable for any website or application.</p>
-            <p>Check out the details on the Lottie Website here or in the readme file included in the download.</p>
+            <p>Check out the details on the <a href='https://airbnb.io/lottie/#/' target='_blank' rel="noopener noreferrer">Lottie</a> website.</p>
             <p>Created by <a href='https://www.hobbes.work'>Hobbes</a></p>
           </div>
         </aside>

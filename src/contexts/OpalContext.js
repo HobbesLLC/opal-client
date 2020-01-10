@@ -1232,7 +1232,6 @@ export class OpalContextProvider extends React.Component {
       hue: Number(hue)
     },
     () => {
-      console.log('I updated the Hue?');
       return
     })
   }

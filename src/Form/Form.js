@@ -34,7 +34,6 @@ export default class Form extends React.Component {
         let staticFiles = res.filter(file => file.type === 'static')
         let previewFiles = res.filter(file => file.type === 'preview')
 
-        // Eventually replace every instance of animations with previews. Here and context file
         this.context.setExportFiles({
           animations: animationFiles,
           static: staticFiles,
