@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from './Opal_Grid.json';
-import Pencil from '../Pencil.json';
+import Pencil from './Pencil.json';
 import OpalContext from '../contexts/OpalContext';
 import MediaQuery from 'react-responsive';
 
