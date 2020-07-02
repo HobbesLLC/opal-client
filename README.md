@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# OPAL
 
-## Available Scripts
+Opal is a free web tool for creating fully customized animated JSON iconsets. This project was a collaboration with [Hobbes](https://www.hobbes.work) to allow developers and designers to customize a set of animated icons. The icons were created in Adobe After Effects by Hobbes and exported as JSON using [Bodymovin](https://exchange.adobe.com/creativecloud.details.12557.bodymovin.html).
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Users can adjust the color (hue, saturation, & light) by adjusting input ranges or by entering a Hex code. Scale, stroke, & duration can also be adjusted
+  - The Hex code will be translated to
+- These values are stored in state, and sent to the API
+- The API receives these values, validates them, and applies them to a copy of these files copied from a PostgreSQL database.
+- The files are returned to the client, packaged using JSZip and downloaded. The download includes a directory for Animated & Static icons.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Deployment
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+The frontend is hosted with [Vercel](https://vercel.com)
+The backend API & Database are hosted with [Heroku](https://heroku.com)
 
-### `npm test`
+## Built With
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React](https://reactjs.org/) - The web framework used for the frontend
+- [Express](https://expressjs.com/) - The web framework used for the backend API
+- [Lottie](https://airbnb.io/lottie/#/) - Used to animate SVG icons
+- [JSZip](https://stuk.github.io/jszip/) - Used to package JSON icons
 
-### `npm run build`
+## Authors
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **Lucas Vocos** - _Web Developer_ - [Github](https://github.com/lucasvocos)
+- **Dan Stack** - _Motion Designer_ - [Portfolio](https://www.danrstack.com/)
