@@ -12,8 +12,7 @@ Opal is a free web tool for creating fully customized animated JSON iconsets. Th
 
 ## Deployment
 
-The frontend is hosted with [Vercel](https://vercel.com)
-The backend API & Database are hosted with [Heroku](https://heroku.com)
+The frontend is hosted with [Vercel](https://vercel.com). The backend API & Database are hosted with [Heroku](https://heroku.com)
 
 ## Built With
 
